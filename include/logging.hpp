@@ -9,6 +9,9 @@
 namespace birgersp
 {
 
+namespace logging
+{
+
 std::string getFunctionName(const std::string& functionHeader)
 {
     int i0 = functionHeader.find(" ");
@@ -25,6 +28,8 @@ void logFunction(const std::string& functionHeader, const std::string& message)
 {
     std::string functionName = getFunctionName(functionHeader);
     std::cout << functionName << ": " << message << std::endl;
+}
+
 }
 
 }
