@@ -21,7 +21,7 @@ public:
         restart();
     }
 
-    long elapsedMS()
+    long elapsedMS() const
     {
         long currentTime = currentTimeMS();
         return (currentTime - prevTime);
@@ -34,11 +34,11 @@ public:
 
 private:
 
-    struct timeval currentTimeValue;
     long prevTime;
 
-    long currentTimeMS()
+    long currentTimeMS() const
     {
+        struct timeval currentTimeValue;
         gettimeofday(&currentTimeValue, 0);
         return currentTimeValue.tv_sec * 1000 + currentTimeValue.tv_usec / 1000;
     }
