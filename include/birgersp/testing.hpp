@@ -114,12 +114,15 @@ public:
 
     bool testAll(const std::vector<TestFunction>& functions)
     {
+        printString("Performing " + toString(functions.size()) + " tests");
+
         bool allTestsSucceeded = true;
         for (TestFunction function : functions)
         {
             if (!test(function))
                 allTestsSucceeded = false;
         }
+        printString("");
         return allTestsSucceeded;
     }
 

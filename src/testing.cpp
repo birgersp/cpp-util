@@ -26,13 +26,5 @@ void doSomeTests()
         emptyTest
     };
 
-    printString("Performing tests");
-    if (testAll(testFunctions))
-    {
-        printString("All tests succeeded");
-    }
-    else
-    {
-        printString("Error: Some tests failed");
-    }
+    testAll(testFunctions);
 }
