@@ -18,13 +18,22 @@ void emptyTest()
 {
 }
 
+void approximationTest()
+{
+    int x = 10;
+    int y = 14;
+    assertApproxEqual(x, y, 5);
+}
+
 void doSomeTests()
 {
     std::vector<TestFunction> testFunctions = {
         dummyTest1,
         dummyTest2,
-        emptyTest
+        emptyTest,
+        approximationTest
     };
 
+    printString("(Ignore these test, they're supposed to fail)");
     testAll(testFunctions);
 }

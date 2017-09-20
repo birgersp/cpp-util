@@ -57,10 +57,12 @@ public:
             throw AssertionFailedException("Boolean expression is false");
     }
 
-    void makeEqualsAssertion(float expected, float actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeEqualsAssertion(float expected, float actual, float delta, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestedFunction(functionHeader, fileName, lineNumber);
-        if (expected != actual)
+        float min = actual - delta;
+        float max = actual + delta;
+        if (expected < min || expected > max)
             throw AssertionFailedException("Expected: \"" + toString(expected) + "\"\tActual: \"" + toString(actual) + "\"");
     }
 
@@ -165,6 +167,7 @@ static bool testAll(std::vector<TestFunction>& functions)
 }
 
 #define assertTrue(expression) birgersp::_tester.makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertEquals(expected, actual) birgersp::_tester.makeEqualsAssertion(expected, actual, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define assertApproxEqual(expected, actual, delta) birgersp::_tester.makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define assertEquals(expected, actual) assertApproxEqual(expected, actual, 0)
 
 #endif /* TESTING_HPP */
