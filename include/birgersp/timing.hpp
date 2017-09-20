@@ -21,13 +21,13 @@ public:
         restart();
     }
 
-    elapsedMS()
+    long elapsedMS()
     {
         long currentTime = currentTimeMS();
         return (currentTime - prevTime);
     }
 
-    restart()
+    void restart()
     {
         prevTime = currentTimeMS();
     }
@@ -37,7 +37,7 @@ private:
     struct timeval currentTimeValue;
     long prevTime;
 
-    currentTimeMS()
+    long currentTimeMS()
     {
         gettimeofday(&currentTimeValue, 0);
         return currentTimeValue.tv_sec * 1000 + currentTimeValue.tv_usec / 1000;
