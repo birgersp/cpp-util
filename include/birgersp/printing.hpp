@@ -8,27 +8,27 @@
 namespace birgersp
 {
 
-std::string getFunctionMessage(const std::string& functionHeader, const std::string& message)
+static std::string getFunctionMessage(const std::string& functionHeader, const std::string& message)
 {
     return getFunctionName(functionHeader) + ": " + message;
 }
 
-void printString(const std::string& string)
+static void printString(const std::string& string)
 {
     std::cout << string << std::endl;
 }
 
-void printFunction(const std::string& functionHeader, const std::string& message)
+static void printFunction(const std::string& functionHeader, const std::string& message)
 {
     printString(getFunctionMessage(functionHeader, message));
 }
 
-void printErrorString(const std::string& message)
+static void printErrorString(const std::string& message)
 {
     std::cerr << message << std::endl;
 }
 
-void printFunctionError(const std::string& functionHeader, const std::string& message)
+static void printFunctionError(const std::string& functionHeader, const std::string& message)
 {
     printErrorString(getFunctionMessage(functionHeader, message));
 }

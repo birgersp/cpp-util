@@ -135,14 +135,14 @@ private:
     }
 };
 
-Tester _tester;
+static Tester _tester;
 
-bool test(TestFunction function)
+static bool test(TestFunction function)
 {
     return _tester.test(function);
 }
 
-bool testAll(std::vector<TestFunction>& functions)
+static bool testAll(std::vector<TestFunction>& functions)
 {
     return _tester.testAll(functions);
 }
