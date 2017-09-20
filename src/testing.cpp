@@ -1,4 +1,4 @@
-#include "birgersp/testing.hpp"
+#include <birgersp/testing.hpp>
 
 using namespace birgersp;
 
@@ -14,11 +14,16 @@ void dummyTest2()
     assertTrue(false);
 }
 
+void emptyTest()
+{
+}
+
 void doSomeTests()
 {
     std::vector<TestFunction> testFunctions = {
         dummyTest1,
-        dummyTest2
+        dummyTest2,
+        emptyTest
     };
 
     printString("Performing tests");

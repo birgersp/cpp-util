@@ -70,6 +70,7 @@ public:
         std::string testMessage;
         try
         {
+            lastTestedFunction.reset();
             function();
         }
         catch (AssertionFailedException e)
@@ -92,16 +93,20 @@ public:
         Test test = makeTest(function);
 
         std::string line;
-        if (test.succeeded)
-            line += "OK";
-        else
+        if (test.functionName.length() > 0)
         {
-            line += "FAILED";
+            if (test.succeeded)
+                line += "OK";
+            else
+            {
+                line += "FAILED";
+            }
+            line += "\t" + test.functionName;
+            if (!test.succeeded)
+                line += ", file \"" + test.fileName + "\"" + ": line " + toString(test.lineNumber) + ": " + test.message;
         }
-        line += "\t" + test.functionName;
-
-        if (!test.succeeded)
-            line += ", file \"" + test.fileName + "\"" + ": line " + toString(test.lineNumber) + ": " + test.message;
+        else
+            line = "INVALID";
 
         printString(line);
         return test.succeeded;
@@ -125,6 +130,13 @@ private:
         std::string functionHeader;
         std::string fileName;
         int lineNumber;
+
+        void reset()
+        {
+            functionHeader = "";
+            fileName = "";
+            lineNumber = 0;
+        };
     } lastTestedFunction;
 
     void setLastTestedFunction(const std::string& functionHeader, std::string fileName, int lineNumber)

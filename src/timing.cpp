@@ -1,5 +1,5 @@
-#include "birgersp/timing.hpp"
-#include "birgersp/testing.hpp"
+#include <birgersp/timing.hpp>
+#include <birgersp/testing.hpp>
 
 #include <iostream>
 #include <vector>
