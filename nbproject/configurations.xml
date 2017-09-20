@@ -2,9 +2,6 @@
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="C:/Users/birger/Workspace/leisure/cpp-util" name="0">
-      <df name="include">
-        <in>common.hpp</in>
-      </df>
       <df name="src">
         <in>main.cpp</in>
       </df>
@@ -51,8 +48,6 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
-      <item path="include/common.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="0">
         </ccTool>

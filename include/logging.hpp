@@ -5,20 +5,23 @@
 
 #include <iostream>
 
-#define log(message) birgersp::logging::logFunction(__PRETTY_FUNCTION__, message)
-
 namespace birgersp
 {
 
-namespace logging
+void logString(const std::string& message)
 {
+    std::cout << message << std::endl;
+}
 
 void logFunction(const std::string& functionHeader, const std::string& message)
 {
     std::string functionName = getFunctionName(functionHeader);
-    std::cout << functionName << ": " << message << std::endl;
+    logString(functionName + ": " + message);
 }
 
+void logError(const std::string& message)
+{
+    std::cerr << message << std::endl;
 }
 
 }
