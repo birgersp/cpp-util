@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <windows.h>
 
 using namespace birgersp;
 
@@ -11,13 +10,14 @@ void timerTest()
 {
     Timer timer;
 
-    Sleep(10);
+    sleepMS(10);
     assertTrue(timer.elapsedMS() >= 10 && timer.elapsedMS() <= 11);
 
     timer.restart();
     assertEquals(0, timer.elapsedMS());
-    Sleep(5);
+    sleepMS(5);
     assertTrue(timer.elapsedMS() >= 5 && timer.elapsedMS() <= 6);
+    assertTrue(timer.elapsedMS() > 0);
 }
 
 void testTiming()

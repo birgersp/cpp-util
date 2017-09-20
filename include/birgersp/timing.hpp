@@ -3,6 +3,12 @@
 
 #include <sys/time.h>
 
+#if defined(_WIN32) || defined(__CYGWIN__)
+#include <windows.h>
+#elif defined(__linux__)
+#include <unistd.h>
+#endif
+
 namespace birgersp
 {
 
@@ -38,6 +44,15 @@ private:
     }
 
 };
+
+static void sleepMS(int milliseconds)
+{
+#if defined(_WIN32) || defined(__CYGWIN__)
+    Sleep(milliseconds);
+#elif defined(__linux__)
+    usleep(milliseconds / 1000);
+#endif
+}
 
 }
 
