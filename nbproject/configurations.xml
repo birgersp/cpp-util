@@ -48,7 +48,10 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
-      <item path="src/main.cpp" ex="false" tool="1" flavor2="8">
+      <item path="C:/Users/birger/Workspace/leisure/cpp-util/src/main.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
         <ccTool flags="0">
         </ccTool>
       </item>

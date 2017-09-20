@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ln -s ./include /usr/local/include/birgersp
+ln -s ./include/birgersp /usr/local/include/birgersp

@@ -1,6 +1,5 @@
 
-#include "testing.hpp"
-#include "logging.hpp"
+#include "birgersp/testing.hpp"
 
 void test1()
 {
