@@ -2,7 +2,7 @@
 #define TESTING_HPP
 
 #include "common.hpp"
-#include "logging.hpp"
+#include "printing.hpp"
 
 #include <vector>
 #include <string>
@@ -64,29 +64,35 @@ public:
             throw AssertionFailedException("Expected: \"" + toString(expected) + "\"\tActual: \"" + toString(actual) + "\"");
     }
 
+    Test makeTest(TestFunction function)
+    {
+        bool testSucceeded = true;
+        std::string testMessage;
+        try
+        {
+            function();
+        }
+        catch (AssertionFailedException e)
+        {
+            testSucceeded = false;
+            testMessage = e.getMessage();
+        }
+        Test result(
+                    testSucceeded,
+                    getFunctionName(lastTestedFunction.functionHeader),
+                    lastTestedFunction.fileName,
+                    lastTestedFunction.lineNumber,
+                    testMessage
+                    );
+        return result;
+    }
+
     std::vector<Test> makeTests(std::vector<TestFunction>& functions)
     {
         std::vector<Test> tests;
         for (auto function : functions)
         {
-            bool testSucceeded = true;
-            std::string testMessage;
-            try
-            {
-                function();
-            }
-            catch (AssertionFailedException e)
-            {
-                testSucceeded = false;
-                testMessage = e.getMessage();
-            }
-            Test result(
-                        testSucceeded,
-                        getFunctionName(lastTestedFunction.functionHeader),
-                        lastTestedFunction.fileName,
-                        lastTestedFunction.lineNumber,
-                        testMessage
-                        );
+            Test result = makeTest(function);
             tests.push_back(result);
         }
         return tests;
@@ -106,13 +112,12 @@ public:
                 line += "FAILED";
                 allTestsSucceeded = false;
             }
-            line += ":\t";
-            line += test.functionName + ", file \"" + test.fileName + "\": line " + toString(test.lineNumber);
+            line += "\t" + test.functionName;
 
             if (!test.succeeded)
-                line += ": " + test.message;
+                line += ", file \"" + test.fileName + "\"" + ": line " + toString(test.lineNumber) + ": " + test.message;
 
-            logString(line);
+            printString(line);
         }
         return allTestsSucceeded;
     }

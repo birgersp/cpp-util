@@ -2,13 +2,13 @@
 
 using namespace birgersp;
 
-void test1()
+void dummyTest1()
 {
     assertEquals(3, 2 + 1);
     assertTrue(1 + 1 == 2);
 }
 
-void test2()
+void dummyTest2()
 {
     assertTrue(true);
     assertTrue(false);
@@ -17,17 +17,17 @@ void test2()
 void doSomeTests()
 {
     std::vector<TestFunction> testFunctions = {
-        test1,
-        test2
+        dummyTest1,
+        dummyTest2
     };
 
-    logString("Performing tests");
+    printString("Performing tests");
     if (testAll(testFunctions))
     {
-        logString("All tests succeeded");
+        printString("All tests succeeded");
     }
     else
     {
-        logError("Error: Some tests failed");
+        printString("Error: Some tests failed");
     }
 }
