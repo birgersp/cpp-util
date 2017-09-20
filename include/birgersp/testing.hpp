@@ -1,8 +1,8 @@
 #ifndef TESTING_HPP
 #define TESTING_HPP
 
-#include "common.hpp"
-#include "printing.hpp"
+#include <birgersp/common.hpp>
+#include <birgersp/printing.hpp>
 
 #include <vector>
 #include <string>

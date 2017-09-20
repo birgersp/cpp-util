@@ -1,7 +1,7 @@
 #ifndef PRINTING_H
 #define PRINTING_H
 
-#include "common.hpp"
+#include <birgersp/common.hpp>
 
 #include <iostream>
 
