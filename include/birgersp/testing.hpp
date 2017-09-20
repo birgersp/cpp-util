@@ -87,37 +87,33 @@ public:
         return result;
     }
 
-    std::vector<Test> makeTests(std::vector<TestFunction>& functions)
+    bool test(TestFunction function)
     {
-        std::vector<Test> tests;
-        for (auto function : functions)
+        Test test = makeTest(function);
+
+        std::string line;
+        if (test.succeeded)
+            line += "OK";
+        else
         {
-            Test result = makeTest(function);
-            tests.push_back(result);
+            line += "FAILED";
         }
-        return tests;
+        line += "\t" + test.functionName;
+
+        if (!test.succeeded)
+            line += ", file \"" + test.fileName + "\"" + ": line " + toString(test.lineNumber) + ": " + test.message;
+
+        printString(line);
+        return test.succeeded;
     }
 
-    bool testAll(std::vector<TestFunction>& functions)
+    bool testAll(const std::vector<TestFunction>& functions)
     {
         bool allTestsSucceeded = true;
-        std::vector<Test> tests = makeTests(functions);
-        for (auto test : tests)
+        for (TestFunction function : functions)
         {
-            std::string line;
-            if (test.succeeded)
-                line += "OK";
-            else
-            {
-                line += "FAILED";
+            if (!test(function))
                 allTestsSucceeded = false;
-            }
-            line += "\t" + test.functionName;
-
-            if (!test.succeeded)
-                line += ", file \"" + test.fileName + "\"" + ": line " + toString(test.lineNumber) + ": " + test.message;
-
-            printString(line);
         }
         return allTestsSucceeded;
     }
@@ -140,6 +136,11 @@ private:
 };
 
 Tester _tester;
+
+bool test(TestFunction function)
+{
+    return _tester.test(function);
+}
 
 bool testAll(std::vector<TestFunction>& functions)
 {
