@@ -2,6 +2,8 @@
 #include <birgersp/observing.hpp>
 #include <birgersp/testing.hpp>
 
+using namespace birgersp;
+
 class DummyEvent
 {
 public:
@@ -10,7 +12,7 @@ public:
 
 };
 
-class DummyObserver : public birgersp::Observer<DummyEvent>
+class DummyObserver : public Observer<DummyEvent>
 {
 public:
 
@@ -25,7 +27,7 @@ public:
 
 };
 
-class DummyObservable : public birgersp::Observable<DummyEvent>
+class DummyObservable : public Observable<DummyEvent>
 {
 };
 

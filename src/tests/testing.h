@@ -4,4 +4,3 @@
 void demoTests();
 
 #endif /* TESTING_H */
-

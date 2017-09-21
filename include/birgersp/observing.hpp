@@ -3,7 +3,6 @@
 
 #include <vector>
 
-
 namespace birgersp
 {
 
@@ -41,4 +40,3 @@ private:
 }
 
 #endif /* OBSERVING_HPP */
-
