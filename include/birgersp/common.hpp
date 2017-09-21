@@ -2,8 +2,7 @@
 #define COMMON_HPP
 
 #include <string>
-
-#define toString(val) std::to_string(val)
+#include <vector>
 
 namespace birgersp
 {

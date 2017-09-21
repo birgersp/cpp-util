@@ -1,7 +1,7 @@
 #ifndef TESTING_H
 #define TESTING_H
 
-void doSomeTests();
+void demoTests();
 
 #endif /* TESTING_H */
 

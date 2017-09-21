@@ -10,8 +10,9 @@
 namespace birgersp
 {
 
-struct Test
+class Test
 {
+public:
 
     Test(const bool succeeded, const std::string functionName, const std::string fileName, const int lineNumber, const std::string message) :
     succeeded(succeeded), functionName(functionName), fileName(fileName), lineNumber(lineNumber), message(message)

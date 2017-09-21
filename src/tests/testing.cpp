@@ -25,7 +25,7 @@ void approximationTest()
     assertApproxEqual(x, y, 5);
 }
 
-void doSomeTests()
+void demoTests()
 {
     std::vector<TestFunction> testFunctions = {
         dummyTest1,

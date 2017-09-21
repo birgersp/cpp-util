@@ -6,7 +6,7 @@
 
 using namespace birgersp;
 
-void timerTest()
+void testTiming()
 {
     Timer timer;
 
@@ -18,14 +18,4 @@ void timerTest()
     sleepMS(5);
     assertTrue(timer.elapsedMS() >= 5 && timer.elapsedMS() <= 6);
     assertTrue(timer.elapsedMS() > 0);
-}
-
-void testTiming()
-{
-    Timer timer;
-    timer.elapsedMS();
-    std::vector<TestFunction> tests = {
-        timerTest
-    };
-    testAll(tests);
 }
