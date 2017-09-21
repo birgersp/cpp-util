@@ -25,6 +25,11 @@ void approximationTest()
     assertApproxEqual(x, y, 5);
 }
 
+void singleTest()
+{
+    assertTrue(true);
+}
+
 void demoTests()
 {
     std::vector<TestFunction> testFunctions = {
@@ -36,4 +41,5 @@ void demoTests()
 
     printString("(Ignore these test, they're supposed to fail)");
     testAll(testFunctions);
+    test(singleTest);
 }
