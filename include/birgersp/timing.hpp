@@ -50,7 +50,7 @@ static void sleepMS(int milliseconds)
 #if defined(_WIN32) || defined(__CYGWIN__)
     Sleep(milliseconds);
 #elif defined(__linux__)
-    usleep(milliseconds / 1000);
+    usleep(milliseconds * 1000);
 #endif
 }
 
