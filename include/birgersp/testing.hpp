@@ -64,7 +64,7 @@ public:
         float min = actual - delta;
         float max = actual + delta;
         if (expected < min || expected > max)
-            throw AssertionFailedException("Expected: \"" + toString(expected) + "\"\tActual: \"" + toString(actual) + "\"");
+            throw AssertionFailedException("Expected: \"" + std::to_string(expected) + "\"\tActual: \"" + std::to_string(actual) + "\"");
     }
 
     Test makeTest(TestFunction function)
@@ -106,7 +106,7 @@ public:
             }
             line += "\t" + test.functionName;
             if (!test.succeeded)
-                line += ", file \"" + test.fileName + "\"" + ": line " + toString(test.lineNumber) + ": " + test.message;
+                line += ", file \"" + test.fileName + "\"" + ": line " + std::to_string(test.lineNumber) + ": " + test.message;
         }
         else
             line = "INVALID";
@@ -117,7 +117,7 @@ public:
 
     bool testAll(const std::vector<TestFunction>& functions)
     {
-        printString("Performing " + toString(functions.size()) + " tests");
+        printString("Performing " + std::to_string(functions.size()) + " tests");
 
         bool allTestsSucceeded = true;
         for (TestFunction function : functions)
