@@ -16,5 +16,7 @@ static std::string getFunctionName(const std::string& functionHeader)
 
 }
 
+#define toString(value) std::to_string(value)
+
 #endif /* COMMON_HPP */
 

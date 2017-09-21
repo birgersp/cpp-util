@@ -29,7 +29,7 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>sh clean.sh</buildCommand>
           <cleanCommand>sh compile.sh</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>./bin/cpp-util</executablePath>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
