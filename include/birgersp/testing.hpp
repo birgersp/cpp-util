@@ -117,15 +117,12 @@ public:
 
     bool testAll(const std::vector<TestFunction>& functions)
     {
-        printString("Performing " + std::to_string(functions.size()) + " tests");
-
         bool allTestsSucceeded = true;
         for (TestFunction function : functions)
         {
             if (!test(function))
                 allTestsSucceeded = false;
         }
-        printString("");
         return allTestsSucceeded;
     }
 
@@ -157,12 +154,22 @@ static Tester _tester;
 
 static bool test(TestFunction function)
 {
-    return _tester.test(function);
+    printString("Performing 1 test");
+    bool result = _tester.test(function);
+    printString("");
 }
 
 static bool testAll(std::vector<TestFunction>& functions)
 {
-    return _tester.testAll(functions);
+    if (functions.size() == 1)
+        return test(functions[0]);
+    else
+    {
+        printString("Performing " + std::to_string(functions.size()) + " tests");
+        bool result = _tester.testAll(functions);
+        printString("");
+        return result;
+    }
 }
 
 }
