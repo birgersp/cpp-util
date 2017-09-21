@@ -10,7 +10,10 @@ namespace birgersp
 
 static std::string getFunctionMessage(const std::string& functionHeader, const std::string& message)
 {
-    return getFunctionName(functionHeader) + ": " + message;
+    std::string result = getFunctionName(functionHeader);
+    if (message.size() > 0)
+        result += ": " + message;
+    return result;
 }
 
 static void printString(const std::string& string)
