@@ -155,8 +155,7 @@ static Tester _tester;
 static bool test(TestFunction function)
 {
     printString("Performing 1 test");
-    bool result = _tester.test(function);
-    printString("");
+    return _tester.test(function);
 }
 
 static bool testAll(std::vector<TestFunction>& functions)
