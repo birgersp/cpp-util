@@ -1,8 +1,12 @@
 #include "observing.h"
+
 #include <birgersp/observing.hpp>
 #include <birgersp/testing.hpp>
 
 using namespace birgersp;
+
+namespace observing
+{
 
 class DummyEvent
 {
@@ -31,10 +35,15 @@ class DummyObservable : public Observable<DummyEvent>
 {
 };
 
+}
+
 void testObserving()
 {
+    using namespace observing;
+
     DummyObserver observer;
     assertEquals(false, observer.gotEvent);
+
     assertEquals(0, observer.lastEvent.dummyData);
 
     DummyObservable observable;

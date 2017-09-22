@@ -152,20 +152,27 @@ private:
 
 static Tester _tester;
 
-static bool test(TestFunction function)
+inline Tester& getTester()
 {
-    printString("Performing 1 test");
-    return _tester.test(function);
+    return _tester;
 }
 
-static bool testAll(std::vector<TestFunction>& functions)
+inline bool test(TestFunction function)
+{
+    printString("Performing 1 test");
+    bool result = getTester().test(function);
+    printString("");
+    return result;
+}
+
+inline bool testAll(std::vector<TestFunction>& functions)
 {
     if (functions.size() == 1)
         return test(functions[0]);
     else
     {
         printString("Performing " + std::to_string(functions.size()) + " tests");
-        bool result = _tester.testAll(functions);
+        bool result = getTester().testAll(functions);
         printString("");
         return result;
     }
@@ -173,8 +180,8 @@ static bool testAll(std::vector<TestFunction>& functions)
 
 }
 
-#define assertTrue(expression) birgersp::_tester.makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertApproxEqual(expected, actual, delta) birgersp::_tester.makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define assertTrue(expression) birgersp::getTester().makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define assertApproxEqual(expected, actual, delta) birgersp::getTester().makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
 #define assertEquals(expected, actual) assertApproxEqual(expected, actual, 0)
 
 #endif /* TESTING_HPP */

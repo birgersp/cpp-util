@@ -3,13 +3,20 @@
 #include "tests/observing.h"
 #include "birgersp/testing.hpp"
 
+#include <birgersp/testing.hpp>
+
 int main(int argc, char** argv)
 {
+    using namespace birgersp;
+
     demoTests();
 
-    std::vector<birgersp::TestFunction> testFunctions = {
+    std::vector<TestFunction> testFunctions = {
         testTiming,
         testObserving
     };
-    return birgersp::testAll(testFunctions) ? 0 : 1;
+
+    testAll(testFunctions);
+
+    return 0;
 }

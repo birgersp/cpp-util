@@ -2,6 +2,9 @@
 
 using namespace birgersp;
 
+namespace testing
+{
+
 void dummyTest1()
 {
     assertEquals(3, 2 + 1);
@@ -30,8 +33,12 @@ void singleTest()
     assertTrue(true);
 }
 
+}
+
 void demoTests()
 {
+    using namespace testing;
+
     std::vector<TestFunction> testFunctions = {
         dummyTest1,
         dummyTest2,
@@ -39,7 +46,6 @@ void demoTests()
         approximationTest
     };
 
-    printString("(Ignore these test, they're supposed to fail)");
     testAll(testFunctions);
     test(singleTest);
 }

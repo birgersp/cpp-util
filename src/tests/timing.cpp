@@ -4,10 +4,10 @@
 #include <iostream>
 #include <vector>
 
-using namespace birgersp;
-
 void testTiming()
 {
+    using namespace birgersp;
+
     Timer timer;
 
     sleepMS(10);

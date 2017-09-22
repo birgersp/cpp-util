@@ -11,8 +11,7 @@ namespace birgersp
 static std::string getFunctionMessage(const std::string& functionHeader, const std::string& message)
 {
     std::string result = getFunctionName(functionHeader);
-    if (message.size() > 0)
-        result += ": " + message;
+    result += ": \"" + message + "\"";
     return result;
 }
 
@@ -38,7 +37,7 @@ static void printFunctionError(const std::string& functionHeader, const std::str
 
 }
 
-#define print(message) printFunction(__PRETTY_FUNCTION__, message)
-#define printError(message) printFunctionError(__PRETTY_FUNCTION__, message)
+#define print(message) birgersp::printFunction(__PRETTY_FUNCTION__, message)
+#define printError(message) birgersp::printFunctionError(__PRETTY_FUNCTION__, message)
 
 #endif /* PRINTING_H */
