@@ -17,6 +17,5 @@ void testStringifying()
     using namespace stringifying;
 
     DummyClass dc;
-    assertEquals("DummyClass", dc.toString());
-    print("?");
+    assertEquals("stringifying::DummyClass", dc.toString());
 }

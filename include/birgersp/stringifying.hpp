@@ -2,6 +2,8 @@
 #define STRINGIFYING_HPP
 
 #include <string>
+#include <typeinfo>
+#include <cxxabi.h>
 
 namespace birgersp
 {
@@ -10,11 +12,12 @@ class Stringifyable
 {
 public:
 
-    std::string toString()
+    virtual std::string toString()
     {
-        return "";
+        int status;
+        char * demangled = abi::__cxa_demangle(typeid (*this).name(), 0, 0, &status);
+        return std::string(demangled);
     }
-
 };
 
 }
