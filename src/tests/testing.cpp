@@ -4,12 +4,18 @@ void dummyTest1()
 {
     assertEquals(3, 2 + 1);
     assertTrue(1 + 1 == 2);
+    assertEquals(3, 2 + 2);
 }
 
 void dummyTest2()
 {
     assertTrue(true);
-    assertTrue(false);
+    assertEquals("hei", "hade");
+}
+
+void dummyTest3()
+{
+    assertTrue(true);
 }
 
 void emptyTest()
@@ -35,6 +41,7 @@ void demoTests()
     std::vector<TestFunction> testFunctions = {
         dummyTest1,
         dummyTest2,
+        dummyTest3,
         emptyTest,
         approximationTest
     };

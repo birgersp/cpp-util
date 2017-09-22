@@ -35,8 +35,13 @@ class AssertionFailedException
 {
 public:
 
-    AssertionFailedException(const std::string message) :
+    AssertionFailedException(const std::string& message) :
     message(message)
+    {
+    }
+
+    AssertionFailedException(const std::string& expected, const std::string& actual) :
+    message("Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
     {
     }
 
@@ -67,7 +72,18 @@ public:
         float min = actual - delta;
         float max = actual + delta;
         if (expected < min || expected > max)
-            throw AssertionFailedException("Expected: \"" + std::to_string(expected) + "\"\tActual: \"" + std::to_string(actual) + "\"");
+            throw AssertionFailedException(std::to_string(expected), std::to_string(actual));
+    }
+
+    void makeEqualsAssertion(float expected, float actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    {
+        makeEqualsAssertion(expected, actual, 0, functionHeader, fileName, lineNumber);
+    }
+
+    void makeEqualsAssertion(std::string expected, std::string actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    {
+        if (expected != actual)
+            throw AssertionFailedException(expected, actual);
     }
 
     Test makeTest(TestFunction function)
@@ -145,7 +161,7 @@ private:
         };
     } lastTestedFunction;
 
-    void setLastTestedFunction(const std::string& functionHeader, std::string fileName, int lineNumber)
+    void setLastTestedFunction(const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         lastTestedFunction.functionHeader = functionHeader;
         lastTestedFunction.fileName = fileName;
@@ -187,6 +203,6 @@ inline bool testAll(std::vector<TestFunction>& functions)
 
 #define assertTrue(expression) birgersp::testing::getTester().makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
 #define assertApproxEqual(expected, actual, delta) birgersp::testing::getTester().makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertEquals(expected, actual) assertApproxEqual(expected, actual, 0)
+#define assertEquals(expected, actual) birgersp::testing::getTester().makeEqualsAssertion(expected, actual, __PRETTY_FUNCTION__, __FILE__, __LINE__)
 
 #endif /* TESTING_HPP */
