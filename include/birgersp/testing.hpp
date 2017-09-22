@@ -82,6 +82,7 @@ public:
 
     void makeEqualsAssertion(std::string expected, std::string actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
+        setLastTestedFunction(functionHeader, fileName, lineNumber);
         if (expected != actual)
             throw AssertionFailedException(expected, actual);
     }
