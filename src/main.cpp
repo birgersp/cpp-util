@@ -2,6 +2,7 @@
 #include "tests/timing.h"
 #include "tests/observing.h"
 #include "birgersp/testing.hpp"
+#include "tests/stringifying.h"
 
 #include <birgersp/testing.hpp>
 
@@ -13,7 +14,8 @@ int main(int argc, char** argv)
 
     std::vector<TestFunction> testFunctions = {
         testTiming,
-        testObserving
+        testObserving,
+        testStringifying
     };
 
     testAll(testFunctions);
