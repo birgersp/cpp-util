@@ -1,10 +1,5 @@
 #include <birgersp/testing.hpp>
 
-using namespace birgersp;
-
-namespace testing
-{
-
 void dummyTest1()
 {
     assertEquals(3, 2 + 1);
@@ -33,11 +28,9 @@ void singleTest()
     assertTrue(true);
 }
 
-}
-
 void demoTests()
 {
-    using namespace testing;
+    using namespace birgersp;
 
     std::vector<TestFunction> testFunctions = {
         dummyTest1,

@@ -10,6 +10,11 @@
 namespace birgersp
 {
 
+typedef void (*TestFunction) (void);
+
+namespace testing
+{
+
 class Test
 {
 public:
@@ -44,8 +49,6 @@ private:
 
     const std::string message;
 };
-
-typedef void (*TestFunction) (void);
 
 class Tester
 {
@@ -157,10 +160,12 @@ inline Tester& getTester()
     return _tester;
 }
 
+}
+
 inline bool test(TestFunction function)
 {
     printString("Performing 1 test");
-    bool result = getTester().test(function);
+    bool result = testing::getTester().test(function);
     printString("");
     return result;
 }
@@ -172,7 +177,7 @@ inline bool testAll(std::vector<TestFunction>& functions)
     else
     {
         printString("Performing " + std::to_string(functions.size()) + " tests");
-        bool result = getTester().testAll(functions);
+        bool result = testing::getTester().testAll(functions);
         printString("");
         return result;
     }
@@ -180,8 +185,8 @@ inline bool testAll(std::vector<TestFunction>& functions)
 
 }
 
-#define assertTrue(expression) birgersp::getTester().makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertApproxEqual(expected, actual, delta) birgersp::getTester().makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define assertTrue(expression) birgersp::testing::getTester().makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define assertApproxEqual(expected, actual, delta) birgersp::testing::getTester().makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
 #define assertEquals(expected, actual) assertApproxEqual(expected, actual, 0)
 
 #endif /* TESTING_HPP */
