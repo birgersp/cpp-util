@@ -20,14 +20,16 @@ inline void printDebugInfo(const std::string& functionHeader, const std::string&
 {
     std::string resultingMessage = getDebugInfo(functionHeader, fileName, lineNumber);
     if (message.size() > 0)
-        resultingMessage += ": " + message;
+        resultingMessage += ":\t" + message;
     printString(resultingMessage);
 }
 
 }
 
-#define debug(variable) birgersp::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__, std::to_string(variable))
+#define debugMessage(message) birgersp::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__, message)
+#define debugVariable(variable) debugMessage(std::to_string(variable))
 #define debugFunction() birgersp::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+
 
 #endif /* DEBUGGING_HPP */
 

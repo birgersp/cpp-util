@@ -6,8 +6,8 @@
 void testDebugging()
 {
     int x = 123;
-    debug(x);
-    debug(0);
+    debugVariable(x);
+    debugMessage("Hello hello");
     debugFunction();
     assertTrue(true);
 }
