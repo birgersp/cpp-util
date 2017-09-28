@@ -7,7 +7,7 @@
 namespace birgersp
 {
 
-static std::string getFunctionName(const std::string& functionHeader)
+inline std::string getFunctionName(const std::string& functionHeader)
 {
     int i0 = functionHeader.find(" ");
     int i1 = functionHeader.find("(");
