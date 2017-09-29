@@ -26,7 +26,8 @@ inline void printDebugInfo(const std::string& functionHeader, const std::string&
 
 }
 
-#define debugMessage(message) birgersp::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__, message)
+#define debugString(string) birgersp::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__, string)
+#define debugMessage(message) debugString(message)
 #define debugVariable(variable) debugMessage(std::to_string(variable))
 #define debugFunction() birgersp::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__)
 
