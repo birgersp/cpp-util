@@ -2,11 +2,32 @@
 #define PRINTING_H
 
 #include <birgersp/common.hpp>
-
 #include <iostream>
+
+#include "observing.hpp"
 
 namespace birgersp
 {
+
+typedef Observer<const std::string&> Logger;
+
+class StandardOutputLogger : public Logger
+{
+public:
+
+    virtual void notify(const std::string& string) override
+    {
+        std::cout << string << std::endl;
+    }
+};
+
+static StandardOutputLogger _defaultLogger;
+static Logger& _logger = _defaultLogger;
+
+inline void setLogger(Logger& logger)
+{
+    _logger = logger;
+}
 
 inline std::string getFunctionMessage(const std::string& functionHeader, const std::string& message)
 {
@@ -17,7 +38,7 @@ inline std::string getFunctionMessage(const std::string& functionHeader, const s
 
 inline void printString(const std::string& string)
 {
-    std::cout << string << std::endl;
+    _logger.notify(string);
 }
 
 inline void printFunction(const std::string& functionHeader, const std::string& message)
