@@ -1,3 +1,6 @@
+#ifndef TESTINGDEMO_H
+#define TESTINGDEMO_H
+
 #include <birgersp/testing.hpp>
 
 void dummyTest1()
@@ -49,3 +52,5 @@ void demoTests()
     testAll(testFunctions);
     test(singleTest);
 }
+
+#endif /* TESTINGDEMO_H */

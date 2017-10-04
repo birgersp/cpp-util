@@ -1,6 +1,7 @@
-#include "stringifying.h"
-#include "birgersp/testing.hpp"
+#ifndef TESTSTRINGIFYING_H
+#define TESTSTRINGIFYING_H
 
+#include <birgersp/testing.hpp>
 #include <birgersp/stringifying.hpp>
 
 namespace stringifying
@@ -19,3 +20,5 @@ void testStringifying()
     DummyClass dc;
     assertEquals("stringifying::DummyClass", dc.toString());
 }
+
+#endif /* TESTSTRINGIFYING_H */

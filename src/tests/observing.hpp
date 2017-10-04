@@ -1,4 +1,5 @@
-#include "observing.h"
+#ifndef TESTOBSERVING_H
+#define TESTOBSERVING_H
 
 #include <birgersp/observing.hpp>
 #include <birgersp/testing.hpp>
@@ -57,3 +58,5 @@ void testObserving()
     assertEquals(true, observer.gotEvent);
     assertEquals(10, observer.lastEvent.dummyData);
 }
+
+#endif /* TESTOBSERVING_H */

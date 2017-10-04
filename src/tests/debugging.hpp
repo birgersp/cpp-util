@@ -1,6 +1,7 @@
-#include "debugging.h"
-#include "birgersp/testing.hpp"
+#ifndef TESTDEBUGGING_H
+#define TESTDEBUGGING_H
 
+#include <birgersp/testing.hpp>
 #include <birgersp/debugging.hpp>
 
 void testDebugging()
@@ -11,3 +12,5 @@ void testDebugging()
     debugFunction();
     assertTrue(true);
 }
+
+#endif /* TESTDEBUGGING_H */

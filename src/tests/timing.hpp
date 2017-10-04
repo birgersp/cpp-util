@@ -1,8 +1,8 @@
+#ifndef TESTTIMING_H
+#define TESTTIMING_H
+
 #include <birgersp/timing.hpp>
 #include <birgersp/testing.hpp>
-
-#include <iostream>
-#include <vector>
 
 void testTiming()
 {
@@ -19,3 +19,5 @@ void testTiming()
     assertTrue(timer.elapsedMS() >= 5 && timer.elapsedMS() <= 6);
     assertTrue(timer.elapsedMS() > 0);
 }
+
+#endif /* TESTTIMING_H */
