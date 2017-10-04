@@ -5,7 +5,6 @@
 #include "tests/observing.hpp"
 #include "tests/stringifying.hpp"
 #include "tests/debugging.hpp"
-#include "tests/printing.hpp"
 
 #include <birgersp/testing.hpp>
 
@@ -19,8 +18,7 @@ int main(int argc, char** argv)
         testTiming,
         testObserving,
         testStringifying,
-        testDebugging,
-        testPrinting
+        testDebugging
     };
 
     testAll(testFunctions);
