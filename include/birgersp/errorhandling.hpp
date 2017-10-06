@@ -2,7 +2,7 @@
 #define ERRORHANDLING_HPP
 
 #define functionException(reason) birgersp::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, reason)
-#define consequentialException(cause) birgersp::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, cause)
+#define consequentialException(cause) birgersp::ConsequentialException(__PRETTY_FUNCTION__, __FILE__, __LINE__, cause)
 
 #include <birgersp/common.hpp>
 #include <string>
@@ -14,29 +14,42 @@ class Exception
 {
 public:
 
-    Exception(const std::string& message) :
-    message(message)
+    Exception(const std::string& function, const std::string& filename, int line, const std::string& reason) :
+    function(function), filename(filename), line(line), reason(reason)
     {
     }
 
-    Exception(const std::string& function, const std::string& filename, int line, const std::string& reason)
+    Exception(const std::string& function, const std::string& filename, int line, const Exception& parent) :
+    Exception(function, filename, line, parent.toString())
     {
-        message += "Exception in \"" + getFunctionName(function) + "\" (" + filename + ": " + std::to_string(line) + ")\nReason: " + reason;
     }
 
-    Exception(const std::string& function, const std::string& filename, int line, const Exception& cause) :
-    Exception(function, filename, line, cause.getMessage())
+    const std::string toString() const
     {
-    };
-
-    const std::string& getMessage() const
-    {
-        return message;
+        return "Exception in \"" + getFunctionName(function) + "\" (" + filename + ": " + std::to_string(line) + ")\nReason: " + reason;
     }
 
 private:
 
-    std::string message;
+    std::string function;
+    std::string filename;
+    int line;
+    std::string reason;
+
+};
+
+class ConsequentialException : public Exception
+{
+public:
+
+    ConsequentialException(const std::string& function, const std::string& filename, int line, const Exception& parent) :
+    Exception(function, filename, line, parent), parent(parent)
+    {
+    }
+
+private:
+
+    const Exception& parent;
 
 };
 

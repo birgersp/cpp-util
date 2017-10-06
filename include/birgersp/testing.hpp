@@ -3,7 +3,6 @@
 
 #include <birgersp/common.hpp>
 #include <birgersp/printing.hpp>
-#include <birgersp/errorhandling.hpp>
 
 #include <vector>
 #include <string>
@@ -32,20 +31,28 @@ public:
     const std::string message;
 };
 
-class AssertionFailedException : public Exception
+class AssertionFailedException
 {
 public:
 
     AssertionFailedException(const std::string& message) :
-    Exception(message)
+    message(message)
     {
     }
 
     AssertionFailedException(const std::string& expected, const std::string& actual) :
-    Exception("Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
+    message("Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
     {
     }
 
+    const std::string& getMessage()
+    {
+        return message;
+    }
+
+private:
+
+    const std::string message;
 };
 
 class Tester
