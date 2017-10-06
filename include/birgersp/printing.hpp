@@ -36,7 +36,4 @@ inline void printFunctionError(const std::string& functionHeader, const std::str
 
 }
 
-#define print(message) birgersp::printFunction(__PRETTY_FUNCTION__, message)
-#define printError(message) birgersp::printFunctionError(__PRETTY_FUNCTION__, message)
-
 #endif /* PRINTING_H */
