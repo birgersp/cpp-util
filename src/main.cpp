@@ -5,6 +5,7 @@
 #include "tests/observing.hpp"
 #include "tests/stringifying.hpp"
 #include "tests/debugging.hpp"
+#include "tests/errorhandling.hpp"
 
 #include <birgersp/testing.hpp>
 
@@ -22,6 +23,8 @@ int main(int argc, char** argv)
     };
 
     testAll(testFunctions);
+
+    demoErrorHandling();
 
     return 0;
 }

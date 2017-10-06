@@ -24,11 +24,6 @@ public:
     {
     }
 
-    const std::string toString() const
-    {
-        return "Exception in \"" + birgersp::getFunctionName(functionName) + "\" (" + filename + ": " + std::to_string(line) + ")\nReason: " + reason;
-    }
-
     const std::string& getFunctionName() const
     {
         return functionName;
@@ -47,6 +42,11 @@ public:
     const std::string& getReason() const
     {
         return reason;
+    }
+
+    const std::string toString() const
+    {
+        return "Exception in \"" + birgersp::getFunctionName(functionName) + "\" (" + filename + ": " + std::to_string(line) + "). Reason:\n\t" + reason;
     }
 
 private:
