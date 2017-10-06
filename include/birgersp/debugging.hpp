@@ -1,7 +1,7 @@
 #ifndef DEBUGGING_HPP
 #define DEBUGGING_HPP
 
-#include "printing.hpp"
+#include <birgersp/printing.hpp>
 
 namespace birgersp
 {
