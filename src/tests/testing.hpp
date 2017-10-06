@@ -32,6 +32,11 @@ void approximationTest()
     assertApproxEqual(x, y, 5);
 }
 
+void exceptionTest()
+{
+    throw functionException("(dummy exception)");
+}
+
 void singleTest()
 {
     assertTrue(true);
@@ -46,7 +51,8 @@ void demoTests()
         dummyTest2,
         dummyTest3,
         emptyTest,
-        approximationTest
+        approximationTest,
+        exceptionTest
     };
 
     testAll(testFunctions);

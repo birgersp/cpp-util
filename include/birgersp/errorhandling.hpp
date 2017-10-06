@@ -14,27 +14,47 @@ class Exception
 {
 public:
 
-    Exception(const std::string& function, const std::string& filename, int line, const std::string& reason) :
-    function(function), filename(filename), line(line), reason(reason)
+    Exception(const std::string& functionName, const std::string& filename, int line, const std::string& reason) :
+    functionName(functionName), filename(filename), line(line), reason(reason)
     {
     }
 
-    Exception(const std::string& function, const std::string& filename, int line, const Exception& parent) :
-    Exception(function, filename, line, parent.toString())
+    Exception(const std::string& functionName, const std::string& filename, int line, const Exception& parent) :
+    Exception(functionName, filename, line, parent.toString())
     {
     }
 
     const std::string toString() const
     {
-        return "Exception in \"" + getFunctionName(function) + "\" (" + filename + ": " + std::to_string(line) + ")\nReason: " + reason;
+        return "Exception in \"" + birgersp::getFunctionName(functionName) + "\" (" + filename + ": " + std::to_string(line) + ")\nReason: " + reason;
+    }
+
+    const std::string& getFunctionName() const
+    {
+        return functionName;
+    }
+
+    const std::string& getFilename() const
+    {
+        return filename;
+    }
+
+    int getLine() const
+    {
+        return line;
+    }
+
+    const std::string& getReason() const
+    {
+        return reason;
     }
 
 private:
 
-    std::string function;
-    std::string filename;
-    int line;
-    std::string reason;
+    const std::string functionName;
+    const std::string filename;
+    const int line;
+    const std::string reason;
 
 };
 
@@ -42,8 +62,8 @@ class ConsequentialException : public Exception
 {
 public:
 
-    ConsequentialException(const std::string& function, const std::string& filename, int line, const Exception& parent) :
-    Exception(function, filename, line, parent), parent(parent)
+    ConsequentialException(const std::string& functionName, const std::string& filename, int line, const Exception& parent) :
+    Exception(functionName, filename, line, parent), parent(parent)
     {
     }
 

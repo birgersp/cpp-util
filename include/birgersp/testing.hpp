@@ -3,6 +3,7 @@
 
 #include <birgersp/common.hpp>
 #include <birgersp/printing.hpp>
+#include <birgersp/errorhandling.hpp>
 
 #include <vector>
 #include <string>
@@ -29,30 +30,22 @@ public:
     const std::string fileName;
     const int lineNumber;
     const std::string message;
+
 };
 
-class AssertionFailedException
+class AssertionFailedException : public Exception
 {
 public:
 
-    AssertionFailedException(const std::string& message) :
-    message(message)
+    AssertionFailedException(const std::string& function, const std::string& filename, int line, const std::string& expected, const std::string& actual) :
+    Exception(function, filename, line, "Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
     {
-    }
-
-    AssertionFailedException(const std::string& expected, const std::string& actual) :
-    message("Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
-    {
-    }
-
-    const std::string& getMessage()
-    {
-        return message;
     }
 
 private:
 
     const std::string message;
+
 };
 
 class Tester
@@ -61,18 +54,21 @@ public:
 
     void makeAssertion(bool expression, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
-        setLastTestedFunction(functionHeader, fileName, lineNumber);
         if (!expression)
-            throw AssertionFailedException("Boolean expression is false");
+            throw Exception(functionHeader, fileName, lineNumber, "Boolean expression is false");
+        else
+            setLastTestedFunction(functionHeader, fileName, lineNumber);
     }
 
     void makeEqualsAssertion(float expected, float actual, float delta, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
-        setLastTestedFunction(functionHeader, fileName, lineNumber);
         float min = actual - delta;
         float max = actual + delta;
         if (expected < min || expected > max)
-            throw AssertionFailedException(std::to_string(expected), std::to_string(actual));
+            throw AssertionFailedException(functionHeader, fileName, lineNumber, std::to_string(expected), std::to_string(actual));
+        else
+            setLastTestedFunction(functionHeader, fileName, lineNumber);
+
     }
 
     void makeEqualsAssertion(float expected, float actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
@@ -84,26 +80,29 @@ public:
     {
         setLastTestedFunction(functionHeader, fileName, lineNumber);
         if (expected != actual)
-            throw AssertionFailedException(expected, actual);
+            throw AssertionFailedException(functionHeader, fileName, lineNumber, expected, actual);
+        else
+            setLastTestedFunction(functionHeader, fileName, lineNumber);
     }
 
     Test makeTest(TestFunction function)
     {
-        bool testSucceeded = true;
+        bool testSucceeded = false;
         std::string testMessage;
         try
         {
             lastTestedFunction.reset();
             function();
+            testSucceeded = true;
         }
-        catch (AssertionFailedException e)
+        catch (Exception e)
         {
-            testSucceeded = false;
-            testMessage = e.getMessage();
+            setLastTestedFunction(e.getFunctionName(), e.getFilename(), e.getLine());
+            testMessage = e.getReason();
         }
         Test result(
                     testSucceeded,
-                    getFunctionName(lastTestedFunction.functionHeader),
+                    lastTestedFunction.functionName,
                     lastTestedFunction.fileName,
                     lastTestedFunction.lineNumber,
                     testMessage
@@ -150,21 +149,21 @@ private:
 
     struct
     {
-        std::string functionHeader;
+        std::string functionName;
         std::string fileName;
         int lineNumber;
 
         void reset()
         {
-            functionHeader = "";
+            functionName = "";
             fileName = "";
             lineNumber = 0;
         };
     } lastTestedFunction;
 
-    void setLastTestedFunction(const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void setLastTestedFunction(const std::string& functionName, const std::string& fileName, int lineNumber)
     {
-        lastTestedFunction.functionHeader = functionHeader;
+        lastTestedFunction.functionName = functionName;
         lastTestedFunction.fileName = fileName;
         lastTestedFunction.lineNumber = lineNumber;
     }
