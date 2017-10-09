@@ -3,6 +3,7 @@
 
 #define functionException(reason) birgersp::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, reason)
 #define consequentialException(cause) birgersp::ConsequentialException(__PRETTY_FUNCTION__, __FILE__, __LINE__, cause)
+#define unsupportedFunctionException() birgersp::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, "Function not implemented")
 
 #include <birgersp/common.hpp>
 #include <string>
