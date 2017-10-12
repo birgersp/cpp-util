@@ -1,8 +1,10 @@
-#ifndef TESTOBSERVING_H
-#define TESTOBSERVING_H
+#include "tests.h"
 
 #include <birgersp/observing.hpp>
 #include <birgersp/testing.hpp>
+
+namespace tests
+{
 
 using namespace birgersp;
 
@@ -59,4 +61,4 @@ void testObserving()
     assertEquals(10, observer.lastEvent.dummyData);
 }
 
-#endif /* TESTOBSERVING_H */
+}

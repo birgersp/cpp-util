@@ -1,7 +1,10 @@
-#ifndef TESTERRORHANDLING_HPP
-#define TESTERRORHANDLING_HPP
+#include "tests.h"
 
+#include <birgersp/printing.hpp>
 #include <birgersp/errorhandling.hpp>
+
+namespace tests
+{
 
 void throwException()
 {
@@ -41,4 +44,4 @@ void demoErrorHandling()
     }
 }
 
-#endif /* TESTERRORHANDLING_HPP */
+}

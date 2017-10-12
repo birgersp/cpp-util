@@ -1,8 +1,10 @@
-#ifndef TESTDEBUGGING_H
-#define TESTDEBUGGING_H
+#include "tests.h"
 
 #include <birgersp/testing.hpp>
 #include <birgersp/debugging.hpp>
+
+namespace tests
+{
 
 void testDebugging()
 {
@@ -13,4 +15,4 @@ void testDebugging()
     assertTrue(true);
 }
 
-#endif /* TESTDEBUGGING_H */
+}

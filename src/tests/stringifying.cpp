@@ -1,8 +1,10 @@
-#ifndef TESTSTRINGIFYING_H
-#define TESTSTRINGIFYING_H
+#include "tests.h"
 
 #include <birgersp/testing.hpp>
 #include <birgersp/stringifying.hpp>
+
+namespace tests
+{
 
 namespace stringifying
 {
@@ -21,4 +23,4 @@ void testStringifying()
     assertEquals("stringifying::DummyClass", dc.toString());
 }
 
-#endif /* TESTSTRINGIFYING_H */
+}

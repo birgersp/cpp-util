@@ -1,7 +1,9 @@
-#ifndef TESTINGDEMO_H
-#define TESTINGDEMO_H
+#include "tests.h"
 
 #include <birgersp/testing.hpp>
+
+namespace tests
+{
 
 void dummyTest1()
 {
@@ -32,9 +34,15 @@ void approximationTest()
     assertApproxEqual(x, y, 5);
 }
 
+void throwTestException()
+{
+    throw functionException("(dummy exception");
+}
+
 void exceptionTest()
 {
-    throw functionException("(dummy exception)");
+    throwTestException();
+    assertTrue(true);
 }
 
 void singleTest()
@@ -59,4 +67,4 @@ void demoTests()
     test(singleTest);
 }
 
-#endif /* TESTINGDEMO_H */
+}
