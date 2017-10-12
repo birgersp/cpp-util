@@ -52,6 +52,11 @@ class Tester
 {
 public:
 
+    void registerTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    {
+        setLastTestedFunction(functionHeader, fileName, lineNumber);
+    }
+
     void makeAssertion(bool expression, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         if (!expression)
@@ -95,10 +100,14 @@ public:
             function();
             testSucceeded = true;
         }
-        catch (Exception e)
+        catch (AssertionFailedException e)
         {
             setLastTestedFunction(e.getFunctionName(), e.getFilename(), e.getLine());
             testMessage = e.getReason();
+        }
+        catch (Exception e)
+        {
+            testMessage = e.toString();
         }
         Test result(
                     testSucceeded,
@@ -125,10 +134,13 @@ public:
             }
             line += "\t" + test.functionName;
             if (!test.succeeded)
-                line += ", file \"" + test.fileName + "\"" + ": line " + std::to_string(test.lineNumber) + ": " + test.message;
+                line += ", file \"" + test.fileName + "\"" + ": line " + std::to_string(test.lineNumber);
         }
         else
-            line = "INVALID";
+            line = "INVALID: UNREGISTERED TEST";
+
+        if (test.message.length() > 0)
+            line += "\n\t" + test.message;
 
         printString(line);
         return test.succeeded;
@@ -201,6 +213,7 @@ inline bool testAll(std::vector<TestFunction>& functions)
 
 }
 
+#define registerTest() birgersp::testing::getTester().registerTest(__PRETTY_FUNCTION__, __FILE__, __LINE__)
 #define assertTrue(expression) birgersp::testing::getTester().makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
 #define assertApproxEqual(expected, actual, delta) birgersp::testing::getTester().makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
 #define assertEquals(expected, actual) birgersp::testing::getTester().makeEqualsAssertion(expected, actual, __PRETTY_FUNCTION__, __FILE__, __LINE__)
