@@ -59,21 +59,20 @@ public:
 
     void makeAssertion(bool expression, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
+        setLastTestedFunction(functionHeader, fileName, lineNumber);
+
         if (!expression)
             throw Exception(functionHeader, fileName, lineNumber, "Boolean expression is false");
-        else
-            setLastTestedFunction(functionHeader, fileName, lineNumber);
     }
 
     void makeEqualsAssertion(float expected, float actual, float delta, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
+        setLastTestedFunction(functionHeader, fileName, lineNumber);
+
         float min = actual - delta;
         float max = actual + delta;
         if (expected < min || expected > max)
             throw AssertionFailedException(functionHeader, fileName, lineNumber, std::to_string(expected), std::to_string(actual));
-        else
-            setLastTestedFunction(functionHeader, fileName, lineNumber);
-
     }
 
     void makeEqualsAssertion(float expected, float actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
@@ -86,8 +85,6 @@ public:
         setLastTestedFunction(functionHeader, fileName, lineNumber);
         if (expected != actual)
             throw AssertionFailedException(functionHeader, fileName, lineNumber, expected, actual);
-        else
-            setLastTestedFunction(functionHeader, fileName, lineNumber);
     }
 
     Test makeTest(TestFunction function)

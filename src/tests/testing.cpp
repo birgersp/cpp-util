@@ -36,11 +36,12 @@ void approximationTest()
 
 void throwTestException()
 {
-    throw functionException("(dummy exception");
+    throw functionException("(dummy exception)");
 }
 
 void exceptionTest()
 {
+    registerTest();
     throwTestException();
     assertTrue(true);
 }
