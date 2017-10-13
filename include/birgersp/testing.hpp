@@ -154,6 +154,12 @@ public:
         return allTestsSucceeded;
     }
 
+    void disableTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    {
+        setLastTestedFunction(functionHeader, fileName, lineNumber);
+        throw Exception(functionHeader, fileName, lineNumber, "Test disabled");
+    }
+
 private:
 
     struct
@@ -214,5 +220,6 @@ inline bool testAll(std::vector<TestFunction>& functions)
 #define assertTrue(expression) birgersp::testing::getTester().makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
 #define assertApproxEqual(expected, actual, delta) birgersp::testing::getTester().makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
 #define assertEquals(expected, actual) birgersp::testing::getTester().makeEqualsAssertion(expected, actual, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define disableTest() birgersp::testing::getTester().disableTest(__PRETTY_FUNCTION__, __FILE__, __LINE__)
 
 #endif /* TESTING_HPP */
