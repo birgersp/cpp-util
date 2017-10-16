@@ -12,6 +12,7 @@ namespace birgersp
 {
 
 typedef void (*TestFunction) (void);
+typedef bool (*BoolFunction) (void);
 
 namespace testing
 {
@@ -212,6 +213,15 @@ inline bool testAll(std::vector<TestFunction>& functions)
         printString("");
         return result;
     }
+}
+
+inline bool allSucceed(const std::vector<BoolFunction>& boolFunctions)
+{
+    bool success = true;
+    for (auto function : boolFunctions)
+        if (!function())
+            success = false;
+    return success;
 }
 
 }
