@@ -8,7 +8,7 @@ void demoTests();
 void demoErrorHandling();
 
 void testTiming();
-void testObserving();
+void testConsumerProvider();
 void testStringifying();
 void testDebugging();
 

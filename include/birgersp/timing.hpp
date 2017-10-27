@@ -45,7 +45,7 @@ private:
 
 };
 
-static void sleepMS(int milliseconds)
+inline void sleepMS(int milliseconds)
 {
 #if defined(_WIN32) || defined(__CYGWIN__)
     Sleep(milliseconds);

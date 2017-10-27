@@ -11,7 +11,7 @@ int main(int argc, char** argv)
 
     std::vector<TestFunction> testFunctions = {
         testTiming,
-        testObserving,
+        testConsumerProvider,
         testStringifying,
         testDebugging
     };

@@ -8,7 +8,7 @@ namespace tests
 
 void throwException()
 {
-    throw functionException("(demo exception)");
+    throw functionException("(ignore me)");
 }
 
 void throwConsequentialException()
