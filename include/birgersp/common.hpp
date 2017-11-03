@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace birgersp
+namespace cpputil
 {
 
 inline std::string getFunctionName(const std::string& functionHeader)

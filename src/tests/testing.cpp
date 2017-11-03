@@ -53,7 +53,7 @@ void singleTest()
 
 void demoTests()
 {
-    using namespace birgersp;
+    using namespace cpputil;
 
     std::vector<TestFunction> testFunctions = {
         dummyTest1,

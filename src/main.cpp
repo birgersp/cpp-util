@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv)
 {
-    using namespace birgersp;
+    using namespace cpputil;
     using namespace tests;
 
     demoTests();

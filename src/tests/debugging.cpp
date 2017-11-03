@@ -9,9 +9,9 @@ namespace tests
 void testDebugging()
 {
     int x = 123;
-    debugVariable(x);
-    debugMessage("Hello hello");
-    debugFunction();
+    cpputilDebugVariable(x);
+    cpputilDebugMessage("Hello hello");
+    cpputilDebugFunction();
     assertTrue(true);
 }
 

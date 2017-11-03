@@ -7,7 +7,7 @@
 namespace tests
 {
 
-using namespace birgersp;
+using namespace cpputil;
 
 namespace observing
 {

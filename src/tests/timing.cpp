@@ -8,7 +8,7 @@ namespace tests
 
 void testTiming()
 {
-    using namespace birgersp;
+    using namespace cpputil;
 
     Timer timer;
 

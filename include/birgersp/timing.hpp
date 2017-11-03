@@ -9,7 +9,7 @@
 #include <unistd.h>
 #endif
 
-namespace birgersp
+namespace cpputil
 {
 
 class Timer

@@ -17,7 +17,7 @@ void throwConsequentialException()
     {
         throwException();
     }
-    catch (birgersp::Exception e)
+    catch (cpputil::Exception e)
     {
         throw consequentialException(e);
     }
@@ -29,18 +29,18 @@ void demoErrorHandling()
     {
         throwException();
     }
-    catch (birgersp::Exception e)
+    catch (cpputil::Exception e)
     {
-        birgersp::printString(e.toString());
+        cpputil::printString(e.toString());
     }
 
     try
     {
         throwConsequentialException();
     }
-    catch (birgersp::Exception e)
+    catch (cpputil::Exception e)
     {
-        birgersp::printString(e.toString());
+        cpputil::printString(e.toString());
     }
 }
 

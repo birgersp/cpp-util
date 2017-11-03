@@ -1,14 +1,14 @@
 #ifndef ERRORHANDLING_HPP
 #define ERRORHANDLING_HPP
 
-#define functionException(reason) birgersp::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, reason)
-#define consequentialException(cause) birgersp::ConsequentialException(__PRETTY_FUNCTION__, __FILE__, __LINE__, cause)
-#define unsupportedFunctionException() birgersp::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, "Function not implemented")
+#define functionException(reason) cpputil::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, reason)
+#define consequentialException(cause) cpputil::ConsequentialException(__PRETTY_FUNCTION__, __FILE__, __LINE__, cause)
+#define unsupportedFunctionException() cpputil::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, "Function not implemented")
 
 #include <birgersp/common.hpp>
 #include <string>
 
-namespace birgersp
+namespace cpputil
 {
 
 class Exception
@@ -47,7 +47,7 @@ public:
 
     const std::string toString() const
     {
-        return "Exception in \"" + birgersp::getFunctionName(functionName) + "\" (" + filename + ": " + std::to_string(line) + "). Reason:\n\t" + reason;
+        return "Exception in \"" + cpputil::getFunctionName(functionName) + "\" (" + filename + ": " + std::to_string(line) + "). Reason:\n\t" + reason;
     }
 
 private:

@@ -9,7 +9,7 @@ namespace tests
 namespace stringifying
 {
 
-class DummyClass : public birgersp::Stringifyable
+class DummyClass : public cpputil::Stringifyable
 {
 };
 

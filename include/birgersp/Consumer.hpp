@@ -1,7 +1,7 @@
 #ifndef CONSUMER_HPP
 #define CONSUMER_HPP
 
-namespace birgersp
+namespace cpputil
 {
 
 template<class T>

@@ -5,7 +5,7 @@
 #include <typeinfo>
 #include <cxxabi.h>
 
-namespace birgersp
+namespace cpputil
 {
 
 class Stringifyable

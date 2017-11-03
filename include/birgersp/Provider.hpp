@@ -4,7 +4,7 @@
 #include "Consumer.hpp"
 #include <vector>
 
-namespace birgersp
+namespace cpputil
 {
 
 template<class T>

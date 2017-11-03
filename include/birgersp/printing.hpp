@@ -4,7 +4,7 @@
 #include <birgersp/common.hpp>
 #include <iostream>
 
-namespace birgersp
+namespace cpputil
 {
 
 inline std::string getFunctionMessage(const std::string& functionHeader, const std::string& message)

@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 
-namespace birgersp
+namespace cpputil
 {
 
 typedef void (*TestFunction) (void);
@@ -226,10 +226,10 @@ inline bool allSucceed(const std::vector<BoolFunction>& boolFunctions)
 
 }
 
-#define registerTest() birgersp::testing::getTester().registerTest(__PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertTrue(expression) birgersp::testing::getTester().makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertApproxEqual(expected, actual, delta) birgersp::testing::getTester().makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertEquals(expected, actual) birgersp::testing::getTester().makeEqualsAssertion(expected, actual, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define disableTest() birgersp::testing::getTester().disableTest(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define registerTest() cpputil::testing::getTester().registerTest(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define assertTrue(expression) cpputil::testing::getTester().makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define assertApproxEqual(expected, actual, delta) cpputil::testing::getTester().makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define assertEquals(expected, actual) cpputil::testing::getTester().makeEqualsAssertion(expected, actual, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define disableTest() cpputil::testing::getTester().disableTest(__PRETTY_FUNCTION__, __FILE__, __LINE__)
 
 #endif /* TESTING_HPP */

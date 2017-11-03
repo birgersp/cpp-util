@@ -3,7 +3,7 @@
 
 #include <birgersp/printing.hpp>
 
-namespace birgersp
+namespace cpputil
 {
 
 inline std::string getDebugInfo(const std::string& functionHeader, const std::string& fileName, int lineNumber)
@@ -26,10 +26,10 @@ inline void printDebugInfo(const std::string& functionHeader, const std::string&
 
 }
 
-#define debugString(string) birgersp::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__, string)
-#define debugMessage(message) debugString(message)
-#define debugVariable(variable) debugMessage(std::to_string(variable))
-#define debugFunction() birgersp::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define cpputilDebugString(string) cpputil::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__, string)
+#define cpputilDebugMessage(message) cpputilDebugString(message)
+#define cpputilDebugVariable(variable) cpputilDebugMessage(std::to_string(variable))
+#define cpputilDebugFunction() cpputil::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__)
 
 
 #endif /* DEBUGGING_HPP */
