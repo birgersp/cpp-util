@@ -1,7 +1,7 @@
 #ifndef DEBUGGING_HPP
 #define DEBUGGING_HPP
 
-#include <birgersp/printing.hpp>
+#include <cpputil/printing.hpp>
 
 namespace cpputil
 {

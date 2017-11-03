@@ -1,6 +1,6 @@
 #include "tests.h"
 
-#include <birgersp/testing.hpp>
+#include <cpputil/testing.hpp>
 
 namespace tests
 {

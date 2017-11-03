@@ -1,7 +1,7 @@
 #include "tests.h"
 
-#include <birgersp/printing.hpp>
-#include <birgersp/errorhandling.hpp>
+#include <cpputil/printing.hpp>
+#include <cpputil/errorhandling.hpp>
 
 namespace tests
 {

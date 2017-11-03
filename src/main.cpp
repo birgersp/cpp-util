@@ -1,6 +1,6 @@
 #include "tests/tests.h"
 
-#include <birgersp/testing.hpp>
+#include <cpputil/testing.hpp>
 
 int main(int argc, char** argv)
 {

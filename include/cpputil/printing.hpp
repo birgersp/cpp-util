@@ -1,7 +1,7 @@
 #ifndef PRINTING_H
 #define PRINTING_H
 
-#include <birgersp/common.hpp>
+#include <cpputil/common.hpp>
 #include <iostream>
 
 namespace cpputil

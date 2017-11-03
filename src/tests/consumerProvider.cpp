@@ -1,8 +1,8 @@
 #include "tests.h"
 
-#include <birgersp/Consumer.hpp>
-#include <birgersp/Provider.hpp>
-#include <birgersp/testing.hpp>
+#include <cpputil/Consumer.hpp>
+#include <cpputil/Provider.hpp>
+#include <cpputil/testing.hpp>
 
 namespace tests
 {

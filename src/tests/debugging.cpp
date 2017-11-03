@@ -1,7 +1,7 @@
 #include "tests.h"
 
-#include <birgersp/testing.hpp>
-#include <birgersp/debugging.hpp>
+#include <cpputil/testing.hpp>
+#include <cpputil/debugging.hpp>
 
 namespace tests
 {

@@ -1,7 +1,7 @@
-#include <birgersp/timing.hpp>
-#include <birgersp/testing.hpp>
-
 #include "tests.h"
+
+#include <cpputil/timing.hpp>
+#include <cpputil/testing.hpp>
 
 namespace tests
 {

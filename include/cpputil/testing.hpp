@@ -1,9 +1,9 @@
 #ifndef TESTING_HPP
 #define TESTING_HPP
 
-#include <birgersp/common.hpp>
-#include <birgersp/printing.hpp>
-#include <birgersp/errorhandling.hpp>
+#include <cpputil/common.hpp>
+#include <cpputil/printing.hpp>
+#include <cpputil/errorhandling.hpp>
 
 #include <vector>
 #include <string>

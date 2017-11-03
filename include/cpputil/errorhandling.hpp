@@ -5,7 +5,7 @@
 #define consequentialException(cause) cpputil::ConsequentialException(__PRETTY_FUNCTION__, __FILE__, __LINE__, cause)
 #define unsupportedFunctionException() cpputil::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, "Function not implemented")
 
-#include <birgersp/common.hpp>
+#include <cpputil/common.hpp>
 #include <string>
 
 namespace cpputil
