@@ -132,7 +132,7 @@ public:
             }
             line += "\t" + test.functionName;
             if (!test.succeeded)
-                line += ", file \"" + test.fileName + "\"" + ": line " + std::to_string(test.lineNumber);
+                line += "\n\t" + test.fileName + ":" + std::to_string(test.lineNumber) + ": error: Test failed";
         }
         else
             line = "INVALID: UNREGISTERED TEST";
