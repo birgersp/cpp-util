@@ -16,7 +16,8 @@ int main(int argc, char** argv)
         testDebugging
     };
 
-    testAll(testFunctions);
+    if (!testAll(testFunctions))
+        return 1;
 
     demoErrorHandling();
 

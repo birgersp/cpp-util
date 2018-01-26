@@ -20,7 +20,7 @@ void testStringifying()
     using namespace stringifying;
 
     DummyClass dc;
-    assertEquals("stringifying::DummyClass", dc.toString());
+    assertEquals("tests::stringifying::DummyClass", dc.toString());
 }
 
 }
