@@ -1,3 +1,5 @@
 #!/bin/bash
 
-ln -s `pwd`/include/cpputil /usr/local/include/cpputil
+DESTINATION=/usr/local/include/cpputil
+rm $DESTINATION
+ln -s `pwd`/include/cpputil $DESTINATION
