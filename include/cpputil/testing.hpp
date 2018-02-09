@@ -81,6 +81,14 @@ public:
         makeEqualsAssertion(expected, actual, 0, functionHeader, fileName, lineNumber);
     }
 
+    void makeEqualsAssertion(int expected, int actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    {
+        setLastTestedFunction(functionHeader, fileName, lineNumber);
+
+        if (expected != actual)
+            throw AssertionFailedException(functionHeader, fileName, lineNumber, std::to_string(expected), std::to_string(actual));
+    }
+
     void makeEqualsAssertion(std::string expected, std::string actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestedFunction(functionHeader, fileName, lineNumber);
