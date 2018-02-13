@@ -4,9 +4,11 @@
 #define functionException(reason) cpputil::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, reason)
 #define consequentialException(cause) cpputil::ConsequentialException(__PRETTY_FUNCTION__, __FILE__, __LINE__, cause)
 #define unsupportedFunctionException() cpputil::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, "Function not implemented")
+#define functionErrorException() functionException(strerror(errno))
 
 #include <cpputil/common.hpp>
 #include <string>
+#include <string.h>
 
 namespace cpputil
 {
