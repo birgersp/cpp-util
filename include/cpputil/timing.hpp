@@ -16,14 +16,21 @@ class Timer
 {
 public:
 
+    static unsigned long currentTimeMS()
+    {
+        struct timeval currentTimeValue;
+        gettimeofday(&currentTimeValue, 0);
+        return currentTimeValue.tv_sec * 1000 + currentTimeValue.tv_usec / 1000;
+    }
+
     Timer()
     {
         restart();
     }
 
-    long elapsedMS() const
+    unsigned long elapsedMS() const
     {
-        long currentTime = currentTimeMS();
+        unsigned long currentTime = currentTimeMS();
         return (currentTime - prevTime);
     }
 
@@ -34,14 +41,7 @@ public:
 
 private:
 
-    long prevTime;
-
-    long currentTimeMS() const
-    {
-        struct timeval currentTimeValue;
-        gettimeofday(&currentTimeValue, 0);
-        return currentTimeValue.tv_sec * 1000 + currentTimeValue.tv_usec / 1000;
-    }
+    unsigned long prevTime;
 
 };
 
