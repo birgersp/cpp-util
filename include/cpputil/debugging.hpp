@@ -24,6 +24,11 @@ inline void printDebugInfo(const std::string& functionHeader, const std::string&
     printString(resultingMessage);
 }
 
+inline void printDebugInfo(const std::string& functionHeader, const std::string& fileName, int lineNumber, int number)
+{
+    printDebugInfo(functionHeader, fileName, lineNumber, std::to_string(number));
+}
+
 }
 
 #define cpputilDebugString(string) cpputil::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__, string)
