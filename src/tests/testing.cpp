@@ -51,6 +51,12 @@ void singleTest()
     assertTrue(true);
 }
 
+void ambiguityTest()
+{
+    float x = 1.0;
+    assertEquals((float) 1, x);
+}
+
 void demoTests()
 {
     using namespace cpputil;
@@ -61,7 +67,8 @@ void demoTests()
         dummyTest3,
         emptyTest,
         approximationTest,
-        exceptionTest
+        exceptionTest,
+        ambiguityTest
     };
 
     testAll(testFunctions);
