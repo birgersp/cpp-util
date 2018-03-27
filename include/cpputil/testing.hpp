@@ -17,20 +17,19 @@ typedef bool (*BoolFunction) (void);
 namespace testing
 {
 
-class Test
+struct Test
 {
-public:
 
-    Test(const bool succeeded, const std::string functionName, const std::string fileName, const int lineNumber, const std::string message) :
+    Test(bool succeeded, std::string functionName, std::string fileName, int lineNumber, std::string message) :
     succeeded(succeeded), functionName(functionName), fileName(fileName), lineNumber(lineNumber), message(message)
     {
     }
 
-    const bool succeeded;
-    const std::string functionName;
-    const std::string fileName;
-    const int lineNumber;
-    const std::string message;
+    bool succeeded;
+    std::string functionName;
+    std::string fileName;
+    int lineNumber;
+    std::string message;
 
 };
 
@@ -129,7 +128,7 @@ public:
 
     bool test(TestFunction function)
     {
-        Test test = makeTest(function);
+        const Test test = makeTest(function);
 
         std::string line;
         if (test.functionName.length() > 0)
