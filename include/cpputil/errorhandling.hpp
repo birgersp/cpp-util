@@ -8,33 +8,36 @@
 namespace cpputil
 {
 
+struct ExceptionOrigin
+{
+
+    ExceptionOrigin(std::string functionHeader, std::string fileName, int lineNumber) :
+    functionHeader(functionHeader), fileName(fileName), lineNumber(lineNumber)
+    {
+    }
+
+    std::string functionHeader;
+    std::string fileName;
+    int lineNumber;
+};
+
 class Exception
 {
 public:
 
-    Exception(const std::string& functionName, const std::string& filename, int line, const std::string& reason) :
-    functionName(functionName), filename(filename), line(line), reason(reason)
+    Exception(const ExceptionOrigin origin, const std::string reason) :
+    origin(origin), reason(reason)
     {
     }
 
-    Exception(const std::string& functionName, const std::string& filename, int line, const Exception& parent) :
-    Exception(functionName, filename, line, parent.toString())
+    Exception(const ExceptionOrigin origin, const Exception& parent) :
+    Exception(origin, parent.toString())
     {
     }
 
-    const std::string& getFunctionName() const
+    const ExceptionOrigin getOrigin() const
     {
-        return functionName;
-    }
-
-    const std::string& getFilename() const
-    {
-        return filename;
-    }
-
-    int getLine() const
-    {
-        return line;
+        return origin;
     }
 
     const std::string& getReason() const
@@ -44,14 +47,12 @@ public:
 
     const std::string toString() const
     {
-        return "Exception in \"" + cpputil::getFunctionName(functionName) + "\" (" + filename + ": " + std::to_string(line) + "). Reason:\n\t" + reason;
+        return "Exception in \"" + cpputil::getFunctionName(origin.functionHeader) + "\" (" + origin.fileName + ": " + std::to_string(origin.lineNumber) + "). Reason:\n\t" + reason;
     }
 
 private:
 
-    const std::string functionName;
-    const std::string filename;
-    const int line;
+    const ExceptionOrigin origin;
     const std::string reason;
 
 };
@@ -60,8 +61,8 @@ class ConsequentialException : public Exception
 {
 public:
 
-    ConsequentialException(const std::string& functionName, const std::string& filename, int line, const Exception& parent) :
-    Exception(functionName, filename, line, parent), parent(parent)
+    ConsequentialException(const ExceptionOrigin origin, const Exception& parent) :
+    Exception(origin, parent), parent(parent)
     {
     }
 
@@ -73,9 +74,10 @@ private:
 
 }
 
-#define functionException(reason) cpputil::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, reason)
-#define consequentialException(cause) cpputil::ConsequentialException(__PRETTY_FUNCTION__, __FILE__, __LINE__, cause)
-#define unsupportedFunctionException() cpputil::Exception(__PRETTY_FUNCTION__, __FILE__, __LINE__, "Function not implemented")
+#define exceptionOrigin cpputil::ExceptionOrigin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define functionException(reason) cpputil::Exception(exceptionOrigin, reason)
+#define consequentialException(cause) cpputil::ConsequentialException(exceptionOrigin, cause)
+#define unsupportedFunctionException() cpputil::Exception(exceptionOrigin, "Function not implemented")
 #define functionErrorException() functionException(strerror(errno))
 
 #endif /* ERRORHANDLING_HPP */

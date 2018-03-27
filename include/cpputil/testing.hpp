@@ -39,7 +39,7 @@ class AssertionFailedException : public Exception
 public:
 
     AssertionFailedException(const std::string& function, const std::string& filename, int line, const std::string& expected, const std::string& actual) :
-    Exception(function, filename, line, "Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
+    Exception(ExceptionOrigin(function, filename, line), "Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
     {
     }
 
@@ -110,7 +110,7 @@ public:
         }
         catch (AssertionFailedException e)
         {
-            setLastTestedFunction(e.getFunctionName(), e.getFilename(), e.getLine());
+            setLastTestedFunction(e.getOrigin().functionHeader, e.getOrigin().fileName, e.getOrigin().lineNumber);
             testMessage = e.getReason();
         }
         catch (Exception e)
@@ -168,7 +168,7 @@ public:
     void disableTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestedFunction(functionHeader, fileName, lineNumber);
-        throw Exception(functionHeader, fileName, lineNumber, "Test disabled");
+        throw Exception(ExceptionOrigin(functionHeader, fileName, lineNumber), "Test disabled");
     }
 
 private:
