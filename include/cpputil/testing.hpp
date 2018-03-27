@@ -20,15 +20,13 @@ namespace testing
 struct Test
 {
 
-    Test(bool succeeded, std::string functionName, std::string fileName, int lineNumber, std::string message) :
-    succeeded(succeeded), functionName(functionName), fileName(fileName), lineNumber(lineNumber), message(message)
+    Test(bool succeeded, ExceptionOrigin origin, std::string message) :
+    succeeded(succeeded), origin(origin), message(message)
     {
     }
 
     bool succeeded;
-    std::string functionName;
-    std::string fileName;
-    int lineNumber;
+    ExceptionOrigin origin;
     std::string message;
 
 };
@@ -54,7 +52,7 @@ public:
 
     void registerTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
-        setLastTestedFunction(functionHeader, fileName, lineNumber);
+        lastTestOrigin = ExceptionOrigin(functionHeader, fileName, lineNumber);
     }
 
     void makeAssertion(bool expression, const std::string& functionHeader, const std::string& fileName, int lineNumber)
@@ -64,7 +62,7 @@ public:
 
     void makeEqualsAssertion(float expected, float actual, float delta, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
-        setLastTestedFunction(functionHeader, fileName, lineNumber);
+        lastTestOrigin = ExceptionOrigin(functionHeader, fileName, lineNumber);
         float min = actual - delta;
         float max = actual + delta;
         if (expected < min || expected > max)
@@ -78,21 +76,21 @@ public:
 
     void makeEqualsAssertion(int expected, int actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
-        setLastTestedFunction(functionHeader, fileName, lineNumber);
+        lastTestOrigin = ExceptionOrigin(functionHeader, fileName, lineNumber);
         if (expected != actual)
             throw AssertionFailedException(ExceptionOrigin(functionHeader, fileName, lineNumber), std::to_string(expected), std::to_string(actual));
     }
 
     void makeEqualsAssertion(std::string expected, std::string actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
-        setLastTestedFunction(functionHeader, fileName, lineNumber);
+        lastTestOrigin = ExceptionOrigin(functionHeader, fileName, lineNumber);
         if (expected != actual)
             throw AssertionFailedException(ExceptionOrigin(functionHeader, fileName, lineNumber), expected, actual);
     }
 
     void makeEqualsAssertion(bool expected, bool actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
-        setLastTestedFunction(functionHeader, fileName, lineNumber);
+        lastTestOrigin = ExceptionOrigin(functionHeader, fileName, lineNumber);
         if (expected != actual)
             throw AssertionFailedException(ExceptionOrigin(functionHeader, fileName, lineNumber), boolToString(expected), boolToString(actual));
     }
@@ -103,13 +101,13 @@ public:
         std::string testMessage;
         try
         {
-            lastTestedFunction.reset();
+            lastTestOrigin = ExceptionOrigin("(unknown)", "(unknown)", 0);
             function();
             testSucceeded = true;
         }
         catch (AssertionFailedException e)
         {
-            setLastTestedFunction(e.getOrigin().functionHeader, e.getOrigin().fileName, e.getOrigin().lineNumber);
+            lastTestOrigin = e.getOrigin();
             testMessage = e.getReason();
         }
         catch (Exception e)
@@ -118,9 +116,7 @@ public:
         }
         Test result(
                     testSucceeded,
-                    lastTestedFunction.functionName,
-                    lastTestedFunction.fileName,
-                    lastTestedFunction.lineNumber,
+                    lastTestOrigin,
                     testMessage
                     );
         return result;
@@ -131,7 +127,7 @@ public:
         const Test test = makeTest(function);
 
         std::string line;
-        if (test.functionName.length() > 0)
+        if (test.origin.functionHeader.length() > 0)
         {
             if (test.succeeded)
                 line += "OK";
@@ -139,9 +135,9 @@ public:
             {
                 line += "FAILED";
             }
-            line += "\t" + test.functionName;
+            line += "\t" + test.origin.functionHeader;
             if (!test.succeeded)
-                line += "\n\t" + test.fileName + ":" + std::to_string(test.lineNumber) + ": error: Test failed";
+                line += "\n\t" + test.origin.fileName + ":" + std::to_string(test.origin.lineNumber) + ": error: Test failed";
         }
         else
             line = "INVALID: UNREGISTERED TEST";
@@ -166,32 +162,13 @@ public:
 
     void disableTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
-        setLastTestedFunction(functionHeader, fileName, lineNumber);
+        lastTestOrigin = ExceptionOrigin(functionHeader, fileName, lineNumber);
         throw Exception(ExceptionOrigin(functionHeader, fileName, lineNumber), "Test disabled");
     }
 
 private:
 
-    struct
-    {
-        std::string functionName;
-        std::string fileName;
-        int lineNumber;
-
-        void reset()
-        {
-            functionName = "";
-            fileName = "";
-            lineNumber = 0;
-        };
-    } lastTestedFunction;
-
-    void setLastTestedFunction(const std::string& functionName, const std::string& fileName, int lineNumber)
-    {
-        lastTestedFunction.functionName = functionName;
-        lastTestedFunction.fileName = fileName;
-        lastTestedFunction.lineNumber = lineNumber;
-    }
+    ExceptionOrigin lastTestOrigin;
 
     std::string boolToString(bool value)
     {
