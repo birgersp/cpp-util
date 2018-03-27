@@ -5,41 +5,26 @@
 #include <string>
 #include <string.h>
 
+#include "SourceOrigin.hpp"
+
 namespace cpputil
 {
-
-struct ExceptionOrigin
-{
-
-    ExceptionOrigin()
-    {
-    }
-
-    ExceptionOrigin(std::string functionHeader, std::string fileName, int lineNumber) :
-    functionHeader(functionHeader), fileName(fileName), lineNumber(lineNumber)
-    {
-    }
-
-    std::string functionHeader;
-    std::string fileName;
-    int lineNumber;
-};
 
 class Exception
 {
 public:
 
-    Exception(const ExceptionOrigin origin, const std::string reason) :
+    Exception(const SourceOrigin origin, const std::string reason) :
     origin(origin), reason(reason)
     {
     }
 
-    Exception(const ExceptionOrigin origin, const Exception& parent) :
+    Exception(const SourceOrigin origin, const Exception& parent) :
     Exception(origin, parent.toString())
     {
     }
 
-    const ExceptionOrigin getOrigin() const
+    const SourceOrigin getOrigin() const
     {
         return origin;
     }
@@ -56,7 +41,7 @@ public:
 
 private:
 
-    const ExceptionOrigin origin;
+    const SourceOrigin origin;
     const std::string reason;
 
 };
@@ -65,7 +50,7 @@ class ConsequentialException : public Exception
 {
 public:
 
-    ConsequentialException(const ExceptionOrigin origin, const Exception& parent) :
+    ConsequentialException(const SourceOrigin origin, const Exception& parent) :
     Exception(origin, parent), parent(parent)
     {
     }
@@ -78,7 +63,7 @@ private:
 
 }
 
-#define exceptionOrigin cpputil::ExceptionOrigin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define exceptionOrigin cpputil::SourceOrigin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
 #define functionException(reason) cpputil::Exception(exceptionOrigin, reason)
 #define consequentialException(cause) cpputil::ConsequentialException(exceptionOrigin, cause)
 #define unsupportedFunctionException() cpputil::Exception(exceptionOrigin, "Function not implemented")
