@@ -60,16 +60,12 @@ public:
 
     void makeAssertion(bool expression, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
-        setLastTestedFunction(functionHeader, fileName, lineNumber);
-
-        if (!expression)
-            throw Exception(functionHeader, fileName, lineNumber, "Boolean expression is false");
+        makeEqualsAssertion(true, expression, functionHeader, fileName, lineNumber);
     }
 
     void makeEqualsAssertion(float expected, float actual, float delta, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestedFunction(functionHeader, fileName, lineNumber);
-
         float min = actual - delta;
         float max = actual + delta;
         if (expected < min || expected > max)
@@ -84,7 +80,6 @@ public:
     void makeEqualsAssertion(int expected, int actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestedFunction(functionHeader, fileName, lineNumber);
-
         if (expected != actual)
             throw AssertionFailedException(functionHeader, fileName, lineNumber, std::to_string(expected), std::to_string(actual));
     }
@@ -94,6 +89,13 @@ public:
         setLastTestedFunction(functionHeader, fileName, lineNumber);
         if (expected != actual)
             throw AssertionFailedException(functionHeader, fileName, lineNumber, expected, actual);
+    }
+
+    void makeEqualsAssertion(bool expected, bool actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    {
+        setLastTestedFunction(functionHeader, fileName, lineNumber);
+        if (expected != actual)
+            throw AssertionFailedException(functionHeader, fileName, lineNumber, boolToString(expected), boolToString(actual));
     }
 
     Test makeTest(TestFunction function)
@@ -190,6 +192,11 @@ private:
         lastTestedFunction.functionName = functionName;
         lastTestedFunction.fileName = fileName;
         lastTestedFunction.lineNumber = lineNumber;
+    }
+
+    std::string boolToString(bool value)
+    {
+        return value ? "true" : "false";
     }
 };
 
