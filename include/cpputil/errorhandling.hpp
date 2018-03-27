@@ -11,6 +11,10 @@ namespace cpputil
 struct ExceptionOrigin
 {
 
+    ExceptionOrigin()
+    {
+    }
+
     ExceptionOrigin(std::string functionHeader, std::string fileName, int lineNumber) :
     functionHeader(functionHeader), fileName(fileName), lineNumber(lineNumber)
     {
