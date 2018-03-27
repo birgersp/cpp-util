@@ -38,8 +38,8 @@ class AssertionFailedException : public Exception
 {
 public:
 
-    AssertionFailedException(const std::string& function, const std::string& filename, int line, const std::string& expected, const std::string& actual) :
-    Exception(ExceptionOrigin(function, filename, line), "Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
+    AssertionFailedException(const ExceptionOrigin origin, const std::string& expected, const std::string& actual) :
+    Exception(origin, "Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
     {
     }
 
@@ -69,7 +69,7 @@ public:
         float min = actual - delta;
         float max = actual + delta;
         if (expected < min || expected > max)
-            throw AssertionFailedException(functionHeader, fileName, lineNumber, std::to_string(expected), std::to_string(actual));
+            throw AssertionFailedException(ExceptionOrigin(functionHeader, fileName, lineNumber), std::to_string(expected), std::to_string(actual));
     }
 
     void makeEqualsAssertion(float expected, float actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
@@ -81,21 +81,21 @@ public:
     {
         setLastTestedFunction(functionHeader, fileName, lineNumber);
         if (expected != actual)
-            throw AssertionFailedException(functionHeader, fileName, lineNumber, std::to_string(expected), std::to_string(actual));
+            throw AssertionFailedException(ExceptionOrigin(functionHeader, fileName, lineNumber), std::to_string(expected), std::to_string(actual));
     }
 
     void makeEqualsAssertion(std::string expected, std::string actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestedFunction(functionHeader, fileName, lineNumber);
         if (expected != actual)
-            throw AssertionFailedException(functionHeader, fileName, lineNumber, expected, actual);
+            throw AssertionFailedException(ExceptionOrigin(functionHeader, fileName, lineNumber), expected, actual);
     }
 
     void makeEqualsAssertion(bool expected, bool actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestedFunction(functionHeader, fileName, lineNumber);
         if (expected != actual)
-            throw AssertionFailedException(functionHeader, fileName, lineNumber, boolToString(expected), boolToString(actual));
+            throw AssertionFailedException(ExceptionOrigin(functionHeader, fileName, lineNumber), boolToString(expected), boolToString(actual));
     }
 
     Test makeTest(TestFunction function)
