@@ -62,6 +62,12 @@ void boolEqualsTest()
     assertEquals(true, false);
 }
 
+void disabledTest()
+{
+    assertTrue(true);
+    disableTest();
+}
+
 void demoTests()
 {
     using namespace cpputil;
@@ -74,7 +80,8 @@ void demoTests()
         approximationTest,
         exceptionTest,
         ambiguityTest,
-        boolEqualsTest
+        boolEqualsTest,
+        disabledTest
     };
 
     testAll(testFunctions);
