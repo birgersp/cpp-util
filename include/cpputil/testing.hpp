@@ -17,20 +17,6 @@ typedef bool (*BoolFunction) (void);
 namespace testing
 {
 
-struct Test
-{
-
-    Test(bool succeeded, SourceOrigin origin, std::string message) :
-    succeeded(succeeded), origin(origin), message(message)
-    {
-    }
-
-    bool succeeded;
-    SourceOrigin origin;
-    std::string message;
-
-};
-
 class AssertionFailedException : public Exception
 {
 public:
@@ -95,58 +81,50 @@ public:
             throw AssertionFailedException(lastTestOrigin, boolToString(expected), boolToString(actual));
     }
 
-    Test makeTest(TestFunction function)
+    void performTest(TestFunction function)
     {
-        bool testSucceeded = false;
-        std::string testMessage;
         try
         {
-            hasNewTestOrigin = false;
+            clearLastTest();
             function();
-            testSucceeded = true;
+            lastTestPassed = true;
         }
         catch (AssertionFailedException e)
         {
             lastTestOrigin = e.getOrigin();
-            testMessage = e.getReason();
+            lastTestMessage = e.getReason();
         }
         catch (Exception e)
         {
-            testMessage = e.toString();
+            lastTestMessage = e.toString();
         }
-        Test result(
-                    testSucceeded,
-                    lastTestOrigin,
-                    testMessage
-                    );
-        return result;
     }
 
     bool test(TestFunction function)
     {
-        const Test test = makeTest(function);
+        performTest(function);
 
         std::string line;
         if (hasNewTestOrigin)
         {
-            if (test.succeeded)
+            if (lastTestPassed)
                 line += "OK";
             else
             {
                 line += "FAILED";
             }
-            line += "\t" + test.origin.functionHeader;
-            if (!test.succeeded)
-                line += "\n\t" + test.origin.fileName + ":" + std::to_string(test.origin.lineNumber) + ": error: Test failed";
+            line += "\t" + lastTestOrigin.functionHeader;
+            if (lastTestPassed == false)
+                line += "\n\t" + lastTestOrigin.fileName + ":" + std::to_string(lastTestOrigin.lineNumber) + ": error: Test failed";
         }
         else
             line = "INVALID\t(UNKNOWN TEST)";
 
-        if (test.message.length() > 0)
-            line += "\n\t" + test.message;
+        if (lastTestMessage.size() > 0)
+            line += "\n\t" + lastTestMessage;
 
         printString(line);
-        return test.succeeded;
+        return lastTestPassed;
     }
 
     bool testAll(const std::vector<TestFunction>& functions)
@@ -170,10 +148,19 @@ private:
 
     SourceOrigin lastTestOrigin;
     bool hasNewTestOrigin = false;
+    bool lastTestPassed = false;
+    std::string lastTestMessage;
 
     std::string boolToString(bool value)
     {
         return value ? "true" : "false";
+    }
+
+    void clearLastTest()
+    {
+        hasNewTestOrigin = false;
+        lastTestPassed = false;
+        lastTestMessage = "";
     }
 
     void setLastTestOrigin(SourceOrigin origin)
