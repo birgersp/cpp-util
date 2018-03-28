@@ -68,6 +68,11 @@ void disabledTest()
     disableTest();
 }
 
+void emptyRegisteredTest()
+{
+    registerTest();
+}
+
 void demoTests()
 {
     using namespace cpputil;
@@ -81,7 +86,8 @@ void demoTests()
         exceptionTest,
         ambiguityTest,
         boolEqualsTest,
-        disabledTest
+        disabledTest,
+        emptyRegisteredTest
     };
 
     testAll(testFunctions);
