@@ -22,11 +22,21 @@ class AssertionFailedException : public Exception
 public:
 
     AssertionFailedException(const SourceOrigin origin, const std::string& expected, const std::string& actual) :
-    Exception(origin, "Expected: " + expected + "\tActual: " + actual)
+    Exception(origin, generateReason(expected, actual))
     {
     }
 
 private:
+
+    static std::string generateReason(const std::string& expected, const std::string& actual)
+    {
+        bool anyNewlines = ((expected.find("\n") != -1) || (actual.find("\n") != -1));
+
+        if (anyNewlines)
+            return "Expected:\n" + expected + "\n\tActual:\n" + actual;
+        else
+            return "Expected: " + expected + "\tActual: " + actual;
+    }
 
     const std::string message;
 
