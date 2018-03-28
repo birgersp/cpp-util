@@ -87,6 +87,13 @@ public:
             throw AssertionFailedException(lastTestOrigin, boolToString(expected), boolToString(actual));
     }
 
+    void makeEqualsAssertion(char expected, char actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    {
+        setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        if (expected != actual)
+            throw AssertionFailedException(lastTestOrigin, std::string(1, expected), std::string(1, actual));
+    }
+
     void performTest(TestFunction function)
     {
         try

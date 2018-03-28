@@ -73,6 +73,11 @@ void emptyRegisteredTest()
     registerTest();
 }
 
+void charEqualsTest()
+{
+    assertEquals('x', 'y');
+}
+
 void demoTests()
 {
     using namespace cpputil;
@@ -87,7 +92,8 @@ void demoTests()
         ambiguityTest,
         boolEqualsTest,
         disabledTest,
-        emptyRegisteredTest
+        emptyRegisteredTest,
+        charEqualsTest
     };
 
     testAll(testFunctions);
