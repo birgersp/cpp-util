@@ -22,7 +22,7 @@ class AssertionFailedException : public Exception
 public:
 
     AssertionFailedException(const SourceOrigin origin, const std::string& expected, const std::string& actual) :
-    Exception(origin, "Expected: \"" + expected + "\"\tActual: \"" + actual + "\"")
+    Exception(origin, "Expected: " + expected + "\tActual: " + actual)
     {
     }
 
@@ -73,11 +73,11 @@ public:
             throw AssertionFailedException(lastTestOrigin, std::to_string(expected), std::to_string(actual));
     }
 
-    void makeEqualsAssertion(std::string expected, std::string actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeEqualsAssertion(const std::string& expected, const std::string& actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
         if (expected != actual)
-            throw AssertionFailedException(lastTestOrigin, expected, actual);
+            throw AssertionFailedException(lastTestOrigin, "\"" + expected + "\"", "\"" + actual + "\"");
     }
 
     void makeEqualsAssertion(bool expected, bool actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
