@@ -80,6 +80,11 @@ public:
             throw AssertionFailedException(lastTestOrigin, "\"" + expected + "\"", "\"" + actual + "\"");
     }
 
+    void makeEqualsAssertion(const char* expected, const char* actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    {
+        makeEqualsAssertion(std::string(expected), std::string(actual), functionHeader, fileName, lineNumber);
+    }
+
     void makeEqualsAssertion(bool expected, bool actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
