@@ -32,9 +32,22 @@ private:
 
 };
 
+enum class TestResult
+{
+    PASSED,
+    FAILED,
+    DISABLED,
+    NO_ASSERTIONS
+};
+
 class Tester
 {
 public:
+
+    Tester()
+    {
+        clearLastTest();
+    }
 
     void registerTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
@@ -87,7 +100,10 @@ public:
         {
             clearLastTest();
             function();
-            lastTestPassed = true;
+            if (hasNewTestOrigin)
+                lastTestResult = TestResult::PASSED;
+            else
+                lastTestResult = TestResult::NO_ASSERTIONS;
         }
         catch (AssertionFailedException e)
         {
@@ -104,27 +120,41 @@ public:
     {
         performTest(function);
 
+        bool passed;
+
         std::string line;
-        if (hasNewTestOrigin)
+        if (lastTestResult == TestResult::NO_ASSERTIONS)
         {
-            if (lastTestPassed)
-                line += "OK";
-            else
-            {
-                line += "FAILED";
-            }
-            line += "\t" + lastTestOrigin.functionHeader;
-            if (lastTestPassed == false)
-                line += "\n\t" + lastTestOrigin.fileName + ":" + std::to_string(lastTestOrigin.lineNumber) + ": error: Test failed";
+            line = "INVALID\t(UNKNOWN TEST - NO ASSERTIONS)";
+            passed = false;
         }
         else
-            line = "INVALID\t(UNKNOWN TEST)";
+        {
+            if (lastTestResult == TestResult::PASSED)
+            {
+                line += "OK";
+                passed = true;
+            }
+            else if (lastTestResult == TestResult::FAILED)
+            {
+                line += "FAILED";
+                passed = false;
+            }
+            else if (lastTestResult == TestResult::DISABLED)
+            {
+                line += "DISABLED";
+                passed = true;
+            }
+            line += "\t" + lastTestOrigin.functionHeader;
+            if (lastTestResult == TestResult::PASSED)
+                line += "\n\t" + lastTestOrigin.fileName + ":" + std::to_string(lastTestOrigin.lineNumber) + ": error: Test failed";
+        }
 
         if (lastTestMessage.size() > 0)
             line += "\n\t" + lastTestMessage;
 
         printString(line);
-        return lastTestPassed;
+        return (lastTestResult == TestResult::PASSED);
     }
 
     bool testAll(const std::vector<TestFunction>& functions)
@@ -141,14 +171,15 @@ public:
     void disableTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        lastTestResult = TestResult::DISABLED;
         throw Exception(lastTestOrigin, "Test disabled");
     }
 
 private:
 
     SourceOrigin lastTestOrigin;
-    bool hasNewTestOrigin = false;
-    bool lastTestPassed = false;
+    bool hasNewTestOrigin;
+    TestResult lastTestResult;
     std::string lastTestMessage;
 
     std::string boolToString(bool value)
@@ -159,7 +190,7 @@ private:
     void clearLastTest()
     {
         hasNewTestOrigin = false;
-        lastTestPassed = false;
+        lastTestResult = TestResult::FAILED;
         lastTestMessage = "";
     }
 
