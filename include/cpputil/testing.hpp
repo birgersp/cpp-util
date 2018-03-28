@@ -32,14 +32,6 @@ private:
 
 };
 
-enum class TestState
-{
-    PASSED,
-    FAILED,
-    DISABLED,
-    NO_ASSERTIONS
-};
-
 class Tester
 {
 public:
@@ -52,6 +44,7 @@ public:
     void registerTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
     {
         setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        lastTestState = TestState::NO_ASSERTIONS;
     }
 
     void makeAssertion(bool expression, const std::string& functionHeader, const std::string& fileName, int lineNumber)
@@ -100,10 +93,8 @@ public:
         {
             clearLastTest();
             function();
-            if (hasNewTestOrigin)
+            if (lastTestState == TestState::NOT_PASSED)
                 lastTestState = TestState::PASSED;
-            else
-                lastTestState = TestState::NO_ASSERTIONS;
         }
         catch (AssertionFailedException e)
         {
@@ -113,6 +104,8 @@ public:
         catch (Exception e)
         {
             lastTestMessage = e.toString();
+            if (lastTestState != TestState::DISABLED)
+                lastTestState = TestState::NOT_PASSED;
         }
     }
 
@@ -127,42 +120,42 @@ public:
         if (lastTestState == TestState::NO_ASSERTIONS)
         {
             statusString = "INVALID";
-            headerString = "(UNKNOWN TEST - NO ASSERTIONS)";
             passed = false;
         }
-        else
+        else if (lastTestState == TestState::PASSED)
         {
-            if (lastTestState == TestState::PASSED)
-            {
-                statusString = "OK";
-                passed = true;
-            }
-            else if (lastTestState == TestState::FAILED)
-            {
-                statusString = "FAILED";
-                passed = false;
-            }
-            else if (lastTestState == TestState::DISABLED)
-            {
-                statusString = "IGNORED";
-                passed = true;
-            }
-            headerString = lastTestOrigin.functionHeader;
+            statusString = "OK";
+            passed = true;
         }
+        else if (lastTestState == TestState::NOT_PASSED)
+        {
+            statusString = "FAILED";
+            passed = false;
+        }
+        else if (lastTestState == TestState::DISABLED)
+        {
+            statusString = "IGNORED";
+            passed = true;
+        }
+
+        if (hasTestOrigin)
+            headerString = lastTestOrigin.functionHeader;
+        else
+            headerString = "(UNKNOWN TEST - NO ASSERTIONS)";
 
         std::string outputString;
         outputString += statusString;
         outputString += "\t";
         outputString += headerString;
 
-        if (lastTestState == TestState::FAILED)
-            outputString +=  "\n\t" +lastTestOrigin.fileName + ":" + std::to_string(lastTestOrigin.lineNumber) + ": error: Test failed";
+        if (!passed && hasTestOrigin)
+            outputString += "\n\t" + lastTestOrigin.fileName + ":" + std::to_string(lastTestOrigin.lineNumber) + ": error: Test failed";
 
         if (lastTestMessage.size() > 0)
             outputString += "\n\t" + lastTestMessage;
 
         printString(outputString);
-        return (lastTestState == TestState::PASSED);
+        return passed;
     }
 
     bool testAll(const std::vector<TestFunction>& functions)
@@ -185,10 +178,17 @@ public:
 
 private:
 
+    enum class TestState
+    {
+        PASSED,
+        NOT_PASSED,
+        DISABLED,
+        NO_ASSERTIONS
+    } lastTestState;
+
     SourceOrigin lastTestOrigin;
-    bool hasNewTestOrigin;
-    TestState lastTestState;
     std::string lastTestMessage;
+    bool hasTestOrigin;
 
     std::string boolToString(bool value)
     {
@@ -197,15 +197,17 @@ private:
 
     void clearLastTest()
     {
-        hasNewTestOrigin = false;
-        lastTestState = TestState::FAILED;
         lastTestMessage = "";
+        lastTestState = TestState::NO_ASSERTIONS;
+        hasTestOrigin = false;
     }
 
     void setLastTestOrigin(SourceOrigin origin)
     {
         lastTestOrigin = origin;
-        hasNewTestOrigin = true;
+        lastTestMessage = "";
+        lastTestState = TestState::NOT_PASSED;
+        hasTestOrigin = true;
     }
 };
 
