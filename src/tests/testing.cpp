@@ -78,6 +78,11 @@ void charEqualsTest()
     assertEquals('x', 'y');
 }
 
+void stringEqualsTest_shouldFail()
+{
+    assertEquals("hello", "world");
+}
+
 void demoTests()
 {
     using namespace cpputil;
@@ -93,7 +98,8 @@ void demoTests()
         boolEqualsTest,
         disabledTest,
         emptyRegisteredTest,
-        charEqualsTest
+        charEqualsTest,
+        stringEqualsTest_shouldFail
     };
 
     testAll(testFunctions);
