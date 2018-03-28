@@ -41,60 +41,60 @@ public:
         clearLastTest();
     }
 
-    void registerTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void registerTest(SourceOrigin sourceOrigin)
     {
-        setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        setLastTestOrigin(sourceOrigin);
         lastTestState = TestState::NO_ASSERTIONS;
     }
 
-    void makeAssertion(bool expression, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeAssertion(bool expression, SourceOrigin sourceOrigin)
     {
-        makeEqualsAssertion(true, expression, functionHeader, fileName, lineNumber);
+        makeEqualsAssertion(true, expression, sourceOrigin);
     }
 
-    void makeEqualsAssertion(float expected, float actual, float delta, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeEqualsAssertion(float expected, float actual, float delta, SourceOrigin sourceOrigin)
     {
-        setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        setLastTestOrigin(sourceOrigin);
         float min = actual - delta;
         float max = actual + delta;
         if (expected < min || expected > max)
             throw AssertionFailedException(lastTestOrigin, std::to_string(expected), std::to_string(actual));
     }
 
-    void makeEqualsAssertion(float expected, float actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeEqualsAssertion(float expected, float actual, SourceOrigin sourceOrigin)
     {
-        makeEqualsAssertion(expected, actual, 0, functionHeader, fileName, lineNumber);
+        makeEqualsAssertion(expected, actual, 0, sourceOrigin);
     }
 
-    void makeEqualsAssertion(int expected, int actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeEqualsAssertion(int expected, int actual, SourceOrigin sourceOrigin)
     {
-        setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        setLastTestOrigin(sourceOrigin);
         if (expected != actual)
             throw AssertionFailedException(lastTestOrigin, std::to_string(expected), std::to_string(actual));
     }
 
-    void makeEqualsAssertion(const std::string& expected, const std::string& actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeEqualsAssertion(const std::string& expected, const std::string& actual, SourceOrigin sourceOrigin)
     {
-        setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        setLastTestOrigin(sourceOrigin);
         if (expected != actual)
             throw AssertionFailedException(lastTestOrigin, "\"" + expected + "\"", "\"" + actual + "\"");
     }
 
-    void makeEqualsAssertion(const char* expected, const char* actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeEqualsAssertion(const char* expected, const char* actual, SourceOrigin sourceOrigin)
     {
-        makeEqualsAssertion(std::string(expected), std::string(actual), functionHeader, fileName, lineNumber);
+        makeEqualsAssertion(std::string(expected), std::string(actual), sourceOrigin);
     }
 
-    void makeEqualsAssertion(bool expected, bool actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeEqualsAssertion(bool expected, bool actual, SourceOrigin sourceOrigin)
     {
-        setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        setLastTestOrigin(sourceOrigin);
         if (expected != actual)
             throw AssertionFailedException(lastTestOrigin, boolToString(expected), boolToString(actual));
     }
 
-    void makeEqualsAssertion(char expected, char actual, const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void makeEqualsAssertion(char expected, char actual, SourceOrigin sourceOrigin)
     {
-        setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        setLastTestOrigin(sourceOrigin);
         if (expected != actual)
             throw AssertionFailedException(lastTestOrigin, std::string(1, expected), std::string(1, actual));
     }
@@ -181,9 +181,9 @@ public:
         return allTestsSucceeded;
     }
 
-    void disableTest(const std::string& functionHeader, const std::string& fileName, int lineNumber)
+    void disableTest(SourceOrigin sourceOrigin)
     {
-        setLastTestOrigin(SourceOrigin(functionHeader, fileName, lineNumber));
+        setLastTestOrigin(sourceOrigin);
         lastTestState = TestState::DISABLED;
         throw Exception(lastTestOrigin, "Test disabled");
     }
@@ -264,10 +264,11 @@ inline bool allSucceed(const std::vector<BoolFunction>& boolFunctions)
 
 }
 
-#define registerTest() cpputil::testing::getTester().registerTest(__PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertTrue(expression) cpputil::testing::getTester().makeAssertion(expression, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertApproxEqual(expected, actual, delta) cpputil::testing::getTester().makeEqualsAssertion(expected, actual, delta, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define assertEquals(expected, actual) cpputil::testing::getTester().makeEqualsAssertion(expected, actual, __PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define disableTest() cpputil::testing::getTester().disableTest(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define cppUtilGetSourceOrigin() cpputil::SourceOrigin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define registerTest() cpputil::testing::getTester().registerTest(cppUtilGetSourceOrigin())
+#define assertTrue(expression) cpputil::testing::getTester().makeAssertion(expression, cppUtilGetSourceOrigin())
+#define assertApproxEqual(expected, actual, delta) cpputil::testing::getTester().makeEqualsAssertion(expected, actual, delta, cppUtilGetSourceOrigin())
+#define assertEquals(expected, actual) cpputil::testing::getTester().makeEqualsAssertion(expected, actual, cppUtilGetSourceOrigin())
+#define disableTest() cpputil::testing::getTester().disableTest(cppUtilGetSourceOrigin())
 
 #endif /* TESTING_HPP */
