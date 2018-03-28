@@ -122,38 +122,46 @@ public:
 
         bool passed;
 
-        std::string line;
+        std::string statusString, headerString;
+
         if (lastTestResult == TestResult::NO_ASSERTIONS)
         {
-            line = "INVALID\t(UNKNOWN TEST - NO ASSERTIONS)";
+            statusString = "INVALID";
+            headerString = "(UNKNOWN TEST - NO ASSERTIONS)";
             passed = false;
         }
         else
         {
             if (lastTestResult == TestResult::PASSED)
             {
-                line += "OK";
+                statusString = "OK";
                 passed = true;
             }
             else if (lastTestResult == TestResult::FAILED)
             {
-                line += "FAILED";
+                statusString = "FAILED";
                 passed = false;
             }
             else if (lastTestResult == TestResult::DISABLED)
             {
-                line += "DISABLED";
+                statusString = "IGNORED";
                 passed = true;
             }
-            line += "\t" + lastTestOrigin.functionHeader;
-            if (lastTestResult == TestResult::PASSED)
-                line += "\n\t" + lastTestOrigin.fileName + ":" + std::to_string(lastTestOrigin.lineNumber) + ": error: Test failed";
+            headerString = lastTestOrigin.functionHeader;
         }
 
-        if (lastTestMessage.size() > 0)
-            line += "\n\t" + lastTestMessage;
+        std::string outputString;
+        outputString += statusString;
+        outputString += "\t";
+        outputString += headerString;
 
-        printString(line);
+        if (lastTestResult == TestResult::FAILED)
+            outputString +=  "\n\t" +lastTestOrigin.fileName + ":" + std::to_string(lastTestOrigin.lineNumber) + ": error: Test failed";
+
+        if (lastTestMessage.size() > 0)
+            outputString += "\n\t" + lastTestMessage;
+
+        printString(outputString);
         return (lastTestResult == TestResult::PASSED);
     }
 

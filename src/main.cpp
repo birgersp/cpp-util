@@ -16,8 +16,10 @@ int main(int argc, char** argv)
         testDebugging
     };
 
-    if (!testAll(testFunctions))
+    if (!testAll(testFunctions)) {
+        std::cerr << "Error: Some (actual) tests failed" << std::endl;
         return 1;
+    }
 
     demoErrorHandling();
 
