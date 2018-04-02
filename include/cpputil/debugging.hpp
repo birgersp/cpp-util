@@ -3,38 +3,48 @@
 
 #include <cpputil/printing.hpp>
 
+#include "SourceOrigin.hpp"
+
 namespace cpputil
 {
 
-inline std::string getDebugInfo(const std::string& functionHeader, const std::string& fileName, int lineNumber)
+inline std::string getDebugInfo(const SourceOrigin sourceOrigin)
 {
-    return getFunctionName(functionHeader) + ", " + fileName + ", " + std::to_string(lineNumber);
+    return getFunctionName(sourceOrigin.functionHeader) + ", " + sourceOrigin.fileName + ", " + std::to_string(sourceOrigin.lineNumber);
 }
 
-inline void printDebugInfo(const std::string& functionHeader, const std::string& fileName, int lineNumber)
+inline void printDebugInfoMessage(const SourceOrigin sourceOrigin, const std::string& message)
 {
-    printString(getDebugInfo(functionHeader, fileName, lineNumber));
+    std::string resultString = getDebugInfo(sourceOrigin);
+    resultString += ":\t" + message;
+    printString(resultString);
 }
 
-inline void printDebugInfo(const std::string& functionHeader, const std::string& fileName, int lineNumber, const std::string& message)
+inline void printDebugInfo(const SourceOrigin sourceOrigin)
 {
-    std::string resultingMessage = getDebugInfo(functionHeader, fileName, lineNumber);
-    if (message.size() > 0)
-        resultingMessage += ":\t" + message;
-    printString(resultingMessage);
+    printString(getDebugInfo(sourceOrigin));
 }
 
-inline void printDebugInfo(const std::string& functionHeader, const std::string& fileName, int lineNumber, int number)
+inline void printDebugInfo(const SourceOrigin sourceOrigin, const std::string& string)
 {
-    printDebugInfo(functionHeader, fileName, lineNumber, std::to_string(number));
+    printDebugInfoMessage(sourceOrigin, "\"" + string + "\"");
+}
+
+inline void printDebugInfo(const SourceOrigin sourceOrigin, int number)
+{
+    printDebugInfoMessage(sourceOrigin, std::to_string(number));
+}
+
+inline void printDebugInfo(const SourceOrigin sourceOrigin, char character)
+{
+    printDebugInfoMessage(sourceOrigin, std::string(1, character));
 }
 
 }
 
-#define cpputilDebugString(string) cpputil::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__, string)
-#define cpputilDebugMessage(message) cpputilDebugString(message)
-#define cpputilDebugVariable(variable) cpputilDebugMessage(std::to_string(variable))
-#define cpputilDebugFunction() cpputil::printDebugInfo(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define cpputilDebugMessage(message) cpputil::printDebugInfoMessage(getSourceOrigin(), message)
+#define cpputilDebugVariable(variable) cpputil::printDebugInfo(getSourceOrigin(), variable)
+#define cpputilDebugFunction() cpputil::printDebugInfo(getSourceOrigin())
 
 
 #endif /* DEBUGGING_HPP */

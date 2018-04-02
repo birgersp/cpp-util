@@ -12,6 +12,7 @@ void testDebugging()
     cpputilDebugVariable(x);
     cpputilDebugMessage("Hello hello");
     cpputilDebugFunction();
+    cpputilDebugVariable('x');
     assertTrue(true);
 }
 
