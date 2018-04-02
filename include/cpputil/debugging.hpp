@@ -8,21 +8,19 @@
 namespace cpputil
 {
 
-inline std::string getDebugInfo(const SourceOrigin sourceOrigin)
-{
-    return getFunctionName(sourceOrigin.functionHeader) + ", " + sourceOrigin.fileName + ", " + std::to_string(sourceOrigin.lineNumber);
-}
-
 inline void printDebugInfoMessage(const SourceOrigin sourceOrigin, const std::string& message)
 {
-    std::string resultString = getDebugInfo(sourceOrigin);
-    resultString += ":\t" + message;
+    std::string resultString = getSourceOriginLinkMessage
+            (
+             sourceOrigin,
+             "info",
+             message.size() > 0 ? message : "(no info)");
     printString(resultString);
 }
 
 inline void printDebugInfo(const SourceOrigin sourceOrigin)
 {
-    printString(getDebugInfo(sourceOrigin));
+    printDebugInfoMessage(sourceOrigin, "");
 }
 
 inline void printDebugInfo(const SourceOrigin sourceOrigin, const std::string& string)

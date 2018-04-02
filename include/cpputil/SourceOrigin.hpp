@@ -21,6 +21,11 @@ struct SourceOrigin
     int lineNumber;
 };
 
+inline std::string getSourceOriginLinkMessage(const SourceOrigin& sourceOrigin, const std::string& type, const std::string& message)
+{
+    return "\t" + sourceOrigin.fileName + ":" + std::to_string(sourceOrigin.lineNumber) + ": " + type + ": " + message;
+}
+
 }
 
 #define getSourceOrigin() cpputil::SourceOrigin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
