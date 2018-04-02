@@ -20,7 +20,7 @@ public:
     }
 
     Exception(const SourceOrigin origin, const Exception& parent) :
-    Exception(origin, parent.toString())
+    Exception(origin, "Reason:\n" + parent.toString())
     {
     }
 
@@ -36,7 +36,7 @@ public:
 
     const std::string toString() const
     {
-        return "Exception in \"" + cpputil::getFunctionName(origin.functionHeader) + "\" (" + origin.fileName + ": " + std::to_string(origin.lineNumber) + "). Reason:\n\t" + reason;
+        return getSourceOriginLinkMessage(origin, "error", reason);
     }
 
 private:

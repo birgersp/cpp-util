@@ -121,7 +121,7 @@ public:
         catch (AssertionFailedException e)
         {
             lastTestOrigin = e.getOrigin();
-            lastTestMessage = e.getReason();
+            lastTestMessage = "\t" + e.getReason();
         }
         catch (Exception e)
         {
@@ -171,10 +171,10 @@ public:
         outputString += headerString;
 
         if (!passed && hasTestOrigin)
-            outputString += "\n\t" + lastTestOrigin.fileName + ":" + std::to_string(lastTestOrigin.lineNumber) + ": error: Test failed";
+            outputString += "\n" + getSourceOriginLinkMessage(lastTestOrigin, "error", "Test failed");
 
         if (lastTestMessage.size() > 0)
-            outputString += "\n\t" + lastTestMessage;
+            outputString += ": Reason\n" + lastTestMessage;
 
         printString(outputString);
         return passed;
