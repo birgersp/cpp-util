@@ -63,10 +63,9 @@ private:
 
 }
 
-#define exceptionOrigin cpputil::SourceOrigin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define functionException(reason) cpputil::Exception(exceptionOrigin, reason)
-#define consequentialException(cause) cpputil::ConsequentialException(exceptionOrigin, cause)
-#define unsupportedFunctionException() cpputil::Exception(exceptionOrigin, "Function not implemented")
+#define functionException(reason) cpputil::Exception(getSourceOrigin(), reason)
+#define consequentialException(cause) cpputil::ConsequentialException(getSourceOrigin(), cause)
+#define unsupportedFunctionException() cpputil::Exception(getSourceOrigin(), "Function not implemented")
 #define functionErrorException() functionException(strerror(errno))
 
 #endif /* ERRORHANDLING_HPP */

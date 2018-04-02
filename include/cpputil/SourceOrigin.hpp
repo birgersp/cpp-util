@@ -23,5 +23,6 @@ struct SourceOrigin
 
 }
 
-#endif /* SOURCEORIGIN_HPP */
+#define getSourceOrigin() cpputil::SourceOrigin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
 
+#endif /* SOURCEORIGIN_HPP */
