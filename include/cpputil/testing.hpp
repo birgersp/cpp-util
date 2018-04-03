@@ -33,9 +33,9 @@ private:
         bool anyNewlines = ((expected.find("\n") != -1) || (actual.find("\n") != -1));
 
         if (anyNewlines)
-            return "Expected:\n" + expected + "\n\tActual:\n" + actual;
+            return "Assertion failed\n\tExpected:\n" + expected + "\n\tActual:\n" + actual;
         else
-            return "Expected: " + expected + "\tActual: " + actual;
+            return "Assertion failed\n\tExpected: " + expected + "\tActual: " + actual;
     }
 
     const std::string message;
