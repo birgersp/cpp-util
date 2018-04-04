@@ -38,6 +38,11 @@ inline void printDebugInfo(const SourceOrigin sourceOrigin, char character)
     printDebugInfoMessage(sourceOrigin, std::string(1, character));
 }
 
+inline void printDebugInfo(const SourceOrigin sourceOrigin, unsigned int number)
+{
+    printDebugInfoMessage(sourceOrigin, std::to_string(number));
+}
+
 }
 
 #define cpputilDebugMessage(message) cpputil::printDebugInfoMessage(getSourceOrigin(), message)
