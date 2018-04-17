@@ -83,6 +83,13 @@ public:
             throw AssertionFailedException(lastTestOrigin, std::to_string(expected), std::to_string(actual));
     }
 
+    void makeEqualsAssertion(unsigned int expected, unsigned int actual, SourceOrigin sourceOrigin)
+    {
+        setLastTestOrigin(sourceOrigin);
+        if (expected != actual)
+            throw AssertionFailedException(lastTestOrigin, std::to_string(expected), std::to_string(actual));
+    }
+
     void makeEqualsAssertion(const std::string& expected, const std::string& actual, SourceOrigin sourceOrigin)
     {
         setLastTestOrigin(sourceOrigin);
