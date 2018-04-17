@@ -28,6 +28,11 @@ inline void printDebugInfo(const SourceOrigin sourceOrigin, const std::string& s
     printDebugInfoMessage(sourceOrigin, "\"" + string + "\"");
 }
 
+inline void printDebugInfo(const SourceOrigin sourceOrigin, const char* string)
+{
+    printDebugInfoMessage(sourceOrigin, "\"" + std::string(string) + "\"");
+}
+
 inline void printDebugInfo(const SourceOrigin sourceOrigin, bool boolean)
 {
     printDebugInfoMessage(sourceOrigin, boolean ? "true" : "false");
