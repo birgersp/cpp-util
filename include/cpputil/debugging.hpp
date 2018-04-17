@@ -28,7 +28,17 @@ inline void printDebugInfo(const SourceOrigin sourceOrigin, const std::string& s
     printDebugInfoMessage(sourceOrigin, "\"" + string + "\"");
 }
 
+inline void printDebugInfo(const SourceOrigin sourceOrigin, bool boolean)
+{
+    printDebugInfoMessage(sourceOrigin, boolean ? "true" : "false");
+}
+
 inline void printDebugInfo(const SourceOrigin sourceOrigin, int number)
+{
+    printDebugInfoMessage(sourceOrigin, std::to_string(number));
+}
+
+inline void printDebugInfo(const SourceOrigin sourceOrigin, unsigned int number)
 {
     printDebugInfoMessage(sourceOrigin, std::to_string(number));
 }
@@ -36,11 +46,6 @@ inline void printDebugInfo(const SourceOrigin sourceOrigin, int number)
 inline void printDebugInfo(const SourceOrigin sourceOrigin, char character)
 {
     printDebugInfoMessage(sourceOrigin, std::string(1, character));
-}
-
-inline void printDebugInfo(const SourceOrigin sourceOrigin, unsigned int number)
-{
-    printDebugInfoMessage(sourceOrigin, std::to_string(number));
 }
 
 }
