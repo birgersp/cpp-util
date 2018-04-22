@@ -20,7 +20,7 @@ public:
 
     const int year() const
     {
-        return values->tm_year;
+        return values->tm_year + 1900;
     }
 
     const int month() const
