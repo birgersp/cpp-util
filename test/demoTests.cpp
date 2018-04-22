@@ -1,5 +1,3 @@
-#include "tests.h"
-
 #include <cpputil/testing.hpp>
 
 namespace cpputil

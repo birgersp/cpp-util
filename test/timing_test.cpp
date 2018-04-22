@@ -1,5 +1,3 @@
-#include "tests.h"
-
 #include <cpputil/timing.hpp>
 #include <cpputil/testing.hpp>
 
@@ -22,7 +20,10 @@ void testTiming1()
     assertTrue(timer.elapsedMS() > 0);
 }
 
-bool testTiming();
+bool testTiming()
+{
+    return test(testTiming1);
+}
 
 }
 }

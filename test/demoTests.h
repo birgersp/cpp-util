@@ -3,9 +3,12 @@
 
 namespace cpputil
 {
+namespace demo
+{
 
+void demoTests();
 
-
+}
 }
 
 #endif /* DEMOTESTS_H */

@@ -1,7 +1,5 @@
-#include "tests.h"
-
 #include <cpputil/testing.hpp>
-#include <cpputil/stringifying.hpp>
+#include <cpputil/string.hpp>
 
 namespace cpputil
 {
@@ -43,7 +41,7 @@ void testToLowerCase()
 
 bool testStringUtils()
 {
-    std::vector<BoolFunction> tests = {
+    std::vector<TestFunction> tests = {
         testSplitString,
         testSplitEmptyString,
         testToLowerCase

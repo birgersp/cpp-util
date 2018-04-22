@@ -1,6 +1,8 @@
 #ifndef STRING_HPP
 #define STRING_HPP
 
+#include <cpputil/core.hpp>
+
 #include <vector>
 #include <string>
 

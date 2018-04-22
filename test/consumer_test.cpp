@@ -65,7 +65,7 @@ void testConsumerProvider()
     assertEquals(10, consumer.lastEvent.dummyData);
 }
 
-void testConsumer()
+bool testConsumer()
 {
     return test(testConsumerProvider);
 }

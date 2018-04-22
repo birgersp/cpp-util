@@ -1,1 +1,1 @@
-rm -rf build/*
+make -f cpp-util.mak clean

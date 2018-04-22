@@ -20,12 +20,12 @@ void testStringifying1()
     using namespace stringifying;
 
     DummyClass dc;
-    assertEquals("tests::stringifying::DummyClass", dc.toString());
+    assertEquals("cpputil::tests::stringifying::DummyClass", dc.toString());
 }
 
 bool testStringifying()
 {
-
+    return test(testStringifying1);
 }
 
 }
