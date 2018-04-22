@@ -9,7 +9,7 @@
 namespace cpputil
 {
 
-std::vector<std::string> splitString(const std::string& string, char delimiter)
+std::vector<std::string> splitString(StringRef string, char delimiter)
 {
     std::vector<std::string> result;
 

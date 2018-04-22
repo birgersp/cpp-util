@@ -8,7 +8,7 @@
 namespace cpputil
 {
 
-inline void printDebugInfoMessage(const SourceOrigin sourceOrigin, const std::string& message)
+inline void printDebugInfoMessage(const SourceOrigin sourceOrigin, StringRef message)
 {
     std::string resultString = getSourceOriginLinkMessage
             (
@@ -23,7 +23,7 @@ inline void printDebugInfo(const SourceOrigin sourceOrigin)
     printDebugInfoMessage(sourceOrigin, "");
 }
 
-inline void printDebugInfo(const SourceOrigin sourceOrigin, const std::string& string)
+inline void printDebugInfo(const SourceOrigin sourceOrigin, StringRef string)
 {
     printDebugInfoMessage(sourceOrigin, "\"" + string + "\"");
 }

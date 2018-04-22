@@ -1,6 +1,8 @@
 #ifndef SOURCEORIGIN_HPP
 #define SOURCEORIGIN_HPP
 
+#include <cpputil/core.hpp>
+
 namespace cpputil
 {
 
@@ -21,7 +23,7 @@ struct SourceOrigin
     int lineNumber;
 };
 
-inline std::string getSourceOriginLinkMessage(const SourceOrigin& sourceOrigin, const std::string& type, const std::string& message)
+inline std::string getSourceOriginLinkMessage(const SourceOrigin& sourceOrigin, StringRef type, StringRef message)
 {
     return "\t" + sourceOrigin.fileName + ":" + std::to_string(sourceOrigin.lineNumber) + ": " + type + ": " + message;
 }

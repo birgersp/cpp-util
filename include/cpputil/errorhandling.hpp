@@ -29,7 +29,7 @@ public:
         return origin;
     }
 
-    const std::string& getReason() const
+    StringRef getReason() const
     {
         return reason;
     }

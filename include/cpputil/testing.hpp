@@ -1,6 +1,7 @@
 #ifndef TESTING_HPP
 #define TESTING_HPP
 
+#include <cpputil/core.hpp>
 #include <cpputil/common.hpp>
 #include <cpputil/printing.hpp>
 #include <cpputil/errorhandling.hpp>
@@ -21,14 +22,14 @@ class AssertionFailedException : public Exception
 {
 public:
 
-    AssertionFailedException(const SourceOrigin origin, const std::string& expected, const std::string& actual) :
+    AssertionFailedException(const SourceOrigin origin, StringRef expected, StringRef actual) :
     Exception(origin, generateReason(expected, actual))
     {
     }
 
 private:
 
-    static std::string generateReason(const std::string& expected, const std::string& actual)
+    static std::string generateReason(StringRef expected, StringRef actual)
     {
         bool anyNewlines = ((expected.find("\n") != -1) || (actual.find("\n") != -1));
 
@@ -90,7 +91,7 @@ public:
             throw AssertionFailedException(lastTestOrigin, std::to_string(expected), std::to_string(actual));
     }
 
-    void makeEqualsAssertion(const std::string& expected, const std::string& actual, SourceOrigin sourceOrigin)
+    void makeEqualsAssertion(StringRef expected, StringRef actual, SourceOrigin sourceOrigin)
     {
         setLastTestOrigin(sourceOrigin);
         if (expected != actual)
