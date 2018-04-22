@@ -2,7 +2,9 @@
 
 #include <cpputil/testing.hpp>
 
-namespace tests
+namespace cpputil
+{
+namespace demo
 {
 
 void dummyTest1()
@@ -106,4 +108,5 @@ void demoTests()
     test(singleTest);
 }
 
+}
 }

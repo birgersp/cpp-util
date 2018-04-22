@@ -3,13 +3,13 @@
 #include <cpputil/timing.hpp>
 #include <cpputil/testing.hpp>
 
+namespace cpputil
+{
 namespace tests
 {
 
-void testTiming()
+void testTiming1()
 {
-    using namespace cpputil;
-
     Timer timer;
 
     sleepMS(10);
@@ -22,4 +22,7 @@ void testTiming()
     assertTrue(timer.elapsedMS() > 0);
 }
 
+bool testTiming();
+
+}
 }

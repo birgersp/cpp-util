@@ -1,8 +1,8 @@
-#include "tests.h"
-
 #include <cpputil/testing.hpp>
 #include <cpputil/stringifying.hpp>
 
+namespace cpputil
+{
 namespace tests
 {
 
@@ -15,7 +15,7 @@ class DummyClass : public cpputil::Stringifyable
 
 }
 
-void testStringifying()
+void testStringifying1()
 {
     using namespace stringifying;
 
@@ -23,4 +23,10 @@ void testStringifying()
     assertEquals("tests::stringifying::DummyClass", dc.toString());
 }
 
+bool testStringifying()
+{
+
+}
+
+}
 }

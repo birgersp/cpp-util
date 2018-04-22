@@ -1,9 +1,11 @@
-#include "tests.h"
+#include "consumer_test.h"
 
 #include <cpputil/Consumer.hpp>
 #include <cpputil/Provider.hpp>
 #include <cpputil/testing.hpp>
 
+namespace cpputil
+{
 namespace tests
 {
 
@@ -63,4 +65,10 @@ void testConsumerProvider()
     assertEquals(10, consumer.lastEvent.dummyData);
 }
 
+void testConsumer()
+{
+    return test(testConsumerProvider);
+}
+
+}
 }
