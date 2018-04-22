@@ -29,7 +29,7 @@ std::vector<std::string> splitString(StringRef string, char delimiter)
     return result;
 }
 
-void toLowerCase(std::string& string)
+void toLowerCase(MutableStringRef string)
 {
     std::locale locale;
     for (uint i = 0; i < string.length(); i++)
