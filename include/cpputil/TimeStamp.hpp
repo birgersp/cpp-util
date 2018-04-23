@@ -13,46 +13,60 @@ public:
 
     Timestamp()
     {
+        timeval timeValue;
         gettimeofday(&timeValue, 0);
-        timeValueSeconds = timeValue.tv_sec;
-        values = localtime(&timeValueSeconds);
+        time_t timeValueSeconds = timeValue.tv_sec;
+        tm* values = localtime(&timeValueSeconds);
+
+        secondsSinceEpoch = (ulong) timeValueSeconds;
+
+        year = values->tm_year + 1900;
+        month = values->tm_mon + 1;
+        day = values->tm_mday;
+        hour = values->tm_hour;
+        minute = values->tm_min;
+        second = values->tm_sec;
     }
 
-    const int year() const
+    uint getDay() const
     {
-        return values->tm_year + 1900;
+        return day;
     }
 
-    const int month() const
+    uint getHour() const
     {
-        return values->tm_mon + 1;
+        return hour;
     }
 
-    const int day() const
+    uint getMinute() const
     {
-        return values->tm_mday;
+        return minute;
     }
 
-    const int hour() const
+    uint getMonth() const
     {
-        return values->tm_hour;
+        return month;
     }
 
-    const int minute() const
+    uint getSecond() const
     {
-        return values->tm_min;
+        return second;
     }
 
-    const ulong secondsSinceEpoch() const
+    ulong getSecondsSinceEpoch() const
     {
-        return timeValueSeconds;
+        return secondsSinceEpoch;
+    }
+
+    uint getYear() const
+    {
+        return year;
     }
 
 private:
 
-    timeval timeValue;
-    time_t timeValueSeconds;
-    tm* values;
+    ulong secondsSinceEpoch;
+    uint year, month, day, hour, minute, second;
 
 };
 
