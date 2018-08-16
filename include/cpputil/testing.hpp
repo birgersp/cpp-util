@@ -184,7 +184,7 @@ public:
         if (lastTestMessage.size() > 0)
             outputString += ": Reason\n" + lastTestMessage;
 
-        printString(outputString);
+        printLine(outputString);
         return passed;
     }
 
@@ -252,9 +252,9 @@ inline Tester& getTester()
 
 inline bool test(TestFunction function)
 {
-    printString("Performing 1 test");
+    printLine("Performing 1 test");
     bool result = testing::getTester().test(function);
-    printString("");
+    printLine("");
     return result;
 }
 
@@ -264,9 +264,9 @@ inline bool testAll(std::vector<TestFunction>& functions)
         return test(functions[0]);
     else
     {
-        printString("Performing " + std::to_string(functions.size()) + " tests");
+        printLine("Performing " + std::to_string(functions.size()) + " tests");
         bool result = testing::getTester().testAll(functions);
-        printString("");
+        printLine("");
         return result;
     }
 }

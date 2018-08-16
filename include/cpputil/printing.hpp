@@ -15,14 +15,14 @@ inline std::string getFunctionMessage(StringRef functionHeader, StringRef messag
     return result;
 }
 
-inline void printString(StringRef string)
+inline void printLine(StringRef string)
 {
     std::cout << string << std::endl;
 }
 
 inline void printFunction(StringRef functionHeader, StringRef message)
 {
-    printString(getFunctionMessage(functionHeader, message));
+    printLine(getFunctionMessage(functionHeader, message));
 }
 
 inline void printErrorString(StringRef message)

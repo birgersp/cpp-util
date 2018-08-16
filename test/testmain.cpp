@@ -14,10 +14,10 @@ int main(int argc, char** argv)
 {
     using namespace cpputil;
 
-    printString("Demo testing");
+    printLine("Demo testing");
     demo::demoTests();
 
-    printString("Performing actual tests");
+    printLine("Performing actual tests");
     std::vector<cpputil::BoolFunction> testFunctions = {
         tests::testConsumer,
         tests::testStringUtils,
@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 
     if (cpputil::allSucceed(testFunctions))
     {
-        printString("All (real) tests succeeded");
+        printLine("All (real) tests succeeded");
         return 0;
     }
 

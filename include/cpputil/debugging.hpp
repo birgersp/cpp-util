@@ -15,7 +15,7 @@ inline void printDebugInfoMessage(const SourceOrigin sourceOrigin, StringRef mes
              sourceOrigin,
              "info",
              message.size() > 0 ? message : "(no info)");
-    printString(resultString);
+    printLine(resultString);
 }
 
 inline void printDebugInfo(const SourceOrigin sourceOrigin)
