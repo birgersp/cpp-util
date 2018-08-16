@@ -7,25 +7,35 @@
 namespace cpputil
 {
 
+inline ulong getCurrentSecondsSinceEpoch()
+{
+    timeval timeValue;
+    gettimeofday(&timeValue, 0);
+    time_t timeValueSeconds = timeValue.tv_sec;
+    ulong secondsSinceEpoch = (ulong) timeValueSeconds;
+    return secondsSinceEpoch;
+}
+
 class Timestamp
 {
 public:
 
-    Timestamp()
+    Timestamp(ulong secondsSinceEpoch) :
+    secondsSinceEpoch(secondsSinceEpoch)
     {
-        timeval timeValue;
-        gettimeofday(&timeValue, 0);
-        time_t timeValueSeconds = timeValue.tv_sec;
-        tm* values = localtime(&timeValueSeconds);
-
-        secondsSinceEpoch = (ulong) timeValueSeconds;
-
+        long long int secondsSinceEpochInt = (long long int) secondsSinceEpoch;
+        tm* values = localtime(&secondsSinceEpochInt);
         year = values->tm_year + 1900;
         month = values->tm_mon + 1;
         day = values->tm_mday;
         hour = values->tm_hour;
         minute = values->tm_min;
         second = values->tm_sec;
+    }
+
+    Timestamp() :
+    Timestamp(getCurrentSecondsSinceEpoch())
+    {
     }
 
     uint getDay() const
