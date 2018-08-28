@@ -8,7 +8,11 @@
 #endif
 
 typedef unsigned int uint;
+
+#ifdef OS_WINDOWS
 typedef unsigned int ulong;
+#endif
+
 typedef const char* cString;
 typedef const std::string& StringRef;
 typedef std::string& MutableStringRef;
