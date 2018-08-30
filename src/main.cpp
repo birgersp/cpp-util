@@ -1,7 +1,19 @@
-#include <iostream>
+#include <cpputil/Consumer.hpp>
+#include <cpputil/Provider.hpp>
+#include <cpputil/SourceOrigin.hpp>
+#include <cpputil/TimeStamp.hpp>
+#include <cpputil/common.hpp>
+#include <cpputil/core.hpp>
+#include <cpputil/debugging.hpp>
+#include <cpputil/errorhandling.hpp>
+#include <cpputil/file.hpp>
+#include <cpputil/printing.hpp>
+#include <cpputil/string.hpp>
+#include <cpputil/stringifying.hpp>
+#include <cpputil/testing.hpp>
+#include <cpputil/timing.hpp>
 
 int main(int argc, char** argv)
 {
-    std::cout << "Hello world!" << std::endl;
     return 0;
 }
