@@ -23,7 +23,7 @@ public:
     Timestamp(ulong secondsSinceEpoch) :
     secondsSinceEpoch(secondsSinceEpoch)
     {
-        long long int secondsSinceEpochInt = (long long int) secondsSinceEpoch;
+        time_t secondsSinceEpochInt = (time_t) secondsSinceEpoch;
         tm* values = localtime(&secondsSinceEpochInt);
         year = values->tm_year + 1900;
         month = values->tm_mon + 1;
