@@ -5,6 +5,7 @@
 #include <cpputil/common.hpp>
 #include <cpputil/printing.hpp>
 #include <cpputil/errorhandling.hpp>
+#include <cpputil/string.hpp>
 
 #include <vector>
 #include <string>
@@ -27,20 +28,22 @@ public:
     {
     }
 
+    AssertionFailedException(const SourceOrigin origin, StringRef expected, StringRef actual, uint line) :
+    Exception(origin, generateReason(expected, actual, line))
+    {
+    }
+
 private:
 
     static std::string generateReason(StringRef expected, StringRef actual)
     {
-        bool anyNewlines = ((expected.find("\n") != -1) || (actual.find("\n") != -1));
-
-        if (anyNewlines)
-            return "Assertion failed\n\tExpected:\n" + expected + "\n\tActual:\n" + actual;
-        else
-            return "Assertion failed\n\tExpected: " + expected + "\tActual: " + actual;
+        return "Assertion failed\n\tExpected: " + expected + "\tActual: " + actual;
     }
 
-    const std::string message;
-
+    static std::string generateReason(StringRef expected, StringRef actual, uint line)
+    {
+        return "Assertion failed\n\t" + std::to_string(line) + "\tExpected: " + expected + "\tActual: " + actual + "\t(string line " + std::to_string(line) + ")";
+    }
 };
 
 class Tester
@@ -94,8 +97,9 @@ public:
     void makeEqualsAssertion(StringRef expected, StringRef actual, SourceOrigin sourceOrigin)
     {
         setLastTestOrigin(sourceOrigin);
-        if (expected != actual)
-            throw AssertionFailedException(lastTestOrigin, "\"" + expected + "\"", "\"" + actual + "\"");
+        stringcompare::StringDifference difference;
+        if (stringcompare::findStringDifference(expected, actual, difference))
+            throw AssertionFailedException(lastTestOrigin, "\"" + difference.string1Line + "\"", "\"" + difference.string2Line + "\"", difference.line);
     }
 
     void makeEqualsAssertion(const char* expected, const char* actual, SourceOrigin sourceOrigin)

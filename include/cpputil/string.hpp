@@ -9,7 +9,7 @@
 namespace cpputil
 {
 
-std::vector<std::string> splitString(StringRef string, char delimiter)
+inline std::vector<std::string> splitString(StringRef string, char delimiter)
 {
     std::vector<std::string> result;
 
@@ -29,7 +29,7 @@ std::vector<std::string> splitString(StringRef string, char delimiter)
     return result;
 }
 
-void toLowerCase(MutableStringRef string)
+inline void toLowerCase(MutableStringRef string)
 {
     std::locale locale;
     for (uint i = 0; i < string.length(); i++)
@@ -45,7 +45,7 @@ struct StringDifference
     std::string string1Line, string2Line;
 };
 
-bool findStringDifference(StringRef string1, StringRef string2, StringDifference& difference)
+inline bool findStringDifference(StringRef string1, StringRef string2, StringDifference& difference)
 {
     std::vector<std::string> string1Lines = splitString(string1, '\n');
     std::vector<std::string> string2Lines = splitString(string2, '\n');
