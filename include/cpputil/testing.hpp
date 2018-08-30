@@ -28,8 +28,8 @@ public:
     {
     }
 
-    ComparisonTestFailed(const SourceOrigin origin, StringRef expected, StringRef actual, uint line) :
-    Exception(origin, generateReason(expected, actual, line))
+    ComparisonTestFailed(const SourceOrigin origin, StringRef expected, StringRef actual, const stringcompare::StringDifference& difference) :
+    Exception(origin, generateReason(expected, actual, difference))
     {
     }
 
@@ -40,9 +40,18 @@ private:
         return "Assertion failed\n\tExpected: " + expected + "\tActual: " + actual;
     }
 
-    static std::string generateReason(StringRef expected, StringRef actual, uint line)
+    static std::string generateReason(StringRef expected, StringRef actual, const stringcompare::StringDifference& difference)
     {
-        return "Assertion failed\n\t" + std::to_string(line) + "\tExpected: " + expected + "\tActual: " + actual + "\t(string line " + std::to_string(line) + ")";
+        bool anyNewlines = ((expected.find("\n") != -1) || (actual.find("\n") != -1));
+        std::string message;
+        if (anyNewlines)
+        {
+            message = "Assertion failed\n\tExpected:\n" + expected + "\n\tActual:\n" + actual;
+            message += "\n\t(Line " + std::to_string(difference.line) + ") " + difference.string1Line + " | " + difference.string2Line;
+        }
+        else
+            message = "Assertion failed\n\tExpected: " + expected + "\tActual: " + actual;
+        return message;
     }
 };
 
@@ -99,7 +108,7 @@ public:
         setLastTestOrigin(sourceOrigin);
         stringcompare::StringDifference difference;
         if (stringcompare::findStringDifference(expected, actual, difference))
-            throw ComparisonTestFailed(lastTestOrigin, "\"" + difference.string1Line + "\"", "\"" + difference.string2Line + "\"", difference.line);
+            throw ComparisonTestFailed(lastTestOrigin, "\"" + expected + "\"", "\"" + actual + "\"", difference);
     }
 
     void makeEqualsAssertion(const char* expected, const char* actual, SourceOrigin sourceOrigin)
