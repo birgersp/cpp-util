@@ -19,16 +19,16 @@ typedef bool (*BoolFunction) (void);
 namespace testing
 {
 
-class AssertionFailedException : public Exception
+class ComparisonTestFailed : public Exception
 {
 public:
 
-    AssertionFailedException(const SourceOrigin origin, StringRef expected, StringRef actual) :
+    ComparisonTestFailed(const SourceOrigin origin, StringRef expected, StringRef actual) :
     Exception(origin, generateReason(expected, actual))
     {
     }
 
-    AssertionFailedException(const SourceOrigin origin, StringRef expected, StringRef actual, uint line) :
+    ComparisonTestFailed(const SourceOrigin origin, StringRef expected, StringRef actual, uint line) :
     Exception(origin, generateReason(expected, actual, line))
     {
     }
@@ -72,7 +72,7 @@ public:
         float min = actual - delta;
         float max = actual + delta;
         if (expected < min || expected > max)
-            throw AssertionFailedException(lastTestOrigin, std::to_string(expected), std::to_string(actual));
+            throw ComparisonTestFailed(lastTestOrigin, std::to_string(expected), std::to_string(actual));
     }
 
     void makeEqualsAssertion(float expected, float actual, SourceOrigin sourceOrigin)
@@ -84,14 +84,14 @@ public:
     {
         setLastTestOrigin(sourceOrigin);
         if (expected != actual)
-            throw AssertionFailedException(lastTestOrigin, std::to_string(expected), std::to_string(actual));
+            throw ComparisonTestFailed(lastTestOrigin, std::to_string(expected), std::to_string(actual));
     }
 
     void makeEqualsAssertion(unsigned int expected, unsigned int actual, SourceOrigin sourceOrigin)
     {
         setLastTestOrigin(sourceOrigin);
         if (expected != actual)
-            throw AssertionFailedException(lastTestOrigin, std::to_string(expected), std::to_string(actual));
+            throw ComparisonTestFailed(lastTestOrigin, std::to_string(expected), std::to_string(actual));
     }
 
     void makeEqualsAssertion(StringRef expected, StringRef actual, SourceOrigin sourceOrigin)
@@ -99,7 +99,7 @@ public:
         setLastTestOrigin(sourceOrigin);
         stringcompare::StringDifference difference;
         if (stringcompare::findStringDifference(expected, actual, difference))
-            throw AssertionFailedException(lastTestOrigin, "\"" + difference.string1Line + "\"", "\"" + difference.string2Line + "\"", difference.line);
+            throw ComparisonTestFailed(lastTestOrigin, "\"" + difference.string1Line + "\"", "\"" + difference.string2Line + "\"", difference.line);
     }
 
     void makeEqualsAssertion(const char* expected, const char* actual, SourceOrigin sourceOrigin)
@@ -111,14 +111,14 @@ public:
     {
         setLastTestOrigin(sourceOrigin);
         if (expected != actual)
-            throw AssertionFailedException(lastTestOrigin, boolToString(expected), boolToString(actual));
+            throw ComparisonTestFailed(lastTestOrigin, boolToString(expected), boolToString(actual));
     }
 
     void makeEqualsAssertion(char expected, char actual, SourceOrigin sourceOrigin)
     {
         setLastTestOrigin(sourceOrigin);
         if (expected != actual)
-            throw AssertionFailedException(lastTestOrigin, std::string(1, expected), std::string(1, actual));
+            throw ComparisonTestFailed(lastTestOrigin, std::string(1, expected), std::string(1, actual));
     }
 
     void performTest(TestFunction function)
@@ -130,7 +130,7 @@ public:
             if (lastTestState == TestState::NOT_PASSED)
                 lastTestState = TestState::PASSED;
         }
-        catch (AssertionFailedException e)
+        catch (ComparisonTestFailed e)
         {
             lastTestOrigin = e.getOrigin();
             lastTestMessage = "\t" + e.getReason();
