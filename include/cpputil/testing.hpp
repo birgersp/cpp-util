@@ -19,17 +19,27 @@ typedef bool (*BoolFunction) (void);
 namespace testing
 {
 
-class ComparisonTestFailed : public Exception
+class TestFailed : public Exception
 {
 public:
 
-    ComparisonTestFailed(const SourceOrigin origin, StringRef expected, StringRef actual) :
-    Exception(origin, generateReason(expected, actual))
+    TestFailed(const SourceOrigin& origin, StringRef info) :
+    Exception(origin, info)
+    {
+    }
+};
+
+class ComparisonTestFailed : public TestFailed
+{
+public:
+
+    ComparisonTestFailed(const SourceOrigin& origin, StringRef expected, StringRef actual) :
+    TestFailed(origin, generateReason(expected, actual))
     {
     }
 
-    ComparisonTestFailed(const SourceOrigin origin, StringRef expected, StringRef actual, const stringcompare::StringDifference& difference) :
-    Exception(origin, generateReason(expected, actual, difference))
+    ComparisonTestFailed(const SourceOrigin& origin, StringRef expected, StringRef actual, const stringcompare::StringDifference& difference) :
+    TestFailed(origin, generateReason(expected, actual, difference))
     {
     }
 
@@ -139,7 +149,7 @@ public:
             if (lastTestState == TestState::NOT_PASSED)
                 lastTestState = TestState::PASSED;
         }
-        catch (ComparisonTestFailed e)
+        catch (TestFailed e)
         {
             lastTestOrigin = e.getOrigin();
             lastTestMessage = "\t" + e.getReason();
