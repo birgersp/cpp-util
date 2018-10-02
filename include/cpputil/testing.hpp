@@ -82,7 +82,9 @@ public:
 
     void makeAssertion(bool expression, SourceOrigin sourceOrigin)
     {
-        makeEqualsAssertion(true, expression, sourceOrigin);
+        setLastTestOrigin(sourceOrigin);
+        if (!expression)
+            throw TestFailed(lastTestOrigin, "Assertion failed");
     }
 
     void makeEqualsAssertion(float expected, float actual, float delta, SourceOrigin sourceOrigin)
@@ -152,7 +154,7 @@ public:
         catch (TestFailed e)
         {
             lastTestOrigin = e.getOrigin();
-            lastTestMessage = "\t" + e.getReason();
+            lastTestMessage = e.getReason();
         }
         catch (Exception e)
         {
@@ -205,7 +207,7 @@ public:
             outputString += "\n" + getSourceOriginLinkMessage(lastTestOrigin, "error", "Test failed");
 
         if (lastTestMessage.size() > 0)
-            outputString += ": Reason\n" + lastTestMessage;
+            outputString += "\n\tReason: " + lastTestMessage;
 
         printLine(outputString);
         return passed;

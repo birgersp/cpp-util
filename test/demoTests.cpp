@@ -23,6 +23,11 @@ void dummyTest3()
     assertTrue(true);
 }
 
+void dummyTest4()
+{
+    assertTrue(false);
+}
+
 void emptyTest()
 {
 }
@@ -91,6 +96,7 @@ void demoTests()
         dummyTest1,
         dummyTest2,
         dummyTest3,
+        dummyTest4,
         emptyTest,
         approximationTest,
         exceptionTest,
