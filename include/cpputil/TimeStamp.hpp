@@ -1,6 +1,7 @@
 #ifndef TIMESTAMP_HPP
 #define TIMESTAMP_HPP
 
+#include <map>
 #include <sys/time.h>
 #include <cpputil/core.hpp>
 
@@ -15,6 +16,17 @@ inline ulong getCurrentSecondsSinceEpoch()
     ulong secondsSinceEpoch = (ulong) timeValueSeconds;
     return secondsSinceEpoch;
 }
+
+const std::map<uint, std::string> weekDayNames =
+{
+    {1, "monday"},
+    {2, "tuesday"},
+    {3, "wednesday"},
+    {4, "thursday"},
+    {5, "friday"},
+    {6, "saturday"},
+    {7, "sunday"}
+};
 
 class Timestamp
 {
@@ -71,6 +83,12 @@ public:
     uint getYear() const
     {
         return year;
+    }
+
+    StringRef getWeekDayName() const
+    {
+        auto iterator = weekDayNames.find(day);
+        return iterator->second;
     }
 
 private:
