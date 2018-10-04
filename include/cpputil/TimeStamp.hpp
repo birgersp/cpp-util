@@ -5,6 +5,8 @@
 #include <sys/time.h>
 #include <cpputil/core.hpp>
 
+#include "DayOfWeek.hpp"
+
 namespace cpputil
 {
 
@@ -17,20 +19,23 @@ inline ulong getCurrentSecondsSinceEpoch()
     return secondsSinceEpoch;
 }
 
-const std::map<uint, std::string> weekDayNames =
-{
-    {1, "monday"},
-    {2, "tuesday"},
-    {3, "wednesday"},
-    {4, "thursday"},
-    {5, "friday"},
-    {6, "saturday"},
-    {7, "sunday"}
-};
-
 class Timestamp
 {
 public:
+
+    static DayOfWeek integerToDayOfWeek(int integer)
+    {
+        switch (integer)
+        {
+        case 1: return DayOfWeek::MONDAY;
+        case 2: return DayOfWeek::TUESDAY;
+        case 3: return DayOfWeek::WEDNESDAY;
+        case 4: return DayOfWeek::THURSDAY;
+        case 5: return DayOfWeek::FRIDAY;
+        case 6: return DayOfWeek::SATURDAY;
+        case 7: return DayOfWeek::SUNDAY;
+        }
+    }
 
     Timestamp(ulong secondsSinceEpoch) :
     secondsSinceEpoch(secondsSinceEpoch)
@@ -39,7 +44,8 @@ public:
         tm* values = localtime(&secondsSinceEpochInt);
         year = values->tm_year + 1900;
         month = values->tm_mon + 1;
-        day = values->tm_mday;
+        dayOfMonth = values->tm_mday;
+        dayOfWeek = integerToDayOfWeek(values->tm_wday);
         hour = values->tm_hour;
         minute = values->tm_min;
         second = values->tm_sec;
@@ -50,9 +56,14 @@ public:
     {
     }
 
-    uint getDay() const
+    uint getDayOfMonth() const
     {
-        return day;
+        return dayOfMonth;
+    }
+
+    DayOfWeek getDayOfWeek() const
+    {
+        return dayOfWeek;
     }
 
     uint getHour() const
@@ -85,16 +96,17 @@ public:
         return year;
     }
 
-    StringRef getWeekDayName() const
+    StringRef getDayOfWeekName() const
     {
-        auto iterator = weekDayNames.find(day);
+        auto iterator = dayOfWeekNames.find(dayOfWeek);
         return iterator->second;
     }
 
 private:
 
     ulong secondsSinceEpoch;
-    uint year, month, day, hour, minute, second;
+    uint year, month, dayOfMonth, hour, minute, second;
+    DayOfWeek dayOfWeek;
 
 };
 
