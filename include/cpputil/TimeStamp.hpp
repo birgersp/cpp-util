@@ -102,6 +102,12 @@ public:
         return iterator->second;
     }
 
+    uint getDayOfWeekIndex() const
+    {
+        auto iterator = dayOfWeekIndices.find(dayOfWeek);
+        return iterator->second;
+    }
+
 private:
 
     ulong secondsSinceEpoch;

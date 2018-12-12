@@ -22,6 +22,16 @@ const std::map<DayOfWeek, std::string> dayOfWeekNames = {
     {DayOfWeek::SUNDAY, "sunday"}
 };
 
+const std::map<DayOfWeek, uint> dayOfWeekIndices = {
+    {DayOfWeek::MONDAY, 1},
+    {DayOfWeek::TUESDAY, 2},
+    {DayOfWeek::WEDNESDAY, 3},
+    {DayOfWeek::THURSDAY, 4},
+    {DayOfWeek::FRIDAY, 5},
+    {DayOfWeek::SATURDAY, 6},
+    {DayOfWeek::SUNDAY, 7}
+};
+
 }
 
 #endif /* DAYOFWEEK_HPP */
