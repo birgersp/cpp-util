@@ -283,7 +283,7 @@ inline bool test(TestFunction function)
     return result;
 }
 
-inline bool testAll(std::vector<TestFunction>& functions)
+inline bool testAll(const std::vector<TestFunction>& functions)
 {
     if (functions.size() == 1)
         return test(functions[0]);
