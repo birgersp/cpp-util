@@ -1,6 +1,6 @@
 #include <cpputil/Consumer.hpp>
 #include <cpputil/Provider.hpp>
-#include <cpputil/SourceOrigin.hpp>
+#include <cpputil/SourceCodeOrigin.hpp>
 #include <cpputil/TimeStamp.hpp>
 #include <cpputil/common.hpp>
 #include <cpputil/core.hpp>

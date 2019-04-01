@@ -5,7 +5,7 @@
 #include <string>
 #include <string.h>
 
-#include "SourceOrigin.hpp"
+#include "SourceCodeOrigin.hpp"
 
 namespace cpputil
 {
@@ -14,17 +14,17 @@ class Exception
 {
 public:
 
-    Exception(const SourceOrigin origin, const std::string reason) :
+    Exception(const SourceCodeOrigin origin, const std::string reason) :
     origin(origin), reason(reason)
     {
     }
 
-    Exception(const SourceOrigin origin, const Exception& parent) :
+    Exception(const SourceCodeOrigin origin, const Exception& parent) :
     Exception(origin, "Reason:\n" + parent.toString())
     {
     }
 
-    const SourceOrigin getOrigin() const
+    const SourceCodeOrigin getOrigin() const
     {
         return origin;
     }
@@ -41,7 +41,7 @@ public:
 
 private:
 
-    const SourceOrigin origin;
+    const SourceCodeOrigin origin;
     const std::string reason;
 
 };
@@ -50,7 +50,7 @@ class ConsequentialException : public Exception
 {
 public:
 
-    ConsequentialException(const SourceOrigin origin, const Exception& parent) :
+    ConsequentialException(const SourceCodeOrigin origin, const Exception& parent) :
     Exception(origin, parent), parent(parent)
     {
     }

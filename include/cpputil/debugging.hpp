@@ -3,12 +3,12 @@
 
 #include <cpputil/printing.hpp>
 
-#include "SourceOrigin.hpp"
+#include "SourceCodeOrigin.hpp"
 
 namespace cpputil
 {
 
-inline void printDebugInfoMessage(const SourceOrigin sourceOrigin, StringRef message)
+inline void printDebugInfoMessage(const SourceCodeOrigin sourceOrigin, StringRef message)
 {
     std::string resultString = getSourceOriginLinkMessage
             (
@@ -18,37 +18,37 @@ inline void printDebugInfoMessage(const SourceOrigin sourceOrigin, StringRef mes
     printLine(resultString);
 }
 
-inline void printDebugInfo(const SourceOrigin sourceOrigin)
+inline void printDebugInfo(const SourceCodeOrigin sourceOrigin)
 {
     printDebugInfoMessage(sourceOrigin, "");
 }
 
-inline void printDebugInfo(const SourceOrigin sourceOrigin, StringRef string)
+inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, StringRef string)
 {
     printDebugInfoMessage(sourceOrigin, "\"" + string + "\"");
 }
 
-inline void printDebugInfo(const SourceOrigin sourceOrigin, const char* string)
+inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, const char* string)
 {
     printDebugInfoMessage(sourceOrigin, "\"" + std::string(string) + "\"");
 }
 
-inline void printDebugInfo(const SourceOrigin sourceOrigin, bool boolean)
+inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, bool boolean)
 {
     printDebugInfoMessage(sourceOrigin, boolean ? "true" : "false");
 }
 
-inline void printDebugInfo(const SourceOrigin sourceOrigin, int number)
+inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, int number)
 {
     printDebugInfoMessage(sourceOrigin, std::to_string(number));
 }
 
-inline void printDebugInfo(const SourceOrigin sourceOrigin, unsigned int number)
+inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, unsigned int number)
 {
     printDebugInfoMessage(sourceOrigin, std::to_string(number));
 }
 
-inline void printDebugInfo(const SourceOrigin sourceOrigin, char character)
+inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, char character)
 {
     printDebugInfoMessage(sourceOrigin, std::string(1, character));
 }
