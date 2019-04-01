@@ -2,17 +2,18 @@
 #define PROVIDER_HPP
 
 #include "Consumer.hpp"
+#include "Source.hpp"
 #include <vector>
 
 namespace cpputil
 {
 
 template<class T>
-class Provider
+class Provider : public Source<T>
 {
 public:
 
-    void addConsumer(Consumer<T>& consumer)
+    void addConsumer(Consumer<T>& consumer) override
     {
         consumers.push_back(&consumer);
     }
