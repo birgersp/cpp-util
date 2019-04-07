@@ -24,6 +24,11 @@ public:
             consumer->consume(arg);
     }
 
+    void operator()(const T& arg)
+    {
+        invokeConsumers(arg);
+    }
+
 private:
 
     std::vector<Consumer<T>*> consumers;
