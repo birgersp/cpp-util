@@ -26,7 +26,7 @@ class DummyConsumer : public Consumer<DummyEvent>
 {
 public:
 
-    void accept(DummyEvent arg) override
+    void accept(const DummyEvent& arg) override
     {
         gotEvent = true;
         lastEvent = arg;

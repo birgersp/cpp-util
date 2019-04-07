@@ -9,7 +9,7 @@ class Consumer
 {
 public:
 
-    virtual void accept(T arg) = 0;
+    virtual void accept(const T& arg) = 0;
 
 };
 

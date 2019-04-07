@@ -18,7 +18,7 @@ public:
         consumers.push_back(&consumer);
     }
 
-    void notifyAll(T arg)
+    void notifyAll(const T& arg)
     {
         for (Consumer<T>* observer : consumers)
             observer->accept(arg);
