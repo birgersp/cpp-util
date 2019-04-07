@@ -18,10 +18,10 @@ public:
         consumers.push_back(&consumer);
     }
 
-    void notifyAll(const T& arg)
+    void invokeConsumers(const T& arg)
     {
-        for (Consumer<T>* observer : consumers)
-            observer->accept(arg);
+        for (Consumer<T>* consumer : consumers)
+            consumer->consume(arg);
     }
 
 private:

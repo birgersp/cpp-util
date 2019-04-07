@@ -26,7 +26,7 @@ class DummyConsumer : public Consumer<DummyEvent>
 {
 public:
 
-    void accept(const DummyEvent& arg) override
+    void consume(const DummyEvent& arg) override
     {
         gotEvent = true;
         lastEvent = arg;
@@ -53,14 +53,14 @@ void testConsumerProvider()
 
     assertEquals(0, consumer.lastEvent.dummyData);
 
-    DummyProvider observable;
-    observable.addConsumer(consumer);
+    DummyProvider provider;
+    provider.addConsumer(consumer);
     assertEquals(false, consumer.gotEvent);
     assertEquals(0, consumer.lastEvent.dummyData);
 
     DummyEvent event;
     event.dummyData = 10;
-    observable.notifyAll(event);
+    provider.invokeConsumers(event);
     assertEquals(true, consumer.gotEvent);
     assertEquals(10, consumer.lastEvent.dummyData);
 }
