@@ -13,25 +13,25 @@ class Provider : public Source<T>
 {
 public:
 
-    void addConsumer(Consumer<T>& consumer) override
-    {
-        consumers.push_back(&consumer);
-    }
+	void addConsumer(Consumer<T>& consumer) override
+	{
+		consumers.push_back(&consumer);
+	}
 
-    void invokeConsumers(const T& arg)
-    {
-        for (Consumer<T>* consumer : consumers)
-            consumer->consume(arg);
-    }
+	void invokeConsumers(const T& arg)
+	{
+		for (Consumer<T>* consumer : consumers)
+			consumer->consume(arg);
+	}
 
-    void operator()(const T& arg)
-    {
-        invokeConsumers(arg);
-    }
+	void operator()(const T& arg)
+	{
+		invokeConsumers(arg);
+	}
 
 private:
 
-    std::vector<Consumer<T>*> consumers;
+	std::vector<Consumer<T>*> consumers;
 
 };
 

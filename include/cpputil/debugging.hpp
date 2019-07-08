@@ -10,47 +10,47 @@ namespace cpputil
 
 inline void printDebugInfoMessage(const SourceCodeOrigin sourceOrigin, StringRef message)
 {
-    std::string resultString = getSourceOriginLinkMessage
-            (
-             sourceOrigin,
-             "info",
-             message.size() > 0 ? message : "(no info)");
-    printLine(resultString);
+	std::string resultString = getSourceOriginLinkMessage
+			(
+			sourceOrigin,
+			"info",
+			message.size() > 0 ? message : "(no info)");
+	printLine(resultString);
 }
 
 inline void printDebugInfo(const SourceCodeOrigin sourceOrigin)
 {
-    printDebugInfoMessage(sourceOrigin, "");
+	printDebugInfoMessage(sourceOrigin, "");
 }
 
 inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, StringRef string)
 {
-    printDebugInfoMessage(sourceOrigin, "\"" + string + "\"");
+	printDebugInfoMessage(sourceOrigin, "\"" + string + "\"");
 }
 
 inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, const char* string)
 {
-    printDebugInfoMessage(sourceOrigin, "\"" + std::string(string) + "\"");
+	printDebugInfoMessage(sourceOrigin, "\"" + std::string(string) + "\"");
 }
 
 inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, bool boolean)
 {
-    printDebugInfoMessage(sourceOrigin, boolean ? "true" : "false");
+	printDebugInfoMessage(sourceOrigin, boolean ? "true" : "false");
 }
 
 inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, int number)
 {
-    printDebugInfoMessage(sourceOrigin, std::to_string(number));
+	printDebugInfoMessage(sourceOrigin, std::to_string(number));
 }
 
 inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, unsigned int number)
 {
-    printDebugInfoMessage(sourceOrigin, std::to_string(number));
+	printDebugInfoMessage(sourceOrigin, std::to_string(number));
 }
 
 inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, char character)
 {
-    printDebugInfoMessage(sourceOrigin, std::string(1, character));
+	printDebugInfoMessage(sourceOrigin, std::string(1, character));
 }
 
 }

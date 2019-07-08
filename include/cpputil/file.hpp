@@ -8,23 +8,23 @@ namespace cpputil
 
 bool readFile(StringRef filename, MutableStringRef data)
 {
-    std::ifstream infile(filename);
+	std::ifstream infile(filename);
 
-    data.clear();
+	data.clear();
 
-    if (infile.is_open())
-    {
-        std::string line;
-        if (std::getline(infile, line))
-        {
-            data += line;
-            while (std::getline(infile, line))
-                data += "\n" + line;
-        }
-        return true;
-    }
+	if (infile.is_open())
+	{
+		std::string line;
+		if (std::getline(infile, line))
+		{
+			data += line;
+			while (std::getline(infile, line))
+				data += "\n" + line;
+		}
+		return true;
+	}
 
-    return false;
+	return false;
 }
 
 }
