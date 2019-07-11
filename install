@@ -1,5 +1,22 @@
 #!/bin/bash
 
-DESTINATION=/usr/local/include/cpputil
-rm $DESTINATION
-ln -s `pwd`/include/cpputil $DESTINATION
+os_is_windows=false
+if [ -n "${OS}" ]; then
+	if [ "${OS}" == "Windows_NT" ]; then
+		os_is_windows=true
+	fi
+fi
+
+if [ "$os_is_windows" == true ]; then
+	destination_dir=/mingw64/include
+else
+	destination_dir=/usr/local/include
+fi
+
+mkdir -p $destination_dir
+destination=$destination_dir/cpputil
+if [ -e "$destination" ]; then
+	rm -rf $destination
+fi
+
+ln -s `pwd`/include/cpputil $destination
