@@ -1,20 +1,19 @@
 #!/bin/bash
 
-os_is_windows=false
-if [ -n "${OS}" ]; then
-	if [ "${OS}" == "Windows_NT" ]; then
-		os_is_windows=true
+if [ "${OS}" == "Windows_NT" ]; then
+	if [ `uname -m` == "x86_64" ]; then
+		destination_dir=/mingw64/include
+	else
+		echo "Error: Unsupported system"
+		exit 1
 	fi
-fi
-
-if [ "$os_is_windows" == true ]; then
-	destination_dir=/mingw64/include
 else
 	destination_dir=/usr/local/include
 fi
 
-mkdir -p $destination_dir
 destination=$destination_dir/cpputil
+echo "Installing to: $destination"
+mkdir -p $destination_dir
 if [ -e "$destination" ]; then
 	rm -rf $destination
 fi
