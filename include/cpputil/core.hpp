@@ -10,7 +10,7 @@
 typedef unsigned int uint;
 
 #ifdef OS_WINDOWS
-typedef unsigned int ulong;
+typedef unsigned long ulong;
 #endif
 
 typedef const char* cString;

@@ -5,6 +5,7 @@
 
 #include "demoTests.h"
 
+#include "core_test.h"
 #include "consumer_test.h"
 #include "string_test.h"
 #include "stringifying_test.h"
@@ -12,24 +13,25 @@
 
 int main(int argc, char** argv)
 {
-    using namespace cpputil;
+	using namespace cpputil;
 
-    printLine("Demo testing");
-    demo::demoTests();
+	printLine("Demo testing");
+	demo::demoTests();
 
-    printLine("Performing actual tests");
-    std::vector<cpputil::BoolFunction> testFunctions = {
-        tests::testConsumer,
-        tests::testStringUtils,
-        tests::testStringifying,
-        tests::testTiming
-    };
+	printLine("Performing actual tests");
+	std::vector<cpputil::BoolFunction> testFunctions = {
+		tests::testCore,
+		tests::testConsumer,
+		tests::testStringUtils,
+		tests::testStringifying,
+		tests::testTiming
+	};
 
-    if (cpputil::allSucceed(testFunctions))
-    {
-        printLine("All (real) tests succeeded");
-        return 0;
-    }
+	if (cpputil::allSucceed(testFunctions))
+	{
+		printLine("All (real) tests succeeded");
+		return 0;
+	}
 
-    return 1;
+	return 1;
 }

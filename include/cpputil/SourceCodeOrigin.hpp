@@ -9,23 +9,23 @@ namespace cpputil
 struct SourceCodeOrigin
 {
 
-    SourceCodeOrigin()
-    {
-    }
+	SourceCodeOrigin()
+	{
+	}
 
-    SourceCodeOrigin(std::string functionHeader, std::string fileName, int lineNumber) :
-    functionHeader(functionHeader), fileName(fileName), lineNumber(lineNumber)
-    {
-    }
+	SourceCodeOrigin(std::string functionHeader, std::string fileName, int lineNumber) :
+	functionHeader(functionHeader), fileName(fileName), lineNumber(lineNumber)
+	{
+	}
 
-    std::string functionHeader;
-    std::string fileName;
-    int lineNumber;
+	std::string functionHeader;
+	std::string fileName;
+	int lineNumber;
 };
 
 inline std::string getSourceOriginLinkMessage(const SourceCodeOrigin& sourceOrigin, StringRef type, StringRef message)
 {
-    return "\t" + sourceOrigin.fileName + ":" + std::to_string(sourceOrigin.lineNumber) + ": " + type + ": " + message;
+	return "\t" + sourceOrigin.fileName + ":" + std::to_string(sourceOrigin.lineNumber) + ": " + type + ": " + message;
 }
 
 }

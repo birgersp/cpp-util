@@ -9,12 +9,12 @@ class Consumer
 {
 public:
 
-    virtual void consume(const T& arg) = 0;
+	virtual void consume(const T& arg) = 0;
 
-    void operator()(const T& arg)
-    {
-        consume(arg);
-    }
+	void operator()(const T& arg)
+	{
+		consume(arg);
+	}
 
 };
 

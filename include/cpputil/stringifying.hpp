@@ -12,12 +12,12 @@ class Stringifyable
 {
 public:
 
-    virtual std::string toString()
-    {
-        int status;
-        char * demangled = abi::__cxa_demangle(typeid (*this).name(), 0, 0, &status);
-        return std::string(demangled);
-    }
+	virtual std::string toString()
+	{
+		int status;
+		char * demangled = abi::__cxa_demangle(typeid (*this).name(), 0, 0, &status);
+		return std::string(demangled);
+	}
 };
 
 }

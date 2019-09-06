@@ -14,35 +14,35 @@ class Exception
 {
 public:
 
-    Exception(const SourceCodeOrigin origin, const std::string reason) :
-    origin(origin), reason(reason)
-    {
-    }
+	Exception(const SourceCodeOrigin origin, const std::string reason) :
+	origin(origin), reason(reason)
+	{
+	}
 
-    Exception(const SourceCodeOrigin origin, const Exception& parent) :
-    Exception(origin, "Reason:\n" + parent.toString())
-    {
-    }
+	Exception(const SourceCodeOrigin origin, const Exception& parent) :
+	Exception(origin, "Reason:\n" + parent.toString())
+	{
+	}
 
-    const SourceCodeOrigin getOrigin() const
-    {
-        return origin;
-    }
+	const SourceCodeOrigin getOrigin() const
+	{
+		return origin;
+	}
 
-    StringRef getReason() const
-    {
-        return reason;
-    }
+	StringRef getReason() const
+	{
+		return reason;
+	}
 
-    const std::string toString() const
-    {
-        return getSourceOriginLinkMessage(origin, "error", reason);
-    }
+	const std::string toString() const
+	{
+		return getSourceOriginLinkMessage(origin, "error", reason);
+	}
 
 private:
 
-    const SourceCodeOrigin origin;
-    const std::string reason;
+	const SourceCodeOrigin origin;
+	const std::string reason;
 
 };
 
@@ -50,14 +50,14 @@ class ConsequentialException : public Exception
 {
 public:
 
-    ConsequentialException(const SourceCodeOrigin origin, const Exception& parent) :
-    Exception(origin, parent), parent(parent)
-    {
-    }
+	ConsequentialException(const SourceCodeOrigin origin, const Exception& parent) :
+	Exception(origin, parent), parent(parent)
+	{
+	}
 
 private:
 
-    const Exception& parent;
+	const Exception& parent;
 
 };
 

@@ -17,15 +17,15 @@ class DummyClass : public cpputil::Stringifyable
 
 void testStringifying1()
 {
-    using namespace stringifying;
+	using namespace stringifying;
 
-    DummyClass dc;
-    assertEquals("cpputil::tests::stringifying::DummyClass", dc.toString());
+	DummyClass dc;
+	assertEquals("cpputil::tests::stringifying::DummyClass", dc.toString());
 }
 
 bool testStringifying()
 {
-    return test(testStringifying1);
+	return test(testStringifying1);
 }
 
 }
