@@ -47,7 +47,7 @@ private:
 
 	static std::string generateReason(StringRef expected, StringRef actual)
 	{
-		return "Assertion failed\n\tExpected: " + expected + "\tActual: " + actual;
+		return "Comparison failed\n\tExpected: " + expected + "\tActual: " + actual;
 	}
 
 	static std::string generateReason(StringRef expected, StringRef actual, const stringcompare::StringDifference& difference)
@@ -56,11 +56,11 @@ private:
 		std::string message;
 		if (anyNewlines)
 		{
-			message = "Assertion failed\n\tExpected:\n" + expected + "\n\tActual:\n" + actual;
+			message = "Comparison failed\n\tExpected:\n" + expected + "\n\tActual:\n" + actual;
 			message += "\n\t(Line " + std::to_string(difference.line) + ") " + difference.string1Line + " | " + difference.string2Line;
 		}
 		else
-			message = "Assertion failed\n\tExpected: " + expected + "\tActual: " + actual;
+			message = "Comparison failed\n\tExpected: " + expected + "\tActual: " + actual;
 		return message;
 	}
 };
