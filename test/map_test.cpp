@@ -20,9 +20,21 @@ void testPutAndGet()
 	assertEquals("world", *map.get("hello"));
 }
 
+void testHas()
+{
+	registerTest();
+	Map<std::string, std::string> map;
+	assertEquals(false, map.has("hello"));
+	map.put("hello", "world");
+	assertEquals(true, map.has("hello"));
+}
+
 bool testMap()
 {
-	return test(testPutAndGet);
+	return testAll({
+				testPutAndGet,
+				testHas
+	});
 }
 
 }

@@ -24,6 +24,12 @@ public:
 		return &iterator->second;
 	}
 
+	bool has(const K& key) const
+	{
+		auto iterator = map.find(key);
+		return (iterator != map.end());
+	}
+
 private:
 
 	std::map<K, V> map;
