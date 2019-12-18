@@ -10,6 +10,7 @@
 #include "string_test.h"
 #include "stringifying_test.h"
 #include "timing_test.h"
+#include "map_test.h"
 
 int main(int argc, char** argv)
 {
@@ -24,7 +25,8 @@ int main(int argc, char** argv)
 		tests::testConsumer,
 		tests::testStringUtils,
 		tests::testStringifying,
-		tests::testTiming
+		tests::testTiming,
+		tests::testMap
 	};
 
 	if (cpputil::allSucceed(testFunctions))
