@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef MAP_HPP
 #define MAP_HPP
 

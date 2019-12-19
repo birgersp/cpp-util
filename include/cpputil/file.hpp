@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef FILE_HPP
 #define FILE_HPP
 

@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef CORE_HPP
 #define CORE_HPP
 

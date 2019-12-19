@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef TIMING_HPP
 #define TIMING_HPP
 

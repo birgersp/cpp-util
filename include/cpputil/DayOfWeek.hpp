@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef DAYOFWEEK_HPP
 #define DAYOFWEEK_HPP
 

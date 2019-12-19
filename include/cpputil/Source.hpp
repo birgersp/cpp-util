@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef SOURCE_HPP
 #define SOURCE_HPP
 

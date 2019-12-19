@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef DEBUGGING_HPP
 #define DEBUGGING_HPP
 

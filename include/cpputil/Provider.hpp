@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef PROVIDER_HPP
 #define PROVIDER_HPP
 

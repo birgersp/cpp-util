@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef TIMESTAMP_HPP
 #define TIMESTAMP_HPP
 

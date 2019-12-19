@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef STRINGIFYING_HPP
 #define STRINGIFYING_HPP
 

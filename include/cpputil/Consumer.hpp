@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef CONSUMER_HPP
 #define CONSUMER_HPP
 

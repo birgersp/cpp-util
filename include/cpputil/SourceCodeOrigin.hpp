@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef SOURCECODEORIGIN_HPP
 #define SOURCECODEORIGIN_HPP
 

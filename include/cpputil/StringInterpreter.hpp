@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef STRINGINTERPRETER_HPP
 #define STRINGINTERPRETER_HPP
 
