@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #include "consumer_test.h"
 
 #include <cpputil/Consumer.hpp>

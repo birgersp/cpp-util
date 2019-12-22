@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef TIMING_TEST_H
 #define TIMING_TEST_H
 

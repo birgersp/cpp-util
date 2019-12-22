@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #include <cpputil/timing.hpp>
 #include <cpputil/testing.hpp>
 

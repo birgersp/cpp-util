@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #include <cpputil/testing.hpp>
 #include <cpputil/string.hpp>
 

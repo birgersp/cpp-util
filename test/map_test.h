@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef MAP_TEST_H
 #define MAP_TEST_H
 

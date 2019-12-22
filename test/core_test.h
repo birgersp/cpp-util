@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef CORE_TEST_H
 #define CORE_TEST_H
 

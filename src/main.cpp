@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #include <cpputil/Consumer.hpp>
 #include <cpputil/Provider.hpp>
 #include <cpputil/Source_code_origin.hpp>

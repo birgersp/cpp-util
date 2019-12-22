@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef CONSUMER_TEST_H
 #define CONSUMER_TEST_H
 

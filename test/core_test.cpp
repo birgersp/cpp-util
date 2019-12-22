@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #include "core_test.h"
 #include "cpputil/testing.hpp"
 

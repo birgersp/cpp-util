@@ -1,3 +1,8 @@
+/**
+ * @author birgersp
+ * https://github.com/birgersp
+ */
+
 #ifndef DEMO_TESTS_H
 #define DEMO_TESTS_H
 
