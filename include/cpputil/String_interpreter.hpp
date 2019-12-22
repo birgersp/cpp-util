@@ -3,8 +3,8 @@
  * https://github.com/birgersp
  */
 
-#ifndef STRINGINTERPRETER_HPP
-#define STRINGINTERPRETER_HPP
+#ifndef STRING_INTERPRETER_HPP
+#define STRING_INTERPRETER_HPP
 
 #include "core.hpp"
 
@@ -80,4 +80,4 @@ private:
 
 }
 
-#endif /* STRINGINTERPRETER_HPP */
+#endif /* STRING_INTERPRETER_HPP */

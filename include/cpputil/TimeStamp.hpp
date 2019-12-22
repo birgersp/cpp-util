@@ -10,7 +10,7 @@
 #include <sys/time.h>
 #include <cpputil/core.hpp>
 
-#include "DayOfWeek.hpp"
+#include "Day_of_week.hpp"
 
 namespace cpputil
 {

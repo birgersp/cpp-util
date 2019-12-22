@@ -3,8 +3,8 @@
  * https://github.com/birgersp
  */
 
-#ifndef SOURCECODEORIGIN_HPP
-#define SOURCECODEORIGIN_HPP
+#ifndef SOURCE_CODE_ORIGIN_HPP
+#define SOURCE_CODE_ORIGIN_HPP
 
 #include <cpputil/core.hpp>
 
@@ -37,4 +37,4 @@ inline std::string getSourceOriginLinkMessage(const SourceCodeOrigin& sourceOrig
 
 #define getSourceOrigin() cpputil::SourceCodeOrigin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
 
-#endif /* SOURCECODEORIGIN_HPP */
+#endif /* SOURCE_CODE_ORIGIN_HPP */

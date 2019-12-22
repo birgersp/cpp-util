@@ -8,7 +8,7 @@
 
 #include <cpputil/printing.hpp>
 
-#include "SourceCodeOrigin.hpp"
+#include "Source_code_origin.hpp"
 
 namespace cpputil
 {
