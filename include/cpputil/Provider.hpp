@@ -18,12 +18,12 @@ class Provider : public Source<T>
 {
 public:
 
-	void addConsumer(Consumer<T>& consumer) override
+	void add_consumer(Consumer<T>& consumer) override
 	{
 		consumers.push_back(&consumer);
 	}
 
-	void invokeConsumers(const T& arg)
+	void invoke_consumers(const T& arg)
 	{
 		for (Consumer<T>* consumer : consumers)
 			consumer->consume(arg);
@@ -31,7 +31,7 @@ public:
 
 	void operator()(const T& arg)
 	{
-		invokeConsumers(arg);
+		invoke_consumers(arg);
 	}
 
 private:

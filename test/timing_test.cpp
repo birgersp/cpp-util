@@ -6,27 +6,27 @@ namespace cpputil
 namespace tests
 {
 
-void testTiming1()
+void test_timing1()
 {
-	sleepMS(10);
+	sleep_mS(10);
 
 	Timer timer;
 
-	sleepMS(10);
-	assertTrue(timer.elapsedMS() >= 10);
-	assertTrue(timer.elapsedMS() <= 50);
+	sleep_mS(10);
+	assert_true(timer.elapsed_mS() >= 10);
+	assert_true(timer.elapsed_mS() <= 50);
 
 	timer.restart();
-	assertEquals(0, timer.elapsedMS());
-	sleepMS(5);
-	assertTrue(timer.elapsedMS() >= 5);
-	assertTrue(timer.elapsedMS() <= 45);
-	assertTrue(timer.elapsedMS() > 0);
+	assert_equals(0, timer.elapsed_mS());
+	sleep_mS(5);
+	assert_true(timer.elapsed_mS() >= 5);
+	assert_true(timer.elapsed_mS() <= 45);
+	assert_true(timer.elapsed_mS() > 0);
 }
 
-bool testTiming()
+bool test_timing()
 {
-	return test(testTiming1);
+	return test(test_timing1);
 }
 
 }

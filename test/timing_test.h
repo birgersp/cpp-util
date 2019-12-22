@@ -6,7 +6,7 @@ namespace cpputil
 namespace tests
 {
 
-bool testTiming();
+bool test_timing();
 
 }
 }

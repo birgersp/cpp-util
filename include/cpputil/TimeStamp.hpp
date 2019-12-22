@@ -15,109 +15,109 @@
 namespace cpputil
 {
 
-inline ulong getCurrentSecondsSinceEpoch()
+inline ulong get_current_seconds_since_epoch()
 {
-	timeval timeValue;
-	gettimeofday(&timeValue, 0);
-	time_t timeValueSeconds = timeValue.tv_sec;
-	ulong secondsSinceEpoch = (ulong) timeValueSeconds;
-	return secondsSinceEpoch;
+	timeval time_value;
+	gettimeofday(&time_value, 0);
+	time_t time_value_seconds = time_value.tv_sec;
+	ulong seconds_since_epoch = (ulong) time_value_seconds;
+	return seconds_since_epoch;
 }
 
 class Timestamp
 {
 public:
 
-	static DayOfWeek integerToDayOfWeek(int integer)
+	static Day_of_week integer_to_day_of_week(int integer)
 	{
 		switch (integer)
 		{
-		case 0: return DayOfWeek::SUNDAY;
-		case 1: return DayOfWeek::MONDAY;
-		case 2: return DayOfWeek::TUESDAY;
-		case 3: return DayOfWeek::WEDNESDAY;
-		case 4: return DayOfWeek::THURSDAY;
-		case 5: return DayOfWeek::FRIDAY;
-		case 6: return DayOfWeek::SATURDAY;
+		case 0: return Day_of_week::SUNDAY;
+		case 1: return Day_of_week::MONDAY;
+		case 2: return Day_of_week::TUESDAY;
+		case 3: return Day_of_week::WEDNESDAY;
+		case 4: return Day_of_week::THURSDAY;
+		case 5: return Day_of_week::FRIDAY;
+		case 6: return Day_of_week::SATURDAY;
 		}
 	}
 
-	Timestamp(ulong secondsSinceEpoch) :
-	secondsSinceEpoch(secondsSinceEpoch)
+	Timestamp(ulong seconds_since_epoch) :
+	seconds_since_epoch(seconds_since_epoch)
 	{
-		time_t secondsSinceEpochInt = (time_t) secondsSinceEpoch;
-		tm* values = localtime(&secondsSinceEpochInt);
+		time_t seconds_since_epoch_int = (time_t) seconds_since_epoch;
+		tm* values = localtime(&seconds_since_epoch_int);
 		year = values->tm_year + 1900;
 		month = values->tm_mon + 1;
-		dayOfMonth = values->tm_mday;
-		dayOfWeek = integerToDayOfWeek(values->tm_wday);
+		day_of_month = values->tm_mday;
+		day_of_week = integer_to_day_of_week(values->tm_wday);
 		hour = values->tm_hour;
 		minute = values->tm_min;
 		second = values->tm_sec;
 	}
 
 	Timestamp() :
-	Timestamp(getCurrentSecondsSinceEpoch())
+	Timestamp(get_current_seconds_since_epoch())
 	{
 	}
 
-	uint getDayOfMonth() const
+	uint get_day_of_month() const
 	{
-		return dayOfMonth;
+		return day_of_month;
 	}
 
-	DayOfWeek getDayOfWeek() const
+	Day_of_week get_day_of_week() const
 	{
-		return dayOfWeek;
+		return day_of_week;
 	}
 
-	uint getHour() const
+	uint get_hour() const
 	{
 		return hour;
 	}
 
-	uint getMinute() const
+	uint get_minute() const
 	{
 		return minute;
 	}
 
-	uint getMonth() const
+	uint get_month() const
 	{
 		return month;
 	}
 
-	uint getSecond() const
+	uint get_second() const
 	{
 		return second;
 	}
 
-	ulong getSecondsSinceEpoch() const
+	ulong get_seconds_since_epoch() const
 	{
-		return secondsSinceEpoch;
+		return seconds_since_epoch;
 	}
 
-	uint getYear() const
+	uint get_year() const
 	{
 		return year;
 	}
 
-	StringRef getDayOfWeekName() const
+	String_ref get_day_of_week_name() const
 	{
-		auto iterator = dayOfWeekNames.find(dayOfWeek);
+		auto iterator = day_of_week_names.find(day_of_week);
 		return iterator->second;
 	}
 
-	uint getDayOfWeekIndex() const
+	uint get_day_of_week_index() const
 	{
-		auto iterator = dayOfWeekIndices.find(dayOfWeek);
+		auto iterator = day_of_week_indices.find(day_of_week);
 		return iterator->second;
 	}
 
 private:
 
-	ulong secondsSinceEpoch;
-	uint year, month, dayOfMonth, hour, minute, second;
-	DayOfWeek dayOfWeek;
+	ulong seconds_since_epoch;
+	uint year, month, day_of_month, hour, minute, second;
+	Day_of_week day_of_week;
 
 };
 

@@ -13,56 +13,56 @@
 namespace cpputil
 {
 
-inline void printDebugInfoMessage(const SourceCodeOrigin sourceOrigin, StringRef message)
+inline void print_debug_info_message(const Source_code_origin source_origin, String_ref message)
 {
-	std::string resultString = getSourceOriginLinkMessage
+	std::string result_string = get_source_origin_link_message
 			(
-			sourceOrigin,
+			source_origin,
 			"info",
 			message.size() > 0 ? message : "(no info)");
-	printLine(resultString);
+	print_line(result_string);
 }
 
-inline void printDebugInfo(const SourceCodeOrigin sourceOrigin)
+inline void print_debug_info(const Source_code_origin source_origin)
 {
-	printDebugInfoMessage(sourceOrigin, "");
+	print_debug_info_message(source_origin, "");
 }
 
-inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, StringRef string)
+inline void print_debug_info(const Source_code_origin source_origin, String_ref string)
 {
-	printDebugInfoMessage(sourceOrigin, "\"" + string + "\"");
+	print_debug_info_message(source_origin, "\"" + string + "\"");
 }
 
-inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, const char* string)
+inline void print_debug_info(const Source_code_origin source_origin, const char* string)
 {
-	printDebugInfoMessage(sourceOrigin, "\"" + std::string(string) + "\"");
+	print_debug_info_message(source_origin, "\"" + std::string(string) + "\"");
 }
 
-inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, bool boolean)
+inline void print_debug_info(const Source_code_origin source_origin, bool boolean)
 {
-	printDebugInfoMessage(sourceOrigin, boolean ? "true" : "false");
+	print_debug_info_message(source_origin, boolean ? "true" : "false");
 }
 
-inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, int number)
+inline void print_debug_info(const Source_code_origin source_origin, int number)
 {
-	printDebugInfoMessage(sourceOrigin, std::to_string(number));
+	print_debug_info_message(source_origin, std::to_string(number));
 }
 
-inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, unsigned int number)
+inline void print_debug_info(const Source_code_origin source_origin, unsigned int number)
 {
-	printDebugInfoMessage(sourceOrigin, std::to_string(number));
+	print_debug_info_message(source_origin, std::to_string(number));
 }
 
-inline void printDebugInfo(const SourceCodeOrigin sourceOrigin, char character)
+inline void print_debug_info(const Source_code_origin source_origin, char character)
 {
-	printDebugInfoMessage(sourceOrigin, std::string(1, character));
+	print_debug_info_message(source_origin, std::string(1, character));
 }
 
 }
 
-#define cpputilDebugMessage(message) cpputil::printDebugInfoMessage(getSourceOrigin(), message)
-#define cpputilDebugVariable(variable) cpputil::printDebugInfo(getSourceOrigin(), variable)
-#define cpputilDebugFunction() cpputil::printDebugInfo(getSourceOrigin())
+#define cpputil_debug_message(message) cpputil::print_debug_info_message(get_source_origin(), message)
+#define cpputil_debug_variable(variable) cpputil::print_debug_info(get_source_origin(), variable)
+#define cpputil_debug_function() cpputil::print_debug_info(get_source_origin())
 
 
 #endif /* DEBUGGING_HPP */

@@ -6,7 +6,7 @@ namespace cpputil
 namespace tests
 {
 
-bool testMap();
+bool test_map();
 
 }
 

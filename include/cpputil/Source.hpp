@@ -17,7 +17,7 @@ class Source
 {
 public:
 
-	virtual void addConsumer(Consumer<T>& consumer) = 0;
+	virtual void add_consumer(Consumer<T>& consumer) = 0;
 
 };
 

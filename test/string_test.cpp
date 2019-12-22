@@ -6,48 +6,48 @@ namespace cpputil
 namespace tests
 {
 
-void testSplitString()
+void test_split_string()
 {
-	registerTest();
+	register_test();
 	std::string subject =
 			"first line\n"
 			"second line\n"
 			"third line\n"
 			""
 			;
-	std::vector<std::string> result = splitString(subject, '\n');
+	std::vector<std::string> result = split_string(subject, '\n');
 
-	assertEquals(4, result.size());
-	assertEquals("first line", result[0]);
-	assertEquals("second line", result[1]);
-	assertEquals("third line", result[2]);
-	assertEquals("", result[3]);
+	assert_equals(4, result.size());
+	assert_equals("first line", result[0]);
+	assert_equals("second line", result[1]);
+	assert_equals("third line", result[2]);
+	assert_equals("", result[3]);
 }
 
-void testSplitEmptyString()
+void test_split_empty_string()
 {
-	registerTest();
-	std::vector<std::string> result = splitString("", '\n');
-	assertEquals(0, result.size());
+	register_test();
+	std::vector<std::string> result = split_string("", '\n');
+	assert_equals(0, result.size());
 }
 
-void testToLowerCase()
+void test_to_lower_case()
 {
-	registerTest();
+	register_test();
 	std::string subject = "Hello World!";
-	toLowerCase(subject);
-	assertEquals("hello world!", subject);
+	to_lower_case(subject);
+	assert_equals("hello world!", subject);
 }
 
-bool testStringUtils()
+bool test_string_utils()
 {
-	std::vector<TestFunction> tests = {
-		testSplitString,
-		testSplitEmptyString,
-		testToLowerCase
+	std::vector<Test_function> tests = {
+		test_split_string,
+		test_split_empty_string,
+		test_to_lower_case
 	};
 
-	return testAll(tests);
+	return test_all(tests);
 }
 
 }

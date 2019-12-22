@@ -6,17 +6,17 @@ namespace cpputil
 namespace tests
 {
 
-void testUlong()
+void test_ulong()
 {
-	registerTest();
+	register_test();
 	unsigned long x = -1;
 	ulong y = -1;
-	assertTrue(x == y);
+	assert_true(x == y);
 }
 
-bool testCore()
+bool test_core()
 {
-	return test(testUlong);
+	return test(test_ulong);
 }
 
 }

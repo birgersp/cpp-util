@@ -11,7 +11,7 @@
 namespace cpputil
 {
 
-bool readFile(StringRef filename, MutableStringRef data)
+bool read_file(String_ref filename, Mutable_string_ref data)
 {
 	std::ifstream infile(filename);
 

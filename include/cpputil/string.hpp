@@ -14,7 +14,7 @@
 namespace cpputil
 {
 
-inline std::vector<std::string> splitString(StringRef string, char delimiter)
+inline std::vector<std::string> split_string(String_ref string, char delimiter)
 {
 	std::vector<std::string> result;
 
@@ -34,7 +34,7 @@ inline std::vector<std::string> splitString(StringRef string, char delimiter)
 	return result;
 }
 
-inline void toLowerCase(MutableStringRef string)
+inline void to_lower_case(Mutable_string_ref string)
 {
 	std::locale locale;
 	for (uint i = 0; i < string.length(); i++)
@@ -44,16 +44,16 @@ inline void toLowerCase(MutableStringRef string)
 namespace stringcompare
 {
 
-struct StringDifference
+struct String_difference
 {
 	uint line;
 	std::string string1Line, string2Line;
 };
 
-inline bool findStringDifference(StringRef string1, StringRef string2, StringDifference& difference)
+inline bool find_string_difference(String_ref string1, String_ref string2, String_difference& difference)
 {
-	std::vector<std::string> string1Lines = splitString(string1, '\n');
-	std::vector<std::string> string2Lines = splitString(string2, '\n');
+	std::vector<std::string> string1Lines = split_string(string1, '\n');
+	std::vector<std::string> string2Lines = split_string(string2, '\n');
 
 	if (string1Lines.size() > string2Lines.size())
 	{
@@ -71,21 +71,21 @@ inline bool findStringDifference(StringRef string1, StringRef string2, StringDif
 		return true;
 	}
 
-	uint noOfLines = string1Lines.size();
+	uint no_of_lines = string1Lines.size();
 
-	uint lineIndex = 0;
-	while (lineIndex < noOfLines)
+	uint line_index = 0;
+	while (line_index < no_of_lines)
 	{
-		StringRef string1Line = string1Lines[lineIndex];
-		StringRef string2Line = string2Lines[lineIndex];
+		String_ref string1Line = string1Lines[line_index];
+		String_ref string2Line = string2Lines[line_index];
 		if (string1Line != string2Line)
 		{
-			difference.line = lineIndex + 1;
+			difference.line = line_index + 1;
 			difference.string1Line = string1Line;
 			difference.string2Line = string2Line;
 			return true;
 		}
-		lineIndex++;
+		line_index++;
 	}
 	return false;
 }

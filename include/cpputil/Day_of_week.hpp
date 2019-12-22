@@ -12,29 +12,29 @@
 namespace cpputil
 {
 
-enum class DayOfWeek
+enum class Day_of_week
 {
 	SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
 };
 
-const std::map<DayOfWeek, std::string> dayOfWeekNames = {
-	{DayOfWeek::SUNDAY, "sunday"},
-	{DayOfWeek::MONDAY, "monday"},
-	{DayOfWeek::TUESDAY, "tuesday"},
-	{DayOfWeek::WEDNESDAY, "wednesday"},
-	{DayOfWeek::THURSDAY, "thursday"},
-	{DayOfWeek::FRIDAY, "friday"},
-	{DayOfWeek::SATURDAY, "saturday"}
+const std::map<Day_of_week, std::string> day_of_week_names = {
+	{Day_of_week::SUNDAY, "sunday"},
+	{Day_of_week::MONDAY, "monday"},
+	{Day_of_week::TUESDAY, "tuesday"},
+	{Day_of_week::WEDNESDAY, "wednesday"},
+	{Day_of_week::THURSDAY, "thursday"},
+	{Day_of_week::FRIDAY, "friday"},
+	{Day_of_week::SATURDAY, "saturday"}
 };
 
-const std::map<DayOfWeek, uint> dayOfWeekIndices = {
-	{DayOfWeek::SUNDAY, 0},
-	{DayOfWeek::MONDAY, 1},
-	{DayOfWeek::TUESDAY, 2},
-	{DayOfWeek::WEDNESDAY, 3},
-	{DayOfWeek::THURSDAY, 4},
-	{DayOfWeek::FRIDAY, 5},
-	{DayOfWeek::SATURDAY, 6}
+const std::map<Day_of_week, uint> day_of_week_indices = {
+	{Day_of_week::SUNDAY, 0},
+	{Day_of_week::MONDAY, 1},
+	{Day_of_week::TUESDAY, 2},
+	{Day_of_week::WEDNESDAY, 3},
+	{Day_of_week::THURSDAY, 4},
+	{Day_of_week::FRIDAY, 5},
+	{Day_of_week::SATURDAY, 6}
 };
 
 }

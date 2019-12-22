@@ -9,23 +9,23 @@ namespace tests
 namespace stringifying
 {
 
-class DummyClass : public cpputil::Stringifyable
+class Dummy_class : public cpputil::Stringifyable
 {
 };
 
 }
 
-void testStringifying1()
+void test_stringifying1()
 {
 	using namespace stringifying;
 
-	DummyClass dc;
-	assertEquals("cpputil::tests::stringifying::DummyClass", dc.toString());
+	Dummy_class dc;
+	assert_equals("cpputil::tests::stringifying::Dummy_class", dc.to_string());
 }
 
-bool testStringifying()
+bool test_stringifying()
 {
-	return test(testStringifying1);
+	return test(test_stringifying1);
 }
 
 }

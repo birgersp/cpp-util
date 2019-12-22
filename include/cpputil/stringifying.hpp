@@ -17,7 +17,7 @@ class Stringifyable
 {
 public:
 
-	virtual std::string toString()
+	virtual std::string to_string()
 	{
 		int status;
 		char * demangled = abi::__cxa_demangle(typeid (*this).name(), 0, 0, &status);

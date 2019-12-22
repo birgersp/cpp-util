@@ -6,7 +6,7 @@ namespace cpputil
 namespace tests
 {
 
-bool testStringUtils();
+bool test_string_utils();
 
 }
 }

@@ -3,7 +3,7 @@
 #include <vector>
 #include <cpputil/testing.hpp>
 
-#include "demoTests.h"
+#include "demo_tests.h"
 
 #include "core_test.h"
 #include "consumer_test.h"
@@ -16,22 +16,22 @@ int main(int argc, char** argv)
 {
 	using namespace cpputil;
 
-	printLine("Demo testing");
-	demo::demoTests();
+	print_line("Demo testing");
+	demo::demo_tests();
 
-	printLine("Performing actual tests");
-	std::vector<cpputil::BoolFunction> testFunctions = {
-		tests::testCore,
-		tests::testConsumer,
-		tests::testStringUtils,
-		tests::testStringifying,
-		tests::testTiming,
-		tests::testMap
+	print_line("Performing actual tests");
+	std::vector<cpputil::Bool_function> test_functions = {
+		tests::test_core,
+		tests::test_consumer,
+		tests::test_string_utils,
+		tests::test_stringifying,
+		tests::test_timing,
+		tests::test_map
 	};
 
-	if (cpputil::allSucceed(testFunctions))
+	if (cpputil::all_succeed(test_functions))
 	{
-		printLine("All (real) tests succeeded");
+		print_line("All (real) tests succeeded");
 		return 0;
 	}
 

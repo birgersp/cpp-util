@@ -11,61 +11,61 @@
 namespace cpputil
 {
 
-class StringInterpreter
+class String_interpreter
 {
 public:
 
-	static bool characterIsEmpty(char character)
+	static bool character_is_empty(char character)
 	{
 		return character == ' ' || character == '\t';
 	}
 
-	StringInterpreter(StringRef subjectLine, uint& subjectLineCharacterIndex) :
-	subjectLine(subjectLine), subjectLineCharacterIndex(subjectLineCharacterIndex)
+	String_interpreter(String_ref subject_line, uint& subject_line_character_index) :
+	subject_line(subject_line), subject_line_character_index(subject_line_character_index)
 	{
 	}
 
-	char getSubjectCharacter() const
+	char get_subject_character() const
 	{
-		return subjectLine[subjectLineCharacterIndex];
+		return subject_line[subject_line_character_index];
 	}
 
-	bool offsetCharIsNumber(int offset) const
+	bool offset_char_is_number(int offset) const
 	{
-		char offsetChar;
-		if (getOffset(offset, offsetChar))
-			if (isdigit(offsetChar))
+		char offset_char;
+		if (get_offset(offset, offset_char))
+			if (isdigit(offset_char))
 				return true;
 		return false;
 	}
 
-	bool getOffset(int offset, char& character) const
+	bool get_offset(int offset, char& character) const
 	{
-		int index = subjectLineCharacterIndex + offset;
-		if (indexIsOutOfBounds(index))
+		int index = subject_line_character_index + offset;
+		if (index_is_out_of_bounds(index))
 			return false;
-		character = subjectLine[index];
+		character = subject_line[index];
 		return true;
 	}
 
-	bool matchOffset(int offset, char character) const
+	bool match_offset(int offset, char character) const
 	{
-		char offsetCharacter;
-		if (getOffset(offset, offsetCharacter))
-			if (offsetCharacter == character)
+		char offset_character;
+		if (get_offset(offset, offset_character))
+			if (offset_character == character)
 				return true;
 		return false;
 	}
 
-	bool offsetIsOutOfBounds(int offset) const
+	bool offset_is_out_of_bounds(int offset) const
 	{
-		int index = subjectLineCharacterIndex + offset;
-		return indexIsOutOfBounds(index);
+		int index = subject_line_character_index + offset;
+		return index_is_out_of_bounds(index);
 	}
 
-	bool indexIsOutOfBounds(int index) const
+	bool index_is_out_of_bounds(int index) const
 	{
-		if (index < 0 || index >= subjectLine.size())
+		if (index < 0 || index >= subject_line.size())
 			return true;
 		else
 			return false;
@@ -73,8 +73,8 @@ public:
 
 private:
 
-	StringRef subjectLine;
-	uint& subjectLineCharacterIndex;
+	String_ref subject_line;
+	uint& subject_line_character_index;
 
 };
 

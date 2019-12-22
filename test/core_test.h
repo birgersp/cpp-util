@@ -6,7 +6,7 @@ namespace cpputil
 namespace tests
 {
 
-bool testCore();
+bool test_core();
 
 }
 }

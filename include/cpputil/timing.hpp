@@ -21,11 +21,11 @@ class Timer
 {
 public:
 
-	static unsigned long currentTimeMS()
+	static unsigned long current_time_mS()
 	{
-		struct timeval currentTimeValue;
-		gettimeofday(&currentTimeValue, 0);
-		return currentTimeValue.tv_sec * 1000 + currentTimeValue.tv_usec / 1000;
+		struct timeval current_time_value;
+		gettimeofday(&current_time_value, 0);
+		return current_time_value.tv_sec * 1000 + current_time_value.tv_usec / 1000;
 	}
 
 	Timer()
@@ -33,24 +33,24 @@ public:
 		restart();
 	}
 
-	unsigned long elapsedMS() const
+	unsigned long elapsed_mS() const
 	{
-		unsigned long currentTime = currentTimeMS();
-		return (currentTime - prevTime);
+		unsigned long current_time = current_time_mS();
+		return (current_time - prev_time);
 	}
 
 	void restart()
 	{
-		prevTime = currentTimeMS();
+		prev_time = current_time_mS();
 	}
 
 private:
 
-	unsigned long prevTime;
+	unsigned long prev_time;
 
 };
 
-inline void sleepMS(int milliseconds)
+inline void sleep_mS(int milliseconds)
 {
 #if defined(_WIN32) || defined(__CYGWIN__)
 	Sleep(milliseconds);

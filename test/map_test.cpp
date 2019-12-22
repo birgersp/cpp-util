@@ -10,30 +10,30 @@ namespace tests
 
 using namespace cpputil;
 
-void testPutAndGet()
+void test_put_and_get()
 {
-	registerTest();
+	register_test();
 	Map<std::string, std::string> map;
 	map.put("hello", "world");
-	assertTrue(map.get("goodbye") == nullptr);
-	assertTrue(map.get("hello") != nullptr);
-	assertEquals("world", *map.get("hello"));
+	assert_true(map.get("goodbye") == nullptr);
+	assert_true(map.get("hello") != nullptr);
+	assert_equals("world", *map.get("hello"));
 }
 
-void testHas()
+void test_has()
 {
-	registerTest();
+	register_test();
 	Map<std::string, std::string> map;
-	assertEquals(false, map.has("hello"));
+	assert_equals(false, map.has("hello"));
 	map.put("hello", "world");
-	assertEquals(true, map.has("hello"));
+	assert_equals(true, map.has("hello"));
 }
 
-bool testMap()
+bool test_map()
 {
-	return testAll({
-				testPutAndGet,
-				testHas
+	return test_all({
+				test_put_and_get,
+				test_has
 	});
 }
 

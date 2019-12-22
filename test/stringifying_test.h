@@ -6,7 +6,7 @@ namespace cpputil
 namespace tests
 {
 
-bool testStringifying();
+bool test_stringifying();
 
 }
 }

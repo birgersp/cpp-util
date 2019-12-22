@@ -18,50 +18,50 @@
 namespace cpputil
 {
 
-typedef void (*TestFunction) (void);
-typedef bool (*BoolFunction) (void);
+typedef void (*Test_function) (void);
+typedef bool (*Bool_function) (void);
 
 namespace testing
 {
 
-class TestFailed : public Exception
+class Test_failed : public Exception
 {
 public:
 
-	TestFailed(const SourceCodeOrigin& origin, StringRef info) :
+	Test_failed(const Source_code_origin& origin, String_ref info) :
 	Exception(origin, info)
 	{
 	}
 };
 
-class ComparisonTestFailed : public TestFailed
+class Comparison_test_failed : public Test_failed
 {
 public:
 
-	ComparisonTestFailed(const SourceCodeOrigin& origin, StringRef expected, StringRef actual) :
-	TestFailed(origin, generateReason(expected, actual))
+	Comparison_test_failed(const Source_code_origin& origin, String_ref expected, String_ref actual) :
+	Test_failed(origin, generate_reason(expected, actual))
 	{
 	}
 
-	ComparisonTestFailed(const SourceCodeOrigin& origin, StringRef expected, StringRef actual, const stringcompare::StringDifference& difference) :
-	TestFailed(origin, generateReason(expected, actual, difference))
+	Comparison_test_failed(const Source_code_origin& origin, String_ref expected, String_ref actual, const stringcompare::String_difference& difference) :
+	Test_failed(origin, generate_reason(expected, actual, difference))
 	{
 	}
 
 private:
 
-	static std::string generateReason(StringRef expected, StringRef actual)
+	static std::string generate_reason(String_ref expected, String_ref actual)
 	{
 		return "Comparison failed\n\tExpected: " + expected + "\tActual: " + actual;
 	}
 
-	static std::string generateReason(StringRef expected, StringRef actual, const stringcompare::StringDifference& difference)
+	static std::string generate_reason(String_ref expected, String_ref actual, const stringcompare::String_difference& difference)
 	{
-		bool anyNewlines = ((expected.find("\n") != -1) || (actual.find("\n") != -1));
+		bool any_newlines = ((expected.find("\n") != -1) || (actual.find("\n") != -1));
 		std::string message;
-		if (anyNewlines)
+		if (any_newlines)
 		{
-			message = "Comparison failed\n\tExpected:\n" + expected + "\n\tActual:\n" + actual;
+			message = "Comparison failed\n\t_expected:\n" + expected + "\n\tActual:\n" + actual;
 			message += "\n\t(Line " + std::to_string(difference.line) + ") " + difference.string1Line + " | " + difference.string2Line;
 		}
 		else
@@ -76,235 +76,235 @@ public:
 
 	Tester()
 	{
-		clearLastTest();
+		clear_last_test();
 	}
 
-	void registerTest(SourceCodeOrigin sourceOrigin)
+	void register_test(Source_code_origin source_origin)
 	{
-		setLastTestOrigin(sourceOrigin);
-		lastTestState = TestState::NO_ASSERTIONS;
+		set_last_test_origin(source_origin);
+		last_test_state = Test_state::NO_ASSERTIONS;
 	}
 
-	void makeAssertion(bool expression, SourceCodeOrigin sourceOrigin)
+	void make_assertion(bool expression, Source_code_origin source_origin)
 	{
-		setLastTestOrigin(sourceOrigin);
+		set_last_test_origin(source_origin);
 		if (!expression)
-			throw TestFailed(lastTestOrigin, "Assertion failed");
+			throw Test_failed(last_test_origin, "Assertion failed");
 	}
 
-	void makeEqualsAssertion(float expected, float actual, float delta, SourceCodeOrigin sourceOrigin)
+	void make_equals_assertion(float expected, float actual, float delta, Source_code_origin source_origin)
 	{
-		setLastTestOrigin(sourceOrigin);
+		set_last_test_origin(source_origin);
 		float min = actual - delta;
 		float max = actual + delta;
 		if (expected < min || expected > max)
-			throw ComparisonTestFailed(lastTestOrigin, std::to_string(expected), std::to_string(actual));
+			throw Comparison_test_failed(last_test_origin, std::to_string(expected), std::to_string(actual));
 	}
 
-	void makeEqualsAssertion(float expected, float actual, SourceCodeOrigin sourceOrigin)
+	void make_equals_assertion(float expected, float actual, Source_code_origin source_origin)
 	{
-		makeEqualsAssertion(expected, actual, 0, sourceOrigin);
+		make_equals_assertion(expected, actual, 0, source_origin);
 	}
 
-	void makeEqualsAssertion(int expected, int actual, SourceCodeOrigin sourceOrigin)
+	void make_equals_assertion(int expected, int actual, Source_code_origin source_origin)
 	{
-		setLastTestOrigin(sourceOrigin);
+		set_last_test_origin(source_origin);
 		if (expected != actual)
-			throw ComparisonTestFailed(lastTestOrigin, std::to_string(expected), std::to_string(actual));
+			throw Comparison_test_failed(last_test_origin, std::to_string(expected), std::to_string(actual));
 	}
 
-	void makeEqualsAssertion(unsigned int expected, unsigned int actual, SourceCodeOrigin sourceOrigin)
+	void make_equals_assertion(unsigned int expected, unsigned int actual, Source_code_origin source_origin)
 	{
-		setLastTestOrigin(sourceOrigin);
+		set_last_test_origin(source_origin);
 		if (expected != actual)
-			throw ComparisonTestFailed(lastTestOrigin, std::to_string(expected), std::to_string(actual));
+			throw Comparison_test_failed(last_test_origin, std::to_string(expected), std::to_string(actual));
 	}
 
-	void makeEqualsAssertion(StringRef expected, StringRef actual, SourceCodeOrigin sourceOrigin)
+	void make_equals_assertion(String_ref expected, String_ref actual, Source_code_origin source_origin)
 	{
-		setLastTestOrigin(sourceOrigin);
-		stringcompare::StringDifference difference;
-		if (stringcompare::findStringDifference(expected, actual, difference))
-			throw ComparisonTestFailed(lastTestOrigin, "\"" + expected + "\"", "\"" + actual + "\"", difference);
+		set_last_test_origin(source_origin);
+		stringcompare::String_difference difference;
+		if (stringcompare::find_string_difference(expected, actual, difference))
+			throw Comparison_test_failed(last_test_origin, "\"" + expected + "\"", "\"" + actual + "\"", difference);
 	}
 
-	void makeEqualsAssertion(const char* expected, const char* actual, SourceCodeOrigin sourceOrigin)
+	void make_equals_assertion(const char* expected, const char* actual, Source_code_origin source_origin)
 	{
-		makeEqualsAssertion(std::string(expected), std::string(actual), sourceOrigin);
+		make_equals_assertion(std::string(expected), std::string(actual), source_origin);
 	}
 
-	void makeEqualsAssertion(bool expected, bool actual, SourceCodeOrigin sourceOrigin)
+	void make_equals_assertion(bool expected, bool actual, Source_code_origin source_origin)
 	{
-		setLastTestOrigin(sourceOrigin);
+		set_last_test_origin(source_origin);
 		if (expected != actual)
-			throw ComparisonTestFailed(lastTestOrigin, boolToString(expected), boolToString(actual));
+			throw Comparison_test_failed(last_test_origin, bool_to_string(expected), bool_to_string(actual));
 	}
 
-	void makeEqualsAssertion(char expected, char actual, SourceCodeOrigin sourceOrigin)
+	void make_equals_assertion(char expected, char actual, Source_code_origin source_origin)
 	{
-		setLastTestOrigin(sourceOrigin);
+		set_last_test_origin(source_origin);
 		if (expected != actual)
-			throw ComparisonTestFailed(lastTestOrigin, std::string(1, expected), std::string(1, actual));
+			throw Comparison_test_failed(last_test_origin, std::string(1, expected), std::string(1, actual));
 	}
 
-	void performTest(TestFunction function)
+	void perform_test(Test_function function)
 	{
 		try
 		{
-			clearLastTest();
+			clear_last_test();
 			function();
-			if (lastTestState == TestState::NOT_PASSED)
-				lastTestState = TestState::PASSED;
+			if (last_test_state == Test_state::NOT_PASSED)
+				last_test_state = Test_state::PASSED;
 		}
-		catch (TestFailed e)
+		catch (Test_failed e)
 		{
-			lastTestOrigin = e.getOrigin();
-			lastTestMessage = e.getReason();
+			last_test_origin = e.get_origin();
+			last_test_message = e.get_reason();
 		}
 		catch (Exception e)
 		{
-			lastTestMessage = e.toString();
-			if (lastTestState != TestState::DISABLED)
-				lastTestState = TestState::NOT_PASSED;
+			last_test_message = e.to_string();
+			if (last_test_state != Test_state::DISABLED)
+				last_test_state = Test_state::NOT_PASSED;
 		}
 	}
 
-	bool test(TestFunction function)
+	bool test(Test_function function)
 	{
-		performTest(function);
+		perform_test(function);
 
 		bool passed;
 
-		std::string statusString, headerString;
+		std::string status_string, header_string;
 
-		if (lastTestState == TestState::NO_ASSERTIONS)
+		if (last_test_state == Test_state::NO_ASSERTIONS)
 		{
-			statusString = "INVALID";
+			status_string = "INVALID";
 			passed = false;
 		}
-		else if (lastTestState == TestState::PASSED)
+		else if (last_test_state == Test_state::PASSED)
 		{
-			statusString = "OK";
+			status_string = "OK";
 			passed = true;
 		}
-		else if (lastTestState == TestState::NOT_PASSED)
+		else if (last_test_state == Test_state::NOT_PASSED)
 		{
-			statusString = "FAILED";
+			status_string = "FAILED";
 			passed = false;
 		}
-		else if (lastTestState == TestState::DISABLED)
+		else if (last_test_state == Test_state::DISABLED)
 		{
-			statusString = "IGNORED";
+			status_string = "IGNORED";
 			passed = true;
 		}
 
-		if (hasTestOrigin)
-			headerString = lastTestOrigin.functionHeader;
+		if (has_test_origin)
+			header_string = last_test_origin.function_header;
 		else
-			headerString = "(UNKNOWN TEST - NO ASSERTIONS)";
+			header_string = "(UNKNOWN TEST - NO ASSERTIONS)";
 
-		std::string outputString;
-		outputString += statusString;
-		outputString += "\t";
-		outputString += headerString;
+		std::string output_string;
+		output_string += status_string;
+		output_string += "\t";
+		output_string += header_string;
 
-		if (!passed && hasTestOrigin)
-			outputString += "\n" + getSourceOriginLinkMessage(lastTestOrigin, "error", "Test failed");
+		if (!passed && has_test_origin)
+			output_string += "\n" + get_source_origin_link_message(last_test_origin, "error", "Test failed");
 
-		if (lastTestMessage.size() > 0)
-			outputString += "\n\tReason: " + lastTestMessage;
+		if (last_test_message.size() > 0)
+			output_string += "\n\tReason: " + last_test_message;
 
-		printLine(outputString);
+		print_line(output_string);
 		return passed;
 	}
 
-	bool testAll(const std::vector<TestFunction>& functions)
+	bool test_all(const std::vector<Test_function>& functions)
 	{
-		bool allTestsSucceeded = true;
-		for (TestFunction function : functions)
+		bool all_tests_succeeded = true;
+		for (Test_function function : functions)
 		{
 			if (!test(function))
-				allTestsSucceeded = false;
+				all_tests_succeeded = false;
 		}
-		return allTestsSucceeded;
+		return all_tests_succeeded;
 	}
 
-	void disableTest(SourceCodeOrigin sourceOrigin)
+	void disable_test(Source_code_origin source_origin)
 	{
-		setLastTestOrigin(sourceOrigin);
-		lastTestState = TestState::DISABLED;
-		throw Exception(lastTestOrigin, "Test disabled");
+		set_last_test_origin(source_origin);
+		last_test_state = Test_state::DISABLED;
+		throw Exception(last_test_origin, "Test disabled");
 	}
 
 private:
 
-	enum class TestState
+	enum class Test_state
 	{
 		PASSED,
 		NOT_PASSED,
 		DISABLED,
 		NO_ASSERTIONS
-	} lastTestState;
+	} last_test_state;
 
-	SourceCodeOrigin lastTestOrigin;
-	std::string lastTestMessage;
-	bool hasTestOrigin;
+	Source_code_origin last_test_origin;
+	std::string last_test_message;
+	bool has_test_origin;
 
-	std::string boolToString(bool value)
+	std::string bool_to_string(bool value)
 	{
 		return value ? "true" : "false";
 	}
 
-	void clearLastTest()
+	void clear_last_test()
 	{
-		lastTestMessage = "";
-		lastTestState = TestState::NO_ASSERTIONS;
-		hasTestOrigin = false;
+		last_test_message = "";
+		last_test_state = Test_state::NO_ASSERTIONS;
+		has_test_origin = false;
 	}
 
-	void setLastTestOrigin(SourceCodeOrigin origin)
+	void set_last_test_origin(Source_code_origin origin)
 	{
-		lastTestOrigin = origin;
-		lastTestMessage = "";
-		lastTestState = TestState::NOT_PASSED;
-		hasTestOrigin = true;
+		last_test_origin = origin;
+		last_test_message = "";
+		last_test_state = Test_state::NOT_PASSED;
+		has_test_origin = true;
 	}
 };
 
 static Tester _tester;
 
-inline Tester& getTester()
+inline Tester& get_tester()
 {
 	return _tester;
 }
 
 }
 
-inline bool test(TestFunction function)
+inline bool test(Test_function function)
 {
-	printLine("Performing 1 test");
-	bool result = testing::getTester().test(function);
-	printLine("");
+	print_line("Performing 1 test");
+	bool result = testing::get_tester().test(function);
+	print_line("");
 	return result;
 }
 
-inline bool testAll(const std::vector<TestFunction>& functions)
+inline bool test_all(const std::vector<Test_function>& functions)
 {
 	if (functions.size() == 1)
 		return test(functions[0]);
 	else
 	{
-		printLine("Performing " + std::to_string(functions.size()) + " tests");
-		bool result = testing::getTester().testAll(functions);
-		printLine("");
+		print_line("Performing " + std::to_string(functions.size()) + " tests");
+		bool result = testing::get_tester().test_all(functions);
+		print_line("");
 		return result;
 	}
 }
 
-inline bool allSucceed(const std::vector<BoolFunction>& boolFunctions)
+inline bool all_succeed(const std::vector<Bool_function>& bool_functions)
 {
 	bool success = true;
-	for (auto function : boolFunctions)
+	for (auto function : bool_functions)
 		if (!function())
 			success = false;
 	return success;
@@ -312,11 +312,11 @@ inline bool allSucceed(const std::vector<BoolFunction>& boolFunctions)
 
 }
 
-#define cppUtilGetSourceOrigin() cpputil::SourceCodeOrigin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define registerTest() cpputil::testing::getTester().registerTest(cppUtilGetSourceOrigin())
-#define assertTrue(expression) cpputil::testing::getTester().makeAssertion(expression, cppUtilGetSourceOrigin())
-#define assertApproxEqual(expected, actual, delta) cpputil::testing::getTester().makeEqualsAssertion(expected, actual, delta, cppUtilGetSourceOrigin())
-#define assertEquals(expected, actual) cpputil::testing::getTester().makeEqualsAssertion(expected, actual, cppUtilGetSourceOrigin())
-#define disableTest() cpputil::testing::getTester().disableTest(cppUtilGetSourceOrigin())
+#define cpp_util_get_source_origin() cpputil::Source_code_origin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define register_test() cpputil::testing::get_tester().register_test(cpp_util_get_source_origin())
+#define assert_true(expression) cpputil::testing::get_tester().make_assertion(expression, cpp_util_get_source_origin())
+#define assert_approx_equal(expected, actual, delta) cpputil::testing::get_tester().make_equals_assertion(expected, actual, delta, cpp_util_get_source_origin())
+#define assert_equals(expected, actual) cpputil::testing::get_tester().make_equals_assertion(expected, actual, cpp_util_get_source_origin())
+#define disable_test() cpputil::testing::get_tester().disable_test(cpp_util_get_source_origin())
 
 #endif /* TESTING_HPP */

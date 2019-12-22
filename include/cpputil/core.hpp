@@ -18,8 +18,8 @@ typedef unsigned int uint;
 typedef unsigned long ulong;
 #endif
 
-typedef const char* cString;
-typedef const std::string& StringRef;
-typedef std::string& MutableStringRef;
+typedef const char* c_string;
+typedef const std::string& String_ref;
+typedef std::string& Mutable_string_ref;
 
 #endif /* CORE_HPP */

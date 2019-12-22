@@ -14,60 +14,60 @@ using namespace cpputil;
 namespace observing
 {
 
-class DummyEvent
+class Dummy_event
 {
 public:
 
-	int dummyData = 0;
+	int dummy_data = 0;
 
 };
 
-class DummyConsumer : public Consumer<DummyEvent>
+class Dummy_consumer : public Consumer<Dummy_event>
 {
 public:
 
-	void consume(const DummyEvent& arg) override
+	void consume(const Dummy_event& arg) override
 	{
-		gotEvent = true;
-		lastEvent = arg;
+		got_event = true;
+		last_event = arg;
 
 	};
 
-	bool gotEvent{false};
-	DummyEvent lastEvent;
+	bool got_event{false};
+	Dummy_event last_event;
 
 };
 
-class DummyProvider : public Provider<DummyEvent>
+class Dummy_provider : public Provider<Dummy_event>
 {
 };
 
 }
 
-void testConsumerProvider()
+void test_consumer_provider()
 {
 	using namespace observing;
 
-	DummyConsumer consumer;
-	assertEquals(false, consumer.gotEvent);
+	Dummy_consumer consumer;
+	assert_equals(false, consumer.got_event);
 
-	assertEquals(0, consumer.lastEvent.dummyData);
+	assert_equals(0, consumer.last_event.dummy_data);
 
-	DummyProvider provider;
-	provider.addConsumer(consumer);
-	assertEquals(false, consumer.gotEvent);
-	assertEquals(0, consumer.lastEvent.dummyData);
+	Dummy_provider provider;
+	provider.add_consumer(consumer);
+	assert_equals(false, consumer.got_event);
+	assert_equals(0, consumer.last_event.dummy_data);
 
-	DummyEvent event;
-	event.dummyData = 10;
-	provider.invokeConsumers(event);
-	assertEquals(true, consumer.gotEvent);
-	assertEquals(10, consumer.lastEvent.dummyData);
+	Dummy_event event;
+	event.dummy_data = 10;
+	provider.invoke_consumers(event);
+	assert_equals(true, consumer.got_event);
+	assert_equals(10, consumer.last_event.dummy_data);
 }
 
-bool testConsumer()
+bool test_consumer()
 {
-	return test(testConsumerProvider);
+	return test(test_consumer_provider);
 }
 
 }

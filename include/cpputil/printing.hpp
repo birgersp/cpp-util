@@ -13,31 +13,31 @@
 namespace cpputil
 {
 
-inline std::string getFunctionMessage(StringRef functionHeader, StringRef message)
+inline std::string get_function_message(String_ref function_header, String_ref message)
 {
-	std::string result = getFunctionName(functionHeader);
+	std::string result = get_function_name(function_header);
 	result += ": \"" + message + "\"";
 	return result;
 }
 
-inline void printLine(StringRef string)
+inline void print_line(String_ref string)
 {
 	std::cout << string << std::endl;
 }
 
-inline void printFunction(StringRef functionHeader, StringRef message)
+inline void print_function(String_ref function_header, String_ref message)
 {
-	printLine(getFunctionMessage(functionHeader, message));
+	print_line(get_function_message(function_header, message));
 }
 
-inline void printErrorString(StringRef message)
+inline void print_error_string(String_ref message)
 {
 	std::cerr << message << std::endl;
 }
 
-inline void printFunctionError(StringRef functionHeader, StringRef message)
+inline void print_function_error(String_ref function_header, String_ref message)
 {
-	printErrorString(getFunctionMessage(functionHeader, message));
+	print_error_string(get_function_message(function_header, message));
 }
 
 }

@@ -19,43 +19,43 @@ class Exception
 {
 public:
 
-	Exception(const SourceCodeOrigin origin, const std::string reason) :
+	Exception(const Source_code_origin origin, const std::string reason) :
 	origin(origin), reason(reason)
 	{
 	}
 
-	Exception(const SourceCodeOrigin origin, const Exception& parent) :
-	Exception(origin, "Reason:\n" + parent.toString())
+	Exception(const Source_code_origin origin, const Exception& parent) :
+	Exception(origin, "Reason:\n" + parent.to_string())
 	{
 	}
 
-	const SourceCodeOrigin getOrigin() const
+	const Source_code_origin get_origin() const
 	{
 		return origin;
 	}
 
-	StringRef getReason() const
+	String_ref get_reason() const
 	{
 		return reason;
 	}
 
-	const std::string toString() const
+	const std::string to_string() const
 	{
-		return getSourceOriginLinkMessage(origin, "error", reason);
+		return get_source_origin_link_message(origin, "error", reason);
 	}
 
 private:
 
-	const SourceCodeOrigin origin;
+	const Source_code_origin origin;
 	const std::string reason;
 
 };
 
-class ConsequentialException : public Exception
+class Consequential_exception : public Exception
 {
 public:
 
-	ConsequentialException(const SourceCodeOrigin origin, const Exception& parent) :
+	Consequential_exception(const Source_code_origin origin, const Exception& parent) :
 	Exception(origin, parent), parent(parent)
 	{
 	}
@@ -68,9 +68,9 @@ private:
 
 }
 
-#define functionException(reason) cpputil::Exception(getSourceOrigin(), reason)
-#define consequentialException(cause) cpputil::ConsequentialException(getSourceOrigin(), cause)
-#define unsupportedFunctionException() cpputil::Exception(getSourceOrigin(), "Function not implemented")
-#define functionErrorException() functionException(strerror(errno))
+#define function_exception(reason) cpputil::Exception(get_source_origin(), reason)
+#define consequential_exception(cause) cpputil::Consequential_exception(get_source_origin(), cause)
+#define unsupported_function_exception() cpputil::Exception(get_source_origin(), "Function not implemented")
+#define function_error_exception() function_exception(strerror(errno))
 
 #endif /* ERRORHANDLING_HPP */
