@@ -20,9 +20,10 @@ inline std::string get_function_message(String_ref function_header, String_ref m
 	return result;
 }
 
-inline void print_line(String_ref string)
+template <typename T>
+inline void print_line(T data)
 {
-	std::cout << string << std::endl;
+	std::cout << data << std::endl;
 }
 
 inline void print_function(String_ref function_header, String_ref message)
