@@ -16,7 +16,7 @@
 #include "stringifying_test.h"
 #include "timing_test.h"
 #include "map_test.h"
-#include "string_reader_test.h"
+#include "stringreader_test.h"
 
 int main(int argc, char** argv)
 {
@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 		tests::test_stringifying,
 		tests::test_timing,
 		tests::test_map,
-		tests::test_String_reader
+		tests::test_Stringreader
 	};
 
 	if (cpputil::all_succeed(test_functions))
