@@ -35,12 +35,23 @@ void test_Stringreader()
 	assert_equals(true, string_reader.at_end());
 }
 
+void test_read_rest()
+{
+	register_test();
+	Stringreader string_reader("Hello world");
+	Stringreader::Result result;
+	result = string_reader.read_rest();
+	assert_equals("Hello world", result.string);
+}
+
 }
 
 bool test_Stringreader()
 {
+	using namespace stringreader;
 	return test_all({
-					stringreader::test_Stringreader
+					test_Stringreader,
+					test_read_rest
 	});
 }
 

@@ -36,26 +36,39 @@ public:
 		buffer.clear();
 		Result result;
 		bool done = false;
-		while (not (done or at_end()))
+		while (not done)
 		{
-			char current_character = string[index];
-			for (char character : characters)
+			if (at_end())
 			{
-				if (character == current_character)
+				result.leading_character = '\0';
+				done = true;
+			}
+			else
+			{
+				char current_character = string[index];
+				for (char character : characters)
 				{
-					done = true;
-					result.leading_character = character;
-					break;
+					if (character == current_character)
+					{
+						done = true;
+						result.leading_character = character;
+						break;
+					}
 				}
+				if (not done)
+				{
+					buffer += current_character;
+				}
+				index++;
 			}
-			if (not done)
-			{
-				buffer += current_character;
-			}
-			index++;
 		}
 		result.string = buffer;
 		return result;
+	}
+
+	Result read_rest()
+	{
+		return read_until({});
 	}
 
 private:
