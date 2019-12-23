@@ -61,8 +61,8 @@ private:
 		std::string message;
 		if (any_newlines)
 		{
-			message = "Comparison failed\n\t_expected:\n" + expected + "\n\tActual:\n" + actual;
-			message += "\n\t(Line " + std::to_string(difference.line) + ") " + difference.string1Line + " | " + difference.string2Line;
+			message = "Comparison failed\n\tExpected:\n" + expected + "\n\tActual:\n" + actual;
+			message += "\n\t(Line " + std::to_string(difference.line) + ") " + difference.string1_line + " | " + difference.string2_line;
 		}
 		else
 			message = "Comparison failed\n\tExpected: " + expected + "\tActual: " + actual;

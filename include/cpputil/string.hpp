@@ -47,42 +47,42 @@ namespace stringcompare
 struct String_difference
 {
 	uint line;
-	std::string string1Line, string2Line;
+	std::string string1_line, string2_line;
 };
 
 inline bool find_string_difference(String_ref string1, String_ref string2, String_difference& difference)
 {
-	std::vector<std::string> string1Lines = split_string(string1, '\n');
-	std::vector<std::string> string2Lines = split_string(string2, '\n');
+	std::vector<std::string> string1_lines = split_string(string1, '\n');
+	std::vector<std::string> string2_lines = split_string(string2, '\n');
 
-	if (string1Lines.size() > string2Lines.size())
+	if (string1_lines.size() > string2_lines.size())
 	{
-		difference.line = string2Lines.size() + 1;
-		difference.string1Line = string1Lines[string2Lines.size()];
-		difference.string2Line = "";
+		difference.line = string2_lines.size() + 1;
+		difference.string1_line = string1_lines[string2_lines.size()];
+		difference.string2_line = "";
 		return true;
 	}
 
-	if (string2Lines.size() > string1Lines.size())
+	if (string2_lines.size() > string1_lines.size())
 	{
-		difference.line = string1Lines.size() + 1;
-		difference.string1Line = "";
-		difference.string2Line = string2Lines[string1Lines.size()];
+		difference.line = string1_lines.size() + 1;
+		difference.string1_line = "";
+		difference.string2_line = string2_lines[string1_lines.size()];
 		return true;
 	}
 
-	uint no_of_lines = string1Lines.size();
+	uint no_of_lines = string1_lines.size();
 
 	uint line_index = 0;
 	while (line_index < no_of_lines)
 	{
-		String_ref string1Line = string1Lines[line_index];
-		String_ref string2Line = string2Lines[line_index];
-		if (string1Line != string2Line)
+		String_ref string1_line = string1_lines[line_index];
+		String_ref string2_line = string2_lines[line_index];
+		if (string1_line != string2_line)
 		{
 			difference.line = line_index + 1;
-			difference.string1Line = string1Line;
-			difference.string2Line = string2Line;
+			difference.string1_line = string1_line;
+			difference.string2_line = string2_line;
 			return true;
 		}
 		line_index++;
