@@ -3,10 +3,8 @@
  * https://github.com/birgersp
  */
 
-#include <cpputil/timing.hpp>
-#include <cpputil/testing.hpp>
-
 #include "cpputil/Stringreader.hpp"
+#include <cpputil/testing.hpp>
 
 namespace cpputil
 {
