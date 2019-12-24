@@ -8,6 +8,8 @@
 
 #include <map>
 
+#include "core.hpp"
+
 namespace cpputil
 {
 
@@ -33,6 +35,11 @@ public:
 	{
 		auto iterator = map.find(key);
 		return (iterator != map.end());
+	}
+
+	uint size() const
+	{
+		return map.size();
 	}
 
 private:
