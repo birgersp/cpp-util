@@ -8,10 +8,12 @@
 
 #include <fstream>
 
+#include "core.hpp"
+
 namespace cpputil
 {
 
-bool read_file(String_ref filename, Mutable_string_ref data)
+inline bool read_file(String_ref filename, Mutable_string_ref data)
 {
 	std::ifstream infile(filename);
 
@@ -32,7 +34,33 @@ bool read_file(String_ref filename, Mutable_string_ref data)
 	return false;
 }
 
+inline Vector<String> read_file_lines(String_ref filename)
+{
+	std::ifstream infile(filename);
+	Vector<String> lines;
+	if (infile.is_open())
+	{
+		std::string line;
+		while (std::getline(infile, line))
+			lines.push_back(line);
+	}
+	else
+	{
+		throw function_exception("Could not open file.");
+	}
+	return lines;
+}
+
+inline void write_file(String_ref filename, String_ref data)
+{
+	std::ofstream file;
+	file.open(filename, std::ios::out);
+	if (file.is_open() == false)
+		throw function_exception("Failed to open file");
+	file << data;
+	file.close();
+}
+
 }
 
 #endif /* FILE_HPP */
-

@@ -4,8 +4,13 @@
  */
 
 #include <cpputil/Consumer.hpp>
+#include <cpputil/Day_of_week.hpp>
+#include <cpputil/Map.hpp>
 #include <cpputil/Provider.hpp>
+#include <cpputil/Source.hpp>
 #include <cpputil/Source_code_origin.hpp>
+#include <cpputil/String_interpreter.hpp>
+#include <cpputil/Stringreader.hpp>
 #include <cpputil/TimeStamp.hpp>
 #include <cpputil/common.hpp>
 #include <cpputil/core.hpp>

@@ -8,6 +8,7 @@
 
 #include <map>
 #include <string>
+#include <cpputil/core.hpp>
 
 namespace cpputil
 {
