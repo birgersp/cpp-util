@@ -36,9 +36,8 @@ inline std::vector<std::string> split_string(String_ref string, char delimiter)
 
 inline void to_lower_case(Mutable_string_ref string)
 {
-	std::locale locale;
 	for (uint i = 0; i < string.length(); i++)
-		string[i] = std::tolower(string[i], locale);
+		string[i] = std::tolower(string[i]);
 }
 
 namespace stringcompare
