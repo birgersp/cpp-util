@@ -7,6 +7,7 @@
 #define MAP_HPP
 
 #include <map>
+#include <functional>
 
 #include "core.hpp"
 
@@ -40,6 +41,12 @@ public:
 	uint size() const
 	{
 		return map.size();
+	}
+
+	void foreach(std::function<void(K, V) > callback)
+	{
+		for (auto it = map.begin(); it != map.end(); ++it)
+			callback(it->first, it->second);
 	}
 
 private:
