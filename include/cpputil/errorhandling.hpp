@@ -12,9 +12,6 @@
 
 #include "Source_code_origin.hpp"
 
-namespace cpputil
-{
-
 class Exception
 {
 public:
@@ -66,11 +63,9 @@ private:
 
 };
 
-}
-
-#define function_exception(reason) cpputil::Exception(get_source_origin(), reason)
-#define consequential_exception(cause) cpputil::Consequential_exception(get_source_origin(), cause)
-#define unsupported_function_exception() cpputil::Exception(get_source_origin(), "Function not implemented")
+#define function_exception(reason) Exception(get_source_origin(), reason)
+#define consequential_exception(cause) Consequential_exception(get_source_origin(), cause)
+#define unsupported_function_exception() Exception(get_source_origin(), "Function not implemented")
 #define function_error_exception() function_exception(strerror(errno))
 
 #endif /* ERRORHANDLING_HPP */

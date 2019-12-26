@@ -8,9 +8,6 @@
 
 #include <cpputil/core.hpp>
 
-namespace cpputil
-{
-
 struct Source_code_origin
 {
 
@@ -33,8 +30,6 @@ inline std::string get_source_origin_link_message(const Source_code_origin& sour
 	return "\t" + source_origin.file_name + ":" + std::to_string(source_origin.line_number) + ": " + type + ": " + message;
 }
 
-}
-
-#define get_source_origin() cpputil::Source_code_origin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define get_source_origin() Source_code_origin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
 
 #endif /* SOURCE_CODE_ORIGIN_HPP */

@@ -10,9 +10,6 @@
 #include "Source.hpp"
 #include <vector>
 
-namespace cpputil
-{
-
 template<class T>
 class Provider : public Source<T>
 {
@@ -39,8 +36,6 @@ private:
 	std::vector<Consumer<T>*> consumers;
 
 };
-
-}
 
 #endif /* PROVIDER_HPP */
 

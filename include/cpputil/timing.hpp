@@ -14,9 +14,6 @@
 #include <unistd.h>
 #endif
 
-namespace cpputil
-{
-
 class Timer
 {
 public:
@@ -57,8 +54,6 @@ inline void sleep_mS(int milliseconds)
 #elif defined(__linux__)
 	usleep(milliseconds * 1000);
 #endif
-}
-
 }
 
 #endif /* TIMING_HPP */

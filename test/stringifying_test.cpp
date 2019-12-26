@@ -14,7 +14,7 @@ namespace tests
 namespace stringifying
 {
 
-class Dummy_class : public cpputil::Stringifyable
+class Dummy_class : public Stringifyable
 {
 };
 

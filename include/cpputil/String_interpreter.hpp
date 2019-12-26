@@ -8,9 +8,6 @@
 
 #include "core.hpp"
 
-namespace cpputil
-{
-
 class String_interpreter
 {
 public:
@@ -77,7 +74,5 @@ private:
 	uint& subject_line_character_index;
 
 };
-
-}
 
 #endif /* STRING_INTERPRETER_HPP */

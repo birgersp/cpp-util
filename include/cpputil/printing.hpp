@@ -10,9 +10,6 @@
 #include <cpputil/common.hpp>
 #include <iostream>
 
-namespace cpputil
-{
-
 inline std::string get_function_message(String_ref function_header, String_ref message)
 {
 	std::string result = get_function_name(function_header);
@@ -39,8 +36,6 @@ inline void print_error_string(String_ref message)
 inline void print_function_error(String_ref function_header, String_ref message)
 {
 	print_error_string(get_function_message(function_header, message));
-}
-
 }
 
 #endif /* PRINTING_H */

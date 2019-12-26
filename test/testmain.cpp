@@ -26,7 +26,7 @@ int main(int argc, char** argv)
 	demo::demo_tests();
 
 	print_line("Performing actual tests");
-	std::vector<cpputil::Bool_function> test_functions = {
+	std::vector<Bool_function> test_functions = {
 		tests::test_core,
 		tests::test_consumer,
 		tests::test_string_utils,
@@ -36,7 +36,7 @@ int main(int argc, char** argv)
 		tests::test_Stringreader
 	};
 
-	if (cpputil::all_succeed(test_functions))
+	if (all_succeed(test_functions))
 	{
 		print_line("All (real) tests succeeded");
 		return 0;

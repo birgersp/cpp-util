@@ -6,9 +6,6 @@
 #ifndef CONSUMER_HPP
 #define CONSUMER_HPP
 
-namespace cpputil
-{
-
 template<class T>
 class Consumer
 {
@@ -23,7 +20,4 @@ public:
 
 };
 
-}
-
 #endif /* CONSUMER_HPP */
-

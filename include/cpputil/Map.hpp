@@ -8,11 +8,7 @@
 
 #include <map>
 #include <functional>
-
 #include "core.hpp"
-
-namespace cpputil
-{
 
 template <class K, class V>
 class Map
@@ -54,8 +50,6 @@ private:
 	std::map<K, V> map;
 
 };
-
-}
 
 #endif /* MAP_HPP */
 

@@ -15,9 +15,6 @@
 #include <vector>
 #include <string>
 
-namespace cpputil
-{
-
 typedef void (*Test_function) (void);
 typedef bool (*Bool_function) (void);
 
@@ -310,13 +307,11 @@ inline bool all_succeed(const std::vector<Bool_function>& bool_functions)
 	return success;
 }
 
-}
-
-#define cpp_util_get_source_origin() cpputil::Source_code_origin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
-#define register_test() cpputil::testing::get_tester().register_test(cpp_util_get_source_origin())
-#define assert_true(expression) cpputil::testing::get_tester().make_assertion(expression, cpp_util_get_source_origin())
-#define assert_approx_equal(expected, actual, delta) cpputil::testing::get_tester().make_equals_assertion(expected, actual, delta, cpp_util_get_source_origin())
-#define assert_equals(expected, actual) cpputil::testing::get_tester().make_equals_assertion(expected, actual, cpp_util_get_source_origin())
-#define disable_test() cpputil::testing::get_tester().disable_test(cpp_util_get_source_origin())
+#define cpp_util_get_source_origin() Source_code_origin(__PRETTY_FUNCTION__, __FILE__, __LINE__)
+#define register_test() testing::get_tester().register_test(cpp_util_get_source_origin())
+#define assert_true(expression) testing::get_tester().make_assertion(expression, cpp_util_get_source_origin())
+#define assert_approx_equal(expected, actual, delta) testing::get_tester().make_equals_assertion(expected, actual, delta, cpp_util_get_source_origin())
+#define assert_equals(expected, actual) testing::get_tester().make_equals_assertion(expected, actual, cpp_util_get_source_origin())
+#define disable_test() testing::get_tester().disable_test(cpp_util_get_source_origin())
 
 #endif /* TESTING_HPP */

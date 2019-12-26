@@ -8,9 +8,6 @@
 
 #include "core.hpp"
 
-namespace cpputil
-{
-
 class Stringreader
 {
 public:
@@ -77,8 +74,6 @@ private:
 	uint index = 0;
 
 };
-
-}
 
 #endif /* STRINGREADER_HPP */
 

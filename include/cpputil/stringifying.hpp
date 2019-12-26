@@ -10,9 +10,6 @@
 #include <typeinfo>
 #include <cxxabi.h>
 
-namespace cpputil
-{
-
 class Stringifyable
 {
 public:
@@ -25,7 +22,4 @@ public:
 	}
 };
 
-}
-
 #endif /* STRINGIFYING_HPP */
-

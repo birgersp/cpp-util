@@ -7,12 +7,8 @@
 #define STRING_HPP
 
 #include <cpputil/core.hpp>
-
 #include <vector>
 #include <string>
-
-namespace cpputil
-{
 
 inline std::vector<std::string> split_string(String_ref string, char delimiter)
 {
@@ -87,8 +83,6 @@ inline bool find_string_difference(String_ref string1, String_ref string2, Strin
 		line_index++;
 	}
 	return false;
-}
-
 }
 
 }

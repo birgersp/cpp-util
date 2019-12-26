@@ -10,9 +10,6 @@
 
 #include "core.hpp"
 
-namespace cpputil
-{
-
 inline bool read_file(String_ref filename, Mutable_string_ref data)
 {
 	std::ifstream infile(filename);
@@ -59,8 +56,6 @@ inline void write_file(String_ref filename, String_ref data)
 		throw function_exception("Failed to open file");
 	file << data;
 	file.close();
-}
-
 }
 
 #endif /* FILE_HPP */

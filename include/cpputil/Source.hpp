@@ -9,9 +9,6 @@
 #include "Consumer.hpp"
 #include <vector>
 
-namespace cpputil
-{
-
 template<class T>
 class Source
 {
@@ -20,8 +17,6 @@ public:
 	virtual void add_consumer(Consumer<T>& consumer) = 0;
 
 };
-
-}
 
 #endif /* SOURCE_HPP */
 

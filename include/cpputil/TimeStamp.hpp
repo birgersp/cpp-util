@@ -6,14 +6,10 @@
 #ifndef TIMESTAMP_HPP
 #define TIMESTAMP_HPP
 
+#include "Day_of_week.hpp"
 #include <map>
 #include <sys/time.h>
 #include <cpputil/core.hpp>
-
-#include "Day_of_week.hpp"
-
-namespace cpputil
-{
 
 inline ulong get_current_seconds_since_epoch()
 {
@@ -120,7 +116,5 @@ private:
 	Day_of_week day_of_week;
 
 };
-
-}
 
 #endif /* TIMESTAMP_HPP */

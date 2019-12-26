@@ -10,9 +10,6 @@
 
 #include "Source_code_origin.hpp"
 
-namespace cpputil
-{
-
 inline void print_debug_info_message(const Source_code_origin source_origin, String_ref message)
 {
 	std::string result_string = get_source_origin_link_message
@@ -58,11 +55,9 @@ inline void print_debug_info(const Source_code_origin source_origin, char charac
 	print_debug_info_message(source_origin, std::string(1, character));
 }
 
-}
-
-#define cpputil_debug_message(message) cpputil::print_debug_info_message(get_source_origin(), message)
-#define cpputil_debug_variable(variable) cpputil::print_debug_info(get_source_origin(), variable)
-#define cpputil_debug_function() cpputil::print_debug_info(get_source_origin())
+#define cpputil_debug_message(message) print_debug_info_message(get_source_origin(), message)
+#define cpputil_debug_variable(variable) print_debug_info(get_source_origin(), variable)
+#define cpputil_debug_function() print_debug_info(get_source_origin())
 
 
 #endif /* DEBUGGING_HPP */
