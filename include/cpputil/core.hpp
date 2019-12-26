@@ -13,16 +13,16 @@
 #define OS_WINDOWS
 #endif
 
-typedef unsigned int uint;
+using uint = unsigned int;
 
 #ifdef OS_WINDOWS
-typedef unsigned long ulong;
+using ulong = unsigned long;
 #endif
 
-typedef std::string String;
-typedef const char* c_string;
-typedef const std::string& String_ref;
-typedef std::string& Mutable_string_ref;
+using String = std::string;
+using c_string = const char*;
+using String_ref = const std::string&;
+using Mutable_string_ref = std::string&;
 
 template <typename T>
 using Vector = std::vector<T>;
