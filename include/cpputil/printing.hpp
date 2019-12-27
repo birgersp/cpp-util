@@ -9,9 +9,9 @@
 #include "common.hpp"
 #include <iostream>
 
-inline std::string get_function_message(String_ref function_header, String_ref message)
+inline String get_function_message(String_ref function_header, String_ref message)
 {
-	std::string result = get_function_name(function_header);
+	String result = get_function_name(function_header);
 	result += ": \"" + message + "\"";
 	return result;
 }

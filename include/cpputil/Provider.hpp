@@ -6,6 +6,7 @@
 #ifndef PROVIDER_HPP
 #define PROVIDER_HPP
 
+#include "core.hpp"
 #include "Consumer.hpp"
 #include "Source.hpp"
 #include <vector>
@@ -33,7 +34,7 @@ public:
 
 private:
 
-	std::vector<Consumer<T>*> consumers;
+	Vector<Consumer<T>*> consumers;
 
 };
 

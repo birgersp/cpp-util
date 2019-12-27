@@ -8,13 +8,14 @@
 
 #include <map>
 #include <string>
+#include "core.hpp"
 
 enum class Day_of_week
 {
 	SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
 };
 
-const std::map<Day_of_week, std::string> day_of_week_names = {
+const std::map<Day_of_week, String> day_of_week_names = {
 	{Day_of_week::SUNDAY, "sunday"},
 	{Day_of_week::MONDAY, "monday"},
 	{Day_of_week::TUESDAY, "tuesday"},

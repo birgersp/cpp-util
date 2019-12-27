@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-inline std::string get_function_name(String_ref function_header)
+inline String get_function_name(String_ref function_header)
 {
 	int i0 = function_header.find(" ");
 	int i1 = function_header.find("(");

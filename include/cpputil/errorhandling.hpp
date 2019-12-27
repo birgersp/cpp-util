@@ -15,7 +15,7 @@ class Exception
 {
 public:
 
-	Exception(const Source_code_origin origin, const std::string reason) :
+	Exception(const Source_code_origin origin, const String reason) :
 	origin(origin), reason(reason)
 	{
 	}
@@ -35,7 +35,7 @@ public:
 		return reason;
 	}
 
-	const std::string to_string() const
+	const String to_string() const
 	{
 		return get_source_origin_link_message(origin, "error", reason);
 	}
@@ -43,7 +43,7 @@ public:
 private:
 
 	const Source_code_origin origin;
-	const std::string reason;
+	const String reason;
 
 };
 

@@ -12,7 +12,7 @@
 
 inline void print_debug_info_message(const Source_code_origin source_origin, String_ref message)
 {
-	std::string result_string = get_source_origin_link_message
+	String result_string = get_source_origin_link_message
 			(
 			source_origin,
 			"info",
@@ -32,7 +32,7 @@ inline void print_debug_info(const Source_code_origin source_origin, String_ref 
 
 inline void print_debug_info(const Source_code_origin source_origin, const char* string)
 {
-	print_debug_info_message(source_origin, "\"" + std::string(string) + "\"");
+	print_debug_info_message(source_origin, "\"" + String(string) + "\"");
 }
 
 inline void print_debug_info(const Source_code_origin source_origin, bool boolean)
@@ -52,7 +52,7 @@ inline void print_debug_info(const Source_code_origin source_origin, unsigned in
 
 inline void print_debug_info(const Source_code_origin source_origin, char character)
 {
-	print_debug_info_message(source_origin, std::string(1, character));
+	print_debug_info_message(source_origin, String(1, character));
 }
 
 #define cpputil_debug_message(message) print_debug_info_message(get_source_origin(), message)

@@ -6,6 +6,7 @@
 #ifndef STRINGREADER_HPP
 #define STRINGREADER_HPP
 
+#include "core.hpp"
 
 class Stringreader
 {

@@ -17,7 +17,7 @@ inline bool read_file(String_ref filename, Mutable_string_ref data)
 
 	if (infile.is_open())
 	{
-		std::string line;
+		String line;
 		if (std::getline(infile, line))
 		{
 			data += line;
@@ -36,7 +36,7 @@ inline Vector<String> read_file_lines(String_ref filename)
 	Vector<String> lines;
 	if (infile.is_open())
 	{
-		std::string line;
+		String line;
 		while (std::getline(infile, line))
 			lines.push_back(line);
 	}

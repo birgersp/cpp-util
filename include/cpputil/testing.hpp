@@ -8,6 +8,7 @@
 
 #include "errorhandling.hpp"
 #include "string.hpp"
+#include "printing.hpp"
 
 #include <vector>
 #include <string>
@@ -44,15 +45,15 @@ public:
 
 private:
 
-	static std::string generate_reason(String_ref expected, String_ref actual)
+	static String generate_reason(String_ref expected, String_ref actual)
 	{
 		return "Comparison failed\n\tExpected: " + expected + "\tActual: " + actual;
 	}
 
-	static std::string generate_reason(String_ref expected, String_ref actual, const stringcompare::String_difference& difference)
+	static String generate_reason(String_ref expected, String_ref actual, const stringcompare::String_difference& difference)
 	{
 		bool any_newlines = ((expected.find("\n") != -1) || (actual.find("\n") != -1));
-		std::string message;
+		String message;
 		if (any_newlines)
 		{
 			message = "Comparison failed\n\tExpected:\n" + expected + "\n\tActual:\n" + actual;
@@ -124,7 +125,7 @@ public:
 
 	void make_equals_assertion(const char* expected, const char* actual, Source_code_origin source_origin)
 	{
-		make_equals_assertion(std::string(expected), std::string(actual), source_origin);
+		make_equals_assertion(String(expected), String(actual), source_origin);
 	}
 
 	void make_equals_assertion(bool expected, bool actual, Source_code_origin source_origin)
@@ -138,7 +139,7 @@ public:
 	{
 		set_last_test_origin(source_origin);
 		if (expected != actual)
-			throw Comparison_test_failed(last_test_origin, std::string(1, expected), std::string(1, actual));
+			throw Comparison_test_failed(last_test_origin, String(1, expected), String(1, actual));
 	}
 
 	void perform_test(Test_function function)
@@ -169,7 +170,7 @@ public:
 
 		bool passed;
 
-		std::string status_string, header_string;
+		String status_string, header_string;
 
 		if (last_test_state == Test_state::NO_ASSERTIONS)
 		{
@@ -197,7 +198,7 @@ public:
 		else
 			header_string = "(UNKNOWN TEST - NO ASSERTIONS)";
 
-		std::string output_string;
+		String output_string;
 		output_string += status_string;
 		output_string += "\t";
 		output_string += header_string;
@@ -212,7 +213,7 @@ public:
 		return passed;
 	}
 
-	bool test_all(const std::vector<Test_function>& functions)
+	bool test_all(const Vector<Test_function>& functions)
 	{
 		bool all_tests_succeeded = true;
 		for (Test_function function : functions)
@@ -241,10 +242,10 @@ private:
 	} last_test_state;
 
 	Source_code_origin last_test_origin;
-	std::string last_test_message;
+	String last_test_message;
 	bool has_test_origin;
 
-	std::string bool_to_string(bool value)
+	String bool_to_string(bool value)
 	{
 		return value ? "true" : "false";
 	}
@@ -282,7 +283,7 @@ inline bool test(Test_function function)
 	return result;
 }
 
-inline bool test_all(const std::vector<Test_function>& functions)
+inline bool test_all(const Vector<Test_function>& functions)
 {
 	if (functions.size() == 1)
 		return test(functions[0]);
@@ -295,7 +296,7 @@ inline bool test_all(const std::vector<Test_function>& functions)
 	}
 }
 
-inline bool all_succeed(const std::vector<Bool_function>& bool_functions)
+inline bool all_succeed(const Vector<Bool_function>& bool_functions)
 {
 	bool success = true;
 	for (auto function : bool_functions)
