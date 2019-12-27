@@ -19,7 +19,7 @@ $(info INCLUDE_DIR: $(INCLUDE_DIR))
 $(info INCLUDES: $(INCLUDES))
 
 # Compiler flags
-CC_FLAGS += $(INCLUDES) -c -std=c++11 -Wpedantic -Werror -Wfatal-errors
+CC_FLAGS += $(INCLUDES) -c -std=c++17 -Werror
 
 # Linker flags
 LD_FLAGS += $(LIBRARIES)
@@ -78,6 +78,6 @@ lib: $(LIB_DIR)/lib$(PROJECT_NAME).a
 # Clean (wipe build directory)
 clean:
 	rm -rf $(BUILD_DIR)/*
-	rm -rf $(BINARIES_DIR)/*
+	rm -f $(BINARIES_DIR)/$(PROJECT_NAME)*
 
 .PHONY: all clean

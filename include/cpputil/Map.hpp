@@ -6,6 +6,7 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
+#include "core.hpp"
 #include <map>
 #include <functional>
 
