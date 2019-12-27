@@ -21,8 +21,8 @@ using ulong = unsigned long;
 
 using String = std::string;
 using c_string = const char*;
-using String_ref = const std::string&;
-using Mutable_string_ref = std::string&;
+using String_ref = const String&;
+using Mutable_string_ref = String&;
 
 template <typename T>
 using Vector = std::vector<T>;
