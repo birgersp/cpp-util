@@ -3,7 +3,7 @@
  * https://github.com/birgersp
  */
 
-#include "consumer_test.h"
+#include "map_test.h"
 
 #include <cpputil/testing.hpp>
 #include <cpputil/Map.hpp>
@@ -37,8 +37,8 @@ void test_has()
 bool test_map()
 {
 	return test_all({
-				test_put_and_get,
-				test_has
+					test_put_and_get,
+					test_has
 	});
 }
 
