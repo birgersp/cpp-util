@@ -6,11 +6,11 @@
 #ifndef TESTING_HPP
 #define TESTING_HPP
 
-#include <cpputil/core.hpp>
-#include <cpputil/common.hpp>
-#include <cpputil/printing.hpp>
-#include <cpputil/errorhandling.hpp>
-#include <cpputil/string.hpp>
+#include "core.hpp"
+#include "common.hpp"
+#include "printing.hpp"
+#include "errorhandling.hpp"
+#include "string.hpp"
 
 #include <vector>
 #include <string>

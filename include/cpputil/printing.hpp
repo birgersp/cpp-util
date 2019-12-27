@@ -6,8 +6,8 @@
 #ifndef PRINTING_H
 #define PRINTING_H
 
-#include <cpputil/core.hpp>
-#include <cpputil/common.hpp>
+#include "core.hpp"
+#include "common.hpp"
 #include <iostream>
 
 inline std::string get_function_message(String_ref function_header, String_ref message)

@@ -6,7 +6,7 @@
 #ifndef COMMON_HPP
 #define COMMON_HPP
 
-#include <cpputil/core.hpp>
+#include "core.hpp"
 #include <string>
 #include <vector>
 

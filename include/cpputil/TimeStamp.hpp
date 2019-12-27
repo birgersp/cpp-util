@@ -9,7 +9,7 @@
 #include "Day_of_week.hpp"
 #include <map>
 #include <sys/time.h>
-#include <cpputil/core.hpp>
+#include "core.hpp"
 
 inline ulong get_current_seconds_since_epoch()
 {

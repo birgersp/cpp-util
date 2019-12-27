@@ -6,7 +6,7 @@
 #ifndef DEBUGGING_HPP
 #define DEBUGGING_HPP
 
-#include <cpputil/printing.hpp>
+#include "printing.hpp"
 
 #include "Source_code_origin.hpp"
 

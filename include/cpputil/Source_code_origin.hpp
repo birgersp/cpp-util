@@ -6,7 +6,7 @@
 #ifndef SOURCE_CODE_ORIGIN_HPP
 #define SOURCE_CODE_ORIGIN_HPP
 
-#include <cpputil/core.hpp>
+#include "core.hpp"
 
 struct Source_code_origin
 {
