@@ -17,6 +17,7 @@
 #include "timing_test.h"
 #include "map_test.h"
 #include "stringreader_test.h"
+#include "table_printer_test.h"
 
 int main(int argc, char** argv)
 {
@@ -33,7 +34,8 @@ int main(int argc, char** argv)
 		tests::test_stringifying,
 		tests::test_timing,
 		tests::test_map,
-		tests::test_Stringreader
+		tests::test_Stringreader,
+		tests::test_table_printer
 	};
 
 	if (all_succeed(test_functions))
