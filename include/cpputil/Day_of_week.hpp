@@ -8,7 +8,6 @@
 
 #include <map>
 #include <string>
-#include "core.hpp"
 
 enum class Day_of_week
 {

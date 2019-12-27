@@ -6,7 +6,6 @@
 #ifndef ERRORHANDLING_HPP
 #define ERRORHANDLING_HPP
 
-#include "common.hpp"
 #include <string>
 #include <string.h>
 

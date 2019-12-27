@@ -8,7 +8,6 @@
 
 #include <map>
 #include <functional>
-#include "core.hpp"
 
 template <class K, class V>
 class Map

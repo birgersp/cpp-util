@@ -6,7 +6,6 @@
 #ifndef STRING_INTERPRETER_HPP
 #define STRING_INTERPRETER_HPP
 
-#include "core.hpp"
 
 class String_interpreter
 {

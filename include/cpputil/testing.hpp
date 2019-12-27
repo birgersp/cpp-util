@@ -6,9 +6,6 @@
 #ifndef TESTING_HPP
 #define TESTING_HPP
 
-#include "core.hpp"
-#include "common.hpp"
-#include "printing.hpp"
 #include "errorhandling.hpp"
 #include "string.hpp"
 

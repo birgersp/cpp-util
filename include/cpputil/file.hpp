@@ -8,7 +8,6 @@
 
 #include <fstream>
 
-#include "core.hpp"
 
 inline bool read_file(String_ref filename, Mutable_string_ref data)
 {

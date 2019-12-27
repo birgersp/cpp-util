@@ -6,7 +6,6 @@
 #ifndef SOURCE_HPP
 #define SOURCE_HPP
 
-#include "Consumer.hpp"
 #include <vector>
 
 template<class T>

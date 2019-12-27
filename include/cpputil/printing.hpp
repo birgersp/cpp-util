@@ -6,7 +6,6 @@
 #ifndef PRINTING_H
 #define PRINTING_H
 
-#include "core.hpp"
 #include "common.hpp"
 #include <iostream>
 
