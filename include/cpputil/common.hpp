@@ -8,6 +8,7 @@
 
 #include <string>
 #include <vector>
+#include <cpputil/core.hpp>
 
 inline String get_function_name(String_ref function_header)
 {

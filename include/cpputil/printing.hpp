@@ -8,6 +8,7 @@
 
 #include "common.hpp"
 #include <iostream>
+#include <cpputil/core.hpp>
 
 inline String get_function_message(String_ref function_header, String_ref message)
 {
