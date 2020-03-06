@@ -62,9 +62,14 @@ private:
 
 };
 
+inline String get_errno_string()
+{
+	return String(strerror(errno));
+}
+
 #define function_exception(reason) Exception(get_source_origin(), reason)
 #define consequential_exception(cause) Consequential_exception(get_source_origin(), cause)
 #define unsupported_function_exception() Exception(get_source_origin(), "Function not implemented")
-#define function_error_exception() function_exception(strerror(errno))
+#define function_error_exception() function_exception(get_errno_string())
 
 #endif /* ERRORHANDLING_HPP */
