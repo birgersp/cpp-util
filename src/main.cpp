@@ -11,7 +11,7 @@
 #include <cpputil/Source_code_origin.hpp>
 #include <cpputil/String_interpreter.hpp>
 #include <cpputil/Stringreader.hpp>
-#include <cpputil/TimeStamp.hpp>
+#include <cpputil/Timestamp.hpp>
 #include <cpputil/common.hpp>
 #include <cpputil/core.hpp>
 #include <cpputil/debugging.hpp>

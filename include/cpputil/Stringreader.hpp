@@ -21,6 +21,7 @@ public:
 	Stringreader(String string) :
 	string(string)
 	{
+		index = 0;
 	}
 
 	bool at_end() const
@@ -71,7 +72,7 @@ public:
 private:
 
 	String string, buffer;
-	uint index = 0;
+	uint index;
 
 };
 

@@ -39,7 +39,7 @@ public:
 		return map.size();
 	}
 
-	void foreach(std::function<void(K, V) > callback)
+	void foreach(std::function<void(const K&, V&) > callback)
 	{
 		for (auto it = map.begin(); it != map.end(); ++it)
 			callback(it->first, it->second);

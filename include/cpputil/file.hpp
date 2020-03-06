@@ -7,7 +7,7 @@
 #define FILE_HPP
 
 #include <fstream>
-
+#include <cpputil/core.hpp>
 
 inline bool read_file(String_ref filename, Mutable_string_ref data)
 {

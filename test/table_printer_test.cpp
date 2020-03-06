@@ -4,7 +4,7 @@
  */
 
 #include "table_printer_test.h"
-#include <cpputil/Table_printer.h>
+#include <cpputil/Table_printer.hpp>
 #include <cpputil/testing.hpp>
 
 namespace cpputil

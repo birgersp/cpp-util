@@ -15,7 +15,7 @@ class Exception
 {
 public:
 
-	Exception(const Source_code_origin origin, const String reason) :
+	Exception(const Source_code_origin origin, String reason) :
 	origin(origin), reason(reason)
 	{
 	}
@@ -51,7 +51,7 @@ class Consequential_exception : public Exception
 {
 public:
 
-	Consequential_exception(const Source_code_origin origin, const Exception& parent) :
+	Consequential_exception(Source_code_origin origin, const Exception& parent) :
 	Exception(origin, parent), parent(parent)
 	{
 	}
