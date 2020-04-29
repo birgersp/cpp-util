@@ -24,7 +24,4 @@ using c_string = const char*;
 using String_ref = const String&;
 using Mutable_string_ref = String&;
 
-template <typename T>
-using Vector = std::vector<T>;
-
 #endif /* CORE_HPP */

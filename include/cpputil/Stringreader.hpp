@@ -29,7 +29,7 @@ public:
 		return index >= string.length();
 	}
 
-	Result read_until(const Vector<char>& characters)
+	Result read_until(const std::vector<char>& characters)
 	{
 		buffer.clear();
 		Result result;

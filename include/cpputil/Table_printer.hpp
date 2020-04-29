@@ -12,15 +12,15 @@ class Table_printer
 {
 public:
 
-	void add_row(Vector<String> cells)
+	void add_row(std::vector<String> cells)
 	{
 		rows.push_back(cells);
 	}
 
 	String to_string()
 	{
-		Vector<uint> column_widths;
-		for (Vector<String> row_cells : rows)
+		std::vector<uint> column_widths;
+		for (std::vector<String> row_cells : rows)
 		{
 			for (uint i = 0; i < row_cells.size(); i++)
 			{
@@ -41,7 +41,7 @@ public:
 		}
 
 		String result;
-		for (Vector<String> row_cells : rows)
+		for (std::vector<String> row_cells : rows)
 		{
 			if (result != "")
 				result += "\n";
@@ -67,7 +67,7 @@ public:
 
 private:
 
-	Vector<Vector<String> > rows;
+	std::vector<std::vector<String> > rows;
 
 };
 

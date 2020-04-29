@@ -213,7 +213,7 @@ public:
 		return passed;
 	}
 
-	bool test_all(const Vector<Test_function>& functions)
+	bool test_all(const std::vector<Test_function>& functions)
 	{
 		bool all_tests_succeeded = true;
 		for (Test_function function : functions)
@@ -283,7 +283,7 @@ inline bool test(Test_function function)
 	return result;
 }
 
-inline bool test_all(const Vector<Test_function>& functions)
+inline bool test_all(const std::vector<Test_function>& functions)
 {
 	if (functions.size() == 1)
 		return test(functions[0]);
@@ -296,7 +296,7 @@ inline bool test_all(const Vector<Test_function>& functions)
 	}
 }
 
-inline bool all_succeed(const Vector<Bool_function>& bool_functions)
+inline bool all_succeed(const std::vector<Bool_function>& bool_functions)
 {
 	bool success = true;
 	for (auto function : bool_functions)

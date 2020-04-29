@@ -8,9 +8,9 @@
 
 #include "core.hpp"
 
-inline Vector<String> split_string(String_ref string, char delimiter)
+inline std::vector<String> split_string(String_ref string, char delimiter)
 {
-	Vector<String> result;
+	std::vector<String> result;
 
 	if (string != "")
 	{
@@ -45,8 +45,8 @@ struct String_difference
 
 inline bool find_string_difference(String_ref string1, String_ref string2, String_difference& difference)
 {
-	Vector<String> string1_lines = split_string(string1, '\n');
-	Vector<String> string2_lines = split_string(string2, '\n');
+	std::vector<String> string1_lines = split_string(string1, '\n');
+	std::vector<String> string2_lines = split_string(string2, '\n');
 
 	if (string1_lines.size() > string2_lines.size())
 	{

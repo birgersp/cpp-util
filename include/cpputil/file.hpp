@@ -30,10 +30,10 @@ inline bool read_file(String_ref filename, Mutable_string_ref data)
 	return false;
 }
 
-inline Vector<String> read_file_lines(String_ref filename)
+inline std::vector<String> read_file_lines(String_ref filename)
 {
 	std::ifstream infile(filename);
-	Vector<String> lines;
+	std::vector<String> lines;
 	if (infile.is_open())
 	{
 		String line;

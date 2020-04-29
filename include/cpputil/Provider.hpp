@@ -34,7 +34,7 @@ public:
 
 private:
 
-	Vector<Consumer<T>*> consumers;
+	std::vector<Consumer<T>*> consumers;
 
 };
 
