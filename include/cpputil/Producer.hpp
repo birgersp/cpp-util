@@ -3,8 +3,8 @@
  * https://github.com/birgersp
  */
 
-#ifndef PROVIDER_HPP
-#define PROVIDER_HPP
+#ifndef PRODUCER_HPP
+#define PRODUCER_HPP
 
 #include "core.hpp"
 #include "Consumer.hpp"
@@ -12,7 +12,7 @@
 #include <vector>
 
 template<class T>
-class Provider : public Source<T>
+class Producer : public Source<T>
 {
 public:
 
@@ -38,5 +38,5 @@ private:
 
 };
 
-#endif /* PROVIDER_HPP */
+#endif /* PRODUCER_HPP */
 

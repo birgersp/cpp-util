@@ -6,7 +6,7 @@
 #include "consumer_test.h"
 
 #include <cpputil/Consumer.hpp>
-#include <cpputil/Provider.hpp>
+#include <cpputil/Producer.hpp>
 #include <cpputil/testing.hpp>
 
 namespace cpputil
@@ -43,7 +43,7 @@ public:
 
 };
 
-class Dummy_provider : public Provider<Dummy_event>
+class Dummy_provider : public Producer<Dummy_event>
 {
 };
 
@@ -58,14 +58,14 @@ void test_consumer_provider()
 
 	assert_equals(0, consumer.last_event.dummy_data);
 
-	Dummy_provider provider;
-	provider.add_consumer(consumer);
+	Dummy_provider producer;
+	producer.add_consumer(consumer);
 	assert_equals(false, consumer.got_event);
 	assert_equals(0, consumer.last_event.dummy_data);
 
 	Dummy_event event;
 	event.dummy_data = 10;
-	provider.invoke_consumers(event);
+	producer.invoke_consumers(event);
 	assert_equals(true, consumer.got_event);
 	assert_equals(10, consumer.last_event.dummy_data);
 }
