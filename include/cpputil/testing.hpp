@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef TESTING_HPP
-#define TESTING_HPP
+#pragma once
 
 #include "errorhandling.hpp"
 #include "string.hpp"
@@ -311,5 +310,3 @@ inline bool all_succeed(const std::vector<Bool_function>& bool_functions)
 #define assert_approx_equal(expected, actual, delta) testing::get_tester().make_equals_assertion(expected, actual, delta, cpp_util_get_source_origin())
 #define assert_equals(expected, actual) testing::get_tester().make_equals_assertion(expected, actual, cpp_util_get_source_origin())
 #define disable_test() testing::get_tester().disable_test(cpp_util_get_source_origin())
-
-#endif /* TESTING_HPP */

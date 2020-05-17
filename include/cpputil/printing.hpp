@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef PRINTING_H
-#define PRINTING_H
+#pragma once
 
 #include "common.hpp"
 #include <iostream>
@@ -37,5 +36,3 @@ inline void print_function_error(String_ref function_header, String_ref message)
 {
 	print_error_string(get_function_message(function_header, message));
 }
-
-#endif /* PRINTING_H */

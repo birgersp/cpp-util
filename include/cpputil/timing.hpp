@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef TIMING_HPP
-#define TIMING_HPP
+#pragma once
 
 #include <sys/time.h>
 
@@ -55,5 +54,3 @@ inline void sleep_mS(int milliseconds)
 	usleep(milliseconds * 1000);
 #endif
 }
-
-#endif /* TIMING_HPP */

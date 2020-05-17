@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef ERRORHANDLING_HPP
-#define ERRORHANDLING_HPP
+#pragma once
 
 #include <string>
 #include <string.h>
@@ -71,5 +70,3 @@ inline String get_errno_string()
 #define consequential_exception(cause) Consequential_exception(get_source_origin(), cause)
 #define unsupported_function_exception() Exception(get_source_origin(), "Function not implemented")
 #define function_error_exception() function_exception(get_errno_string())
-
-#endif /* ERRORHANDLING_HPP */

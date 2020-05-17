@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef DAY_OF_WEEK_HPP
-#define DAY_OF_WEEK_HPP
+#pragma once
 
 #include <map>
 #include <string>
@@ -34,6 +33,4 @@ const std::map<Day_of_week, uint> day_of_week_indices = {
 	{Day_of_week::FRIDAY, 5},
 	{Day_of_week::SATURDAY, 6}
 };
-
-#endif /* DAY_OF_WEEK_HPP */
 

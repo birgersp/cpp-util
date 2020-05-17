@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef STRINGREADER_HPP
-#define STRINGREADER_HPP
+#pragma once
 
 #include "core.hpp"
 
@@ -75,6 +74,4 @@ private:
 	uint index;
 
 };
-
-#endif /* STRINGREADER_HPP */
 

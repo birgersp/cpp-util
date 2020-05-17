@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef STRINGIFYING_HPP
-#define STRINGIFYING_HPP
+#pragma once
 
 #include <string>
 #include <typeinfo>
@@ -21,5 +20,3 @@ public:
 		return String(demangled);
 	}
 };
-
-#endif /* STRINGIFYING_HPP */

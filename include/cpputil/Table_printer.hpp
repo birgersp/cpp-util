@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef TABLE_PRINTER_H
-#define TABLE_PRINTER_H
+#pragma once
 
 #include "core.hpp"
 
@@ -70,6 +69,4 @@ private:
 	std::vector<std::vector<String> > rows;
 
 };
-
-#endif /* TABLE_PRINTER_H */
 

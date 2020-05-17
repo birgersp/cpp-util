@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef STRING_HPP
-#define STRING_HPP
+#pragma once
 
 #include "core.hpp"
 
@@ -84,5 +83,3 @@ inline bool find_string_difference(String_ref string1, String_ref string2, Strin
 }
 
 }
-
-#endif /* STRING_HPP */

@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef CORE_HPP
-#define CORE_HPP
+#pragma once
 
 #include <string>
 #include <vector>
@@ -23,5 +22,3 @@ using String = std::string;
 using c_string = const char*;
 using String_ref = const String&;
 using Mutable_string_ref = String&;
-
-#endif /* CORE_HPP */

@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef TIMESTAMP_HPP
-#define TIMESTAMP_HPP
+#pragma once
 
 #include "Day_of_week.hpp"
 #include <map>
@@ -115,5 +114,3 @@ private:
 	Day_of_week day_of_week;
 
 };
-
-#endif /* TIMESTAMP_HPP */

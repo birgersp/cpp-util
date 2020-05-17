@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef PRODUCER_HPP
-#define PRODUCER_HPP
+#pragma once
 
 #include "core.hpp"
 #include "Consumer.hpp"
@@ -37,6 +36,4 @@ private:
 	std::vector<Consumer<T>*> consumers;
 
 };
-
-#endif /* PRODUCER_HPP */
 

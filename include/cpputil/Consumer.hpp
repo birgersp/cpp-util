@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef CONSUMER_HPP
-#define CONSUMER_HPP
+#pragma once
 
 template<class T>
 class Consumer
@@ -19,5 +18,3 @@ public:
 	}
 
 };
-
-#endif /* CONSUMER_HPP */

@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef STRING_INTERPRETER_HPP
-#define STRING_INTERPRETER_HPP
+#pragma once
 
 
 class String_interpreter
@@ -73,5 +72,3 @@ private:
 	uint& subject_line_character_index;
 
 };
-
-#endif /* STRING_INTERPRETER_HPP */

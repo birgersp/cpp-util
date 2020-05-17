@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef DEBUGGING_HPP
-#define DEBUGGING_HPP
+#pragma once
 
 #include "printing.hpp"
 
@@ -59,6 +58,4 @@ inline void print_debug_info(const Source_code_origin source_origin, char charac
 #define cpputil_debug_variable(variable) print_debug_info(get_source_origin(), variable)
 #define cpputil_debug_function() print_debug_info(get_source_origin())
 
-
-#endif /* DEBUGGING_HPP */
 

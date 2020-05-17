@@ -3,8 +3,7 @@
  * https://github.com/birgersp
  */
 
-#ifndef FILE_HPP
-#define FILE_HPP
+#pragma once
 
 #include <fstream>
 #include <cpputil/core.hpp>
@@ -56,5 +55,3 @@ inline void write_file(String_ref filename, String_ref data)
 	file << data;
 	file.close();
 }
-
-#endif /* FILE_HPP */
